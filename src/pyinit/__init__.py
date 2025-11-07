@@ -21,6 +21,5 @@ from .bump_project import bump_project_version
 from .venv_manager import manage_venv
 from .dockerize_project import dockerize_project
 from .env_manager import manage_env
-from .license_manager import manage_license
 from .hooks_manager import add_git_hooks
 from .main import main
