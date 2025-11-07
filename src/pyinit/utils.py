@@ -1,4 +1,5 @@
 import sys
+import re
 from pathlib import Path
 
 def find_project_root() -> Path | None:

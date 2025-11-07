@@ -94,7 +94,7 @@ class ProjectScanner:
             
             if not missing:
                 return True, ""
-            return False, f"[bold red]ERROR:[/] The following dependencies are in 'pyproject.toml' but not in 'venv': \n{', '.join(missing)}\n       -> [yellow]Suggestion:[/] Install dependencies, e.g., via 'pyinit add <dependency>' .'"
+            return False, f"[bold red]ERROR:[/] The following dependencies are in 'pyproject.toml' but not in 'venv': {', '.join(missing)}\n       -> [green]Suggestion:[/] Install dependencies, e.g., via 'pyinit add <dependency>' .'\n"
         
         except (subprocess.CalledProcessError, FileNotFoundError):
             return False, "[bold red]ERROR:[/] Could not list installed packages from 'venv'."
@@ -104,7 +104,7 @@ class ProjectScanner:
             self.console.print(f"[bold green]\nScan[/bold green] complete. All {self.total_checks} checks passed!")
         else:
             self.console.print(f"[bold yellow]\nScan[/bold yellow] complete. {self.checks_passed}/{self.total_checks} checks passed")
-            self.console.print("\n[bold yellow]Summary[/] of issues found:")
+            self.console.print("\n[bold yellow]Summary[/] of issues found:\n")
             for issue in self.issues:
                 self.console.print(f" - {issue}")
 
