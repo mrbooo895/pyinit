@@ -23,3 +23,26 @@ from .scan_project import scan_project
 from .test_project import run_tests
 from .update_project import update_dependencies
 from .venv_manager import manage_venv
+
+
+__all__ = [
+    "create_project",
+    "initialize_project",
+    "start_project",
+    "install_module",
+    "lock_dependencies",
+    "update_dependencies",
+    "install_project",
+    "run_tests",
+    "lint_project",
+    "format_project",
+    "show_dependency_graph",
+    "clean_project",
+    "scan_project",
+    "bump_project_version",
+    "manage_venv",
+    "dockerize_project",
+    "manage_env",
+    "add_git_hooks",
+    "main",
+]

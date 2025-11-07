@@ -75,7 +75,7 @@ def run_tests(pytest_args: list = None):
 
     try:
         subprocess.run(run_tests_cmd, cwd=project_root)
-        console.print(f"\n[bold green]Testing[/bold green] process completed.")
+        console.print("\n[bold green]Testing[/bold green] process completed.")
     except Exception as e:
         console.print(
             f"[bold red][ERROR][/bold red] An unexpected error occurred while running tests: {e}"
