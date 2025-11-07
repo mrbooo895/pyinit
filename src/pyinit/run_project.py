@@ -33,7 +33,7 @@ def start_project(app_args: list = None):
     else:
         python_executable = venv_dir / "bin" / "python"
 
-    console.print(f"[bold green]    Running[/bold green] package (application) '{project_name}'")
+    console.print(f"[bold green]    Running[/bold green] package '{project_name}'")
     time.sleep(0.25)
 
     try:

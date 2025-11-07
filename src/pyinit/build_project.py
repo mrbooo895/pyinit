@@ -36,7 +36,7 @@ def install_project():
             check=True, capture_output=True
         )
 
-        console.print(f"[bold green]     Building[/bold green] package (application) '{project_name}'") 
+        console.print(f"[bold green]     Building[/bold green] package '{project_name}'") 
         time.sleep(0.25)
         subprocess.run(
             [str(python_executable), "-m", "build"],
@@ -44,7 +44,7 @@ def install_project():
             check=True, capture_output=True
         )
 
-        console.print(f"[bold green]\nSuccessfully[/bold green] built package (application) '{project_name}'") 
+        console.print(f"[bold green]\nSuccessfully[/bold green] built package '{project_name}'") 
         console.print(f"[bold green]->[/] Check 'dist/' for results")
 
     except subprocess.CalledProcessError as e:
