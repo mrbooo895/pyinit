@@ -104,12 +104,6 @@ pyinit --help
 | `clean` | Remove temporary files and build artifacts | `pyinit clean` |
 | `scan` | Diagnose project structure and configuration issues | `pyinit scan` |
 
-### 📜 Project Configuration
-
-| Command | Description | Example |
-|---------|-------------|---------|
-| `license` | View available licenses or set one for your project | `pyinit license set mit` |
-
 ---
 
 ## 📂 Project Templates
