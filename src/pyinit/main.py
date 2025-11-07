@@ -19,7 +19,6 @@ from .update_project import update_dependencies
 from .scan_project import scan_project
 from .dockerize_project import dockerize_project
 from .env_manager import manage_env
-from .license_manager import manage_license
 from .hooks_manager import add_git_hooks
 
 @error_handling
@@ -57,11 +56,6 @@ def main():
     env_subparsers = parser_env.add_subparsers(dest="env_command", required=True, help="env commands")
     parser_env_set = env_subparsers.add_parser("set", help="Set one or more environment variables")
     parser_env_set.add_argument("vars", nargs='+', metavar="KEY=VALUE", help="Variable(s) to set")
-    parser_license = subparsers.add_parser("license", help="Manage the project's license")
-    license_subparsers = parser_license.add_subparsers(dest="license_command", help="license commands")
-    license_subparsers.add_parser("list", help="List available licenses")
-    parser_license_set = license_subparsers.add_parser("set", help="Set a license for the project")
-    parser_license_set.add_argument("license_name", metavar="LICENSE_NAME", help="Name of the license to set (e.g., mit)")
     parser_hooks = subparsers.add_parser("add-hooks", help="Set up pre-commit hooks for the project")
     args = parser.parse_args()
 
@@ -103,8 +97,6 @@ def main():
             dockerize_project()
         case "env":
             manage_env(args.vars)
-        case "license":
-            manage_license(args.license_command, getattr(args, 'license_name', None))
         case "add-hooks":
             add_git_hooks()
 
