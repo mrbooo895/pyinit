@@ -12,7 +12,7 @@ authors = [
 ]
 description = "A tool for creating and managing Python projects"
 readme = "README.md"
-requires-python = ">=3.8"
+requires-python = ">=3.10"
 dependencies = [
     "rich",
     "tomli",

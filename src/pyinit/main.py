@@ -117,43 +117,45 @@ def main():
 
     args = parser.parse_args(main_args)
 
-    if args.command == "new":
-        create_project(args.project_name, args.template)
-    elif args.command == "run":
-        start_project(sub_args)
-    elif args.command == "add":
-        install_module(args.module_name)
-    elif args.command == "build":
-        install_project()
-    elif args.command == "init":
-        initialize_project()
-    elif args.command == "test":
-        run_tests(sub_args)
-    elif args.command == "lock":
-        lock_dependencies()
-    elif args.command == "format":
-        format_project()
-    elif args.command == "venv":
-        manage_venv(args.venv_command)
-    elif args.command == "lint":
-        lint_project(sub_args)
-    elif args.command == "graph":
-        show_dependency_graph()
-    elif args.command == "clean":
-        clean_project()
-    elif args.command == "bump":
-        bump_project_version(args.part)
-    elif args.command == "update":
-        update_dependencies(args.upgrade)
-    elif args.command == "scan":
-        scan_project()
-    elif args.command == "dockerize":
-        dockerize_project()
-    elif args.command == "env":
-        if args.env_command == "set":
-            manage_env(args.vars)
-    elif args.command == "add-hooks":
-        add_git_hooks()
+    match args.command:
+        case "new":
+            create_project(args.project_name, args.template)
+        case "run":
+            start_project(sub_args)
+        case "add":
+            install_module(args.module_name)
+        case "build":
+            install_project()
+        case "init":
+            initialize_project()
+        case "test":
+            run_tests(sub_args)
+        case "lock":
+            lock_dependencies()
+        case "format":
+            format_project()
+        case "venv":
+            manage_venv(args.venv_command)
+        case "lint":
+            lint_project(sub_args)
+        case "graph":
+            show_dependency_graph()
+        case "clean":
+            clean_project()
+        case "bump":
+            bump_project_version(args.part)
+        case "update":
+            update_dependencies(args.upgrade)
+        case "scan":
+            scan_project()
+        case "dockerize":
+            dockerize_project()
+        case "env":
+            match args.env_command:
+                case "set":
+                    manage_env(args.vars)
+        case "add-hooks":
+            add_git_hooks()
 
 
 if __name__ == "__main__":
