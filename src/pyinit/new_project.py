@@ -95,7 +95,6 @@ build/
             f.write(gitignore_content)
         
         console.print(f"[bold green]Successfully[/bold green] created project '{project_name}'.")
-        console.print(f"[bold green]note[/]: see more informations and configuration in 'pyproject.toml'")
     
     except Exception as e:
         console.print(f"[bold red][ERROR][/bold red] Failed to create project: {e}")
