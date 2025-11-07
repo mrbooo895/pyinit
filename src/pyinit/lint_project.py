@@ -80,6 +80,6 @@ def lint_project(lint_args: list = None):
     console.print("[bold green]Running[/bold green] linter on codebase\n")
     time.sleep(0.5)
 
-    subprocess.run(lint_cmd)
+    subproces.run(lint_cmd)
 
     console.print("\n[bold green]Linting[/bold green] process completed.")
