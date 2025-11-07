@@ -1,12 +1,14 @@
 [build-system]
-requires = ["setuptools>=61.0"]
+requires = [
+    "setuptools>=61.0",
+]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "pyinit"
-version = "1.0.0"
+version = "1.0.1"
 authors = [
-  { name="Karim", email="daynews19@gmail.com" },
+    { name = "Karim", email = "daynews19@gmail.com" },
 ]
 description = "A tool for creating and managing Python projects"
 readme = "README.md"
@@ -19,8 +21,10 @@ dependencies = [
     "pytest-mock",
 ]
 
-[tool.setuptools.packages.find]
-where = ["src"]
-
 [project.scripts]
 pyinit = "pyinit.main:main"
+
+[tool.setuptools.packages.find]
+where = [
+    "src",
+]
