@@ -67,8 +67,9 @@ def run_tests(pytest_args: list = None):
             sys.exit(1)
     else:
         console.print("[bold green]     Found[/bold green] 'pytest'")
+        time.sleep(0.5)
 
-    console.print("[bold green]     Running[/bold green] tests...\n")
+    console.print("[bold green]Running[/bold green] tests...")
     time.sleep(0.5)
 
     run_tests_cmd = [str(python_executable), "-m", "pytest"] + pytest_args
