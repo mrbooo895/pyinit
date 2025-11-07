@@ -44,23 +44,8 @@ def install_project():
             check=True, capture_output=True
         )
 
-        dist_dir = project_root / "dist"
-        wheel_files = list(dist_dir.glob("*.whl"))
-        if not wheel_files:
-            console.print(f"[bold red][ERROR][/bold red] unable to find wheel modules")
-            sys.exit(1)
-
-        wheel_to_install = wheel_files[0]
-
-        console.print(f"[bold green]      Installing[/bold green] project into system")
-        time.sleep(0.25)
-        subprocess.run(
-            [str(pip_executable), "install", str(wheel_to_install), "--force-reinstall", "--break-system-packages"],
-            check=True, capture_output=True
-        )
-
         console.print(f"[bold green]\nSuccessfully[/bold green] built package (application) '{project_name}'") 
-        console.print(f"[bold green]->[/] Check 'dist' for results")
+        console.print(f"[bold green]->[/] Check 'dist/' for results")
 
     except subprocess.CalledProcessError as e:
         console.print(f"[bold red][ERROR][/bold red] {e}")
