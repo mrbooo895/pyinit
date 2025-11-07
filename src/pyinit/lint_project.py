@@ -77,7 +77,7 @@ def lint_project(lint_args: list = None):
 
         lint_cmd.extend(targets)
 
-    console.print("[bold green]     Running[/bold green] linter on codebase...\n")
+    console.print("[bold green]Running[/bold green] linter on codebase\n")
     time.sleep(0.5)
 
     subprocess.run(lint_cmd)
