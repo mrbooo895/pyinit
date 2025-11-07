@@ -25,7 +25,7 @@ class ProjectScanner:
 
     def run_check(self, title, check_func):
         self.total_checks += 1
-        self.console.print(f"[bold green]     Checking[/bold green] {title}...", end="")
+        self.console.print(f"[bold green]     Checking[/bold green] {title}:", end="")
         time.sleep(0.15)
         success, message = check_func()
         if success:
