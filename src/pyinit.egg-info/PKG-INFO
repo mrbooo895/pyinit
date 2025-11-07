@@ -7,8 +7,10 @@ Requires-Python: >=3.8
 Description-Content-Type: text/markdown
 License-File: LICENSE
 Requires-Dist: rich
-Requires-Dist: tomli; python_version < "3.11"
+Requires-Dist: tomli
 Requires-Dist: tomli-w
+Requires-Dist: pytest
+Requires-Dist: pytest-mock
 Dynamic: license-file
 
 # 🚀 pyinit - Your All-in-One Python Project Manager
@@ -116,12 +118,6 @@ pyinit --help
 | `bump` | Increment project version (semantic versioning) | `pyinit bump patch` |
 | `clean` | Remove temporary files and build artifacts | `pyinit clean` |
 | `scan` | Diagnose project structure and configuration issues | `pyinit scan` |
-
-### 📜 Project Configuration
-
-| Command | Description | Example |
-|---------|-------------|---------|
-| `license` | View available licenses or set one for your project | `pyinit license set mit` |
 
 ---
 

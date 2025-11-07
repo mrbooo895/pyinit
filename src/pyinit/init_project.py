@@ -9,7 +9,7 @@ from pathlib import Path
 
 from rich.console import Console
 
-from .new_project import get_git_config
+from .new_project import get_git_config, copy_and_process_template, TEMPLATES_BASE_DIR
 from .wrappers import error_handling
 
 
@@ -24,70 +24,73 @@ def sanitize_name(name: str) -> str:
 def initialize_project():
     console = Console()
     project_root = Path.cwd()
+    template_name = "app"
+    template_dir = TEMPLATES_BASE_DIR / template_name
 
-    console.print("[bold green]    Initializing[/bold green] existing project")
+    console.print(f"[bold green]    Initializing[/bold green] project in '{project_root.name}' using '{template_name}' template")
     time.sleep(0.5)
+
+    if not template_dir.is_dir():
+        console.print(f"[bold red][ERROR][/bold red] Default template '{template_name}' not found at '{TEMPLATES_BASE_DIR}'.")
+        sys.exit(1)
 
     original_name = project_root.name
     project_name = sanitize_name(original_name)
     if not project_name:
-        console.print(
-            f"[bold red][ERROR][/bold red] Could not derive a valid project name from '{original_name}'"
-        )
+        console.print(f"[bold red][ERROR][/bold red] Could not derive a valid project name from '{original_name}'")
         sys.exit(1)
 
-    console.print(
-        f"[bold green]     Setting[/bold green] Project Name to: '{project_name}'"
-    )
+    console.print(f"[bold green]     Setting[/bold green] Project Name to: '{project_name}'")
     time.sleep(0.5)
 
-    if (project_root / "pyproject.toml").exists():
-        console.print(
-            "[bold red][ERROR][/bold red] a 'pyproject.toml' file already exists. Aborting."
-        )
+    if (project_root / "pyproject.toml").exists() or (project_root / "src").exists() or (project_root / "venv").exists():
+        console.print("[bold red][ERROR][/bold red] Project already seems to be initialized ('pyproject.toml', 'src', or 'venv' exists).")
         sys.exit(1)
 
-    if (project_root / "src").exists():
-        console.print(
-            "[bold red][ERROR][/bold red] a 'src' directory already exists. Please remove or rename it first."
-        )
-        sys.exit(1)
-
-    if (project_root / "venv").exists():
-        console.print(
-            "[bold red][ERROR][/bold red] a 'venv' directory already exists. Aborting."
-        )
-        sys.exit(1)
-
-    console.print("[bold green]      Creating[/bold green] Project Structure")
+    console.print("[bold green]      Locating[/bold green] '.py' files to migrate...")
     time.sleep(0.5)
-    source_dir = project_root / "src" / project_name
-    os.makedirs(source_dir)
-
-    console.print("[bold green]      Locating[/bold green] '.py' files to migrate")
-    time.sleep(0.5)
-    python_files_to_move = [
-        f for f in project_root.iterdir() if f.is_file() and f.suffix == ".py"
-    ]
-
+    python_files_to_move = [f for f in project_root.iterdir() if f.is_file() and f.suffix == ".py"]
+    
+    temp_migration_dir = project_root / "__pyinit_migration_temp__"
     if python_files_to_move:
+        temp_migration_dir.mkdir()
         for py_file in python_files_to_move:
-            try:
-                shutil.move(py_file, source_dir)
-            except Exception as e:
-                console.print(
-                    f"[bold red][ERROR][/bold red] Could not move '{py_file.name}': {e}"
-                )
-                sys.exit(1)
+            shutil.move(py_file, temp_migration_dir / py_file.name)
 
-    if not (source_dir / "main.py").exists():
-        with open(source_dir / "main.py", "w") as file:
-            file.write('print("Hello World!")\n')
+    try:
+        console.print("[bold green]      Creating[/bold green] project structure from template...")
+        time.sleep(0.5)
+        
+        author_name = get_git_config("user.name") or "Your Name"
+        author_email = get_git_config("user.email") or "you@example.com"
 
-    console.print("[bold green]       Creating[/bold green] configuration files")
-    time.sleep(0.5)
+        replacements = {
+            "##PROJECT_NAME##": project_name,
+            "##AUTHOR_NAME##": author_name,
+            "##AUTHOR_EMAIL##": author_email,
+        }
 
-    gitignore_content = """# Virtual Environment
+        copy_and_process_template(template_dir, project_root, replacements)
+
+        if python_files_to_move:
+            console.print("[bold green]   Migrating[/bold green] existing Python files...")
+            time.sleep(0.5)
+            source_package_dir = project_root / "src" / project_name
+            (source_package_dir / "main.py").unlink(missing_ok=True)
+            for py_file in temp_migration_dir.iterdir():
+                shutil.move(py_file, source_package_dir / py_file.name)
+            temp_migration_dir.rmdir()
+
+        console.print("[bold green]    Finalizing[/bold green] setup...")
+        time.sleep(0.5)
+        
+        if not (project_root / ".git").exists():
+            subprocess.run(["git", "init"], cwd=project_root, check=True, capture_output=True)
+
+        venv.create(project_root / "venv", with_pip=True)
+
+        gitignore_path = project_root / ".gitignore"
+        gitignore_content = """\n# Virtual Environment
 venv/
 __pycache__/
 *.pyc
@@ -101,38 +104,15 @@ build/
 .idea/
 .vscode/
 """
-    with open(project_root / ".gitignore", "w") as file:
-        file.write(gitignore_content.strip())
+        with open(gitignore_path, "a") as f:
+            f.write(gitignore_content)
 
-    pyproject_template_path = "/usr/share/pyinit/pyprojinit.toml"
-    try:
-        with open(pyproject_template_path, "r") as template_file:
-            template = template_file.read()
+        console.print(f"[bold green]\nSuccessfully[/bold green] initialized project '{project_name}'")
 
-        author_name = get_git_config("user.name") or "Your Name"
-        author_email = get_git_config("user.email") or "you@example.com"
-
-        content = template.replace("##PROJECT_NAME##", project_name)
-        content = content.replace("##AUTHOR_NAME##", author_name)
-        content = content.replace("##AUTHOR_EMAIL##", author_email)
-
-        with open(project_root / "pyproject.toml", "w") as project_file:
-            project_file.write(content)
-    except FileNotFoundError:
-        console.print(
-            f"[bold red][ERROR][/bold red] Template file not found at '{pyproject_template_path}'"
-        )
+    except Exception as e:
+        console.print(f"[bold red][ERROR][/bold red] Failed during initialization: {e}")
+        if temp_migration_dir.exists():
+            for py_file in temp_migration_dir.iterdir():
+                shutil.move(py_file, project_root / py_file.name)
+            temp_migration_dir.rmdir()
         sys.exit(1)
-
-    console.print("[bold green]    Finalizing[/bold green] setup")
-    time.sleep(0.5)
-    if not (project_root / ".git").exists():
-        subprocess.run(
-            ["git", "init"], cwd=project_root, check=True, capture_output=True
-        )
-
-    venv.create(project_root / "venv", with_pip=True)
-
-    console.print(
-        f"[bold green]\nSuccessfully[/bold green] initialized project '{project_name}'"
-    )

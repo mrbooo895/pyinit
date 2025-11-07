@@ -12,7 +12,6 @@ src/pyinit/format_project.py
 src/pyinit/graph_project.py
 src/pyinit/hooks_manager.py
 src/pyinit/init_project.py
-src/pyinit/license_manager.py
 src/pyinit/lint_project.py
 src/pyinit/lock_project.py
 src/pyinit/main.py

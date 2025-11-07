@@ -1,5 +1,5 @@
 rich
-tomli-w
-
-[:python_version < "3.11"]
 tomli
+tomli-w
+pytest
+pytest-mock

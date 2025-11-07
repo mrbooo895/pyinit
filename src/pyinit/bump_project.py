@@ -46,30 +46,32 @@ def bump_project_version(part: str):
             f"[bold red][ERROR][/bold red] Invalid or missing version string in '{pyproject_path.name}'. Expected format: 'X.Y.Z'"
         )
         sys.exit(1)
+    
+    else:
 
-    if part == "major":
-        major += 1
-        minor = 0
-        patch = 0
-    elif part == "minor":
-        minor += 1
-        patch = 0
-    elif part == "patch":
-        patch += 1
+        if part == "major":
+            major += 1
+            minor = 0
+            patch = 0
+        elif part == "minor":
+            minor += 1
+            patch = 0
+        elif part == "patch":
+            patch += 1
 
-    new_version = f"{major}.{minor}.{patch}"
-    data["project"]["version"] = new_version
+        new_version = f"{major}.{minor}.{patch}"
+        data["project"]["version"] = new_version
 
-    try:
-        with open(pyproject_path, "wb") as f:
-            tomli_w.dump(data, f)
-    except Exception as e:
+        try:
+            with open(pyproject_path, "wb") as f:
+                tomli_w.dump(data, f)
+        except Exception as e:
+            console.print(
+                f"[bold red][ERROR][/bold red] Failed to write updated version to '{pyproject_path.name}': {e}"
+            )
+            sys.exit(1)
+
         console.print(
-            f"[bold red][ERROR][/bold red] Failed to write updated version to '{pyproject_path.name}': {e}"
+            f"[bold green]     Updating[/bold green] version from [yellow]{old_version}[/yellow] to [cyan]{new_version}[/cyan]"
         )
-        sys.exit(1)
-
-    console.print(
-        f"[bold green]     Updating[/bold green] version from [yellow]{old_version}[/yellow] to [cyan]{new_version}[/cyan]"
-    )
-    console.print("\n[bold green]Successfully[/bold green] bumped project version.")
+        console.print("\n[bold green]Successfully[/bold green] bumped project version.")
