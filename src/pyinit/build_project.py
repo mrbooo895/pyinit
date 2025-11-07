@@ -59,7 +59,8 @@ def install_project():
             check=True, capture_output=True
         )
 
-        console.print(f"[bold green]\nSuccessfully[/bold green] installed package (application) '{project_name}'") 
+        console.print(f"[bold green]\nSuccessfully[/bold green] built package (application) '{project_name}'") 
+        console.print(f"[bold green]->[/] Check 'dist' for results")
 
     except subprocess.CalledProcessError as e:
         console.print(f"[bold red][ERROR][/bold red] {e}")
