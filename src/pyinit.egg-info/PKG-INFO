@@ -1,0 +1,10 @@
+Metadata-Version: 2.4
+Name: pyinit
+Version: 0.1.0
+Summary: A tool for creating and managing Python projects
+Author-email: Karim <daynews19@gmail.com>
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+Requires-Dist: rich
+Requires-Dist: tomli; python_version < "3.11"
+Requires-Dist: tomli-w

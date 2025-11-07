@@ -1,0 +1,196 @@
+# 🚀 pyinit - Your All-in-One Python Project Manager
+
+**pyinit** is a comprehensive command-line tool that streamlines and automates the entire lifecycle of your Python projects. From initialization to deployment, pyinit handles the tedious setup tasks so you can focus on writing exceptional code.
+
+---
+
+## ✨ What Makes pyinit Special?
+
+- **🎯 Zero-Config Project Scaffolding**: Launch production-ready projects in seconds with professional templates (app, cli, flask, lib)
+- **📦 Smart Dependency Management**: Add, lock, update, and visualize your project's dependencies effortlessly
+- **🔍 Automated Code Quality**: Format, lint, and test your code with unified, simple commands
+- **🪝 Git Hooks Integration**: Enforce code quality standards automatically before every commit
+- **🐍 Virtual Environment Management**: Create and remove isolated Python environments with explicit control
+- **🐳 Deployment Ready**: Generate Dockerfiles, bump semantic versions, and clean your workspace instantly
+- **🔬 Intelligent Project Diagnostics**: Scan your project structure and configuration for issues with actionable suggestions
+
+---
+
+## 🔧 Installation
+
+Get pyinit up and running in 3 simple steps:
+
+### 1️⃣ Clone the Repository
+
+```bash
+git clone https://your-repo-url/pyinit.git
+cd pyinit
+```
+
+### 2️⃣ Install Project Templates
+
+**⚠️ Critical Step**: pyinit requires templates to be installed in a system-wide location.
+
+```bash
+sudo cp -r templates /usr/share/pyinit/
+```
+
+> **💡 Why sudo?** Templates are copied to `/usr/share/pyinit/` (a system directory) to make them globally accessible, regardless of where you run the tool.
+
+### 3️⃣ Install the Tool
+
+Install pyinit in editable mode so any source code changes take effect immediately:
+
+```bash
+sudo pip install -e .
+```
+
+> **📝 Note for Arch Linux Users**: You may need to add the `--break-system-packages` flag. **Important**: Always run commands with this flag as a non-root user.
+
+**Verify Installation**:
+```bash
+pyinit --help
+```
+
+---
+
+## 🛠️ Complete Command Reference
+
+### 🆕 Project Creation & Initialization
+
+| Command | Description | Example |
+|---------|-------------|---------|
+| `new` | Create a new Python project from scratch using a template | `pyinit new my-app --template flask` |
+| `init` | Convert an existing directory into a pyinit project | `pyinit init` |
+
+### 🏃 Running & Building
+
+| Command | Description | Example |
+|---------|-------------|---------|
+| `run` | Execute your project's main entry point | `pyinit run -- --port 8080` |
+| `build` | Build and install your project package system-wide | `pyinit build` |
+
+### 📦 Dependency Management
+
+| Command | Description | Example |
+|---------|-------------|---------|
+| `add` | Install a new dependency into the virtual environment | `pyinit add "requests==2.28.0"` |
+| `lock` | Generate `requirements.txt` from installed packages | `pyinit lock` |
+| `update` | Check for outdated dependencies or upgrade them | `pyinit update --upgrade` |
+| `graph` | Display a visual tree of project dependencies | `pyinit graph` |
+
+### 🧪 Code Quality & Testing
+
+| Command | Description | Example |
+|---------|-------------|---------|
+| `test` | Run your test suite using pytest | `pyinit test -v -k "login"` |
+| `lint` | Analyze code for errors and style issues with ruff | `pyinit lint` |
+| `format` | Auto-format code with black and isort | `pyinit format` |
+| `add-hooks` | Set up pre-commit hooks for automated quality checks | `pyinit add-hooks` |
+
+### 🐍 Environment Management
+
+| Command | Description | Example |
+|---------|-------------|---------|
+| `venv` | Create or remove the project's virtual environment | `pyinit venv remove` |
+| `env` | Manage environment variables in `.env` file | `pyinit env set DEBUG=True` |
+
+### 🚀 Deployment & Maintenance
+
+| Command | Description | Example |
+|---------|-------------|---------|
+| `dockerize` | Generate production-ready Dockerfile and .dockerignore | `pyinit dockerize` |
+| `bump` | Increment project version (semantic versioning) | `pyinit bump patch` |
+| `clean` | Remove temporary files and build artifacts | `pyinit clean` |
+| `scan` | Diagnose project structure and configuration issues | `pyinit scan` |
+
+### 📜 Project Configuration
+
+| Command | Description | Example |
+|---------|-------------|---------|
+| `license` | View available licenses or set one for your project | `pyinit license set mit` |
+
+---
+
+## 📂 Project Templates
+
+Kickstart your development with battle-tested project structures:
+
+### 🔹 **app** (Default)
+A versatile structure for general-purpose Python applications with a clean `main.py` entry point.
+
+### 🔹 **cli**
+Boilerplate for building powerful command-line tools using `argparse` and `rich` for beautiful terminal output.
+
+### 🔹 **flask**
+Minimal web application template using Flask, ready for API or web development.
+
+### 🔹 **lib**
+Structure optimized for building distributable Python libraries with proper packaging configuration.
+
+---
+
+## 📖 Quick Start Guide
+
+```bash
+# Create a new Flask web app
+pyinit new my-webapp --template flask
+cd my-webapp
+
+# Add dependencies
+pyinit add "flask-sqlalchemy"
+pyinit add "python-dotenv"
+
+# Set up environment variables
+pyinit env set DATABASE_URL=sqlite:///app.db
+pyinit env set SECRET_KEY=your-secret-key
+
+# Format and lint your code
+pyinit format
+pyinit lint
+
+# Run tests
+pyinit test
+
+# Lock dependencies
+pyinit lock
+
+# Scan for issues
+pyinit scan
+
+# Set up pre-commit hooks
+pyinit add-hooks
+
+# Generate Docker configuration
+pyinit dockerize
+
+# Bump version before release
+pyinit bump minor
+
+# Build and install
+pyinit build
+```
+
+---
+
+## 🤝 Contributing
+
+We welcome contributions! This project is open-source and thrives on community input. Feel free to:
+- 🐛 Report bugs
+- 💡 Suggest new features
+- 🔧 Submit pull requests
+- 📚 Improve documentation
+
+---
+
+## 📜 License
+
+This project is licensed under the **MIT License**. See the `LICENSE` file for details.
+
+---
+
+## 🎯 Philosophy
+
+pyinit is built on the principle that **project management should be simple, consistent, and powerful**. By providing a unified interface for common development tasks, pyinit lets you spend less time on setup and more time building amazing software.
+
+**Happy Coding! 🚀**
