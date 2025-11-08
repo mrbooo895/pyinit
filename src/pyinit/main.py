@@ -136,8 +136,8 @@ def main():
         "scan", help="Scan the project for configuration and structure issues"
     )
 
-    # 'dockerize' command
-    subparsers.add_parser("dockerize", help="Generate a Dockerfile for the project")
+    # 'docker' command
+    subparsers.add_parser("docker", help="Generate a Dockerfile for the project")
 
     # 'env' command group
     parser_env = subparsers.add_parser(
