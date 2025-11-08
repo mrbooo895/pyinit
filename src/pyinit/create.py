@@ -89,7 +89,9 @@ def create_project(project_path: str):
         try:
             template_content = TEMPLATE_PATH.read_text(encoding="utf-8")
         except FileNotFoundError:
-            console.print(f"[bold red][ERROR][/bold red] Template file not found at '{TEMPLATE_PATH}'.")
+            console.print(
+                f"[bold red][ERROR][/bold red] Template file not found at '{TEMPLATE_PATH}'."
+            )
             console.print("[dim]       - Ensure pyinit is installed correctly.[/dim]")
             sys.exit(1)
 

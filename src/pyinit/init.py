@@ -21,7 +21,7 @@ from pathlib import Path
 
 from rich.console import Console
 
-from .create import get_git_config, TEMPLATE_PATH
+from .create import TEMPLATE_PATH, get_git_config
 from .wrappers import error_handling
 
 
@@ -119,7 +119,9 @@ def initialize_project():
         try:
             template_content = TEMPLATE_PATH.read_text(encoding="utf-8")
         except FileNotFoundError:
-            console.print(f"[bold red][ERROR][/bold red] Template file not found at '{TEMPLATE_PATH}'.")
+            console.print(
+                f"[bold red][ERROR][/bold red] Template file not found at '{TEMPLATE_PATH}'."
+            )
             console.print("[dim]       - Ensure pyinit is installed correctly.[/dim]")
             sys.exit(1)
 
