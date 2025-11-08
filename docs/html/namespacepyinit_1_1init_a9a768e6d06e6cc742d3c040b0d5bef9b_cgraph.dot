@@ -1,0 +1,11 @@
+digraph "pyinit.init.initialize_project"
+{
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  rankdir="LR";
+  Node1 [id="Node000001",label="pyinit.init.initialize\l_project",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip="Initializes a structured project in the current working directory."];
+  Node1 -> Node2 [id="edge1_Node000001_Node000002",color="steelblue1",style="solid",tooltip=" "];
+  Node2 [id="Node000002",label="pyinit.init.sanitize_name",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$namespacepyinit_1_1init.html#a5e8d6ae48dfca66e1f3d836943a1de01",tooltip="Cleans a string to make it a valid Python package name."];
+}

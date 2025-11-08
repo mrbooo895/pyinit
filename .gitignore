@@ -13,4 +13,8 @@ dist/
 build/
 *.egg-info/
 **/*egg-info/
+docs/latex/
+.pytest_cache
+.ruff_cache
+.git
 """

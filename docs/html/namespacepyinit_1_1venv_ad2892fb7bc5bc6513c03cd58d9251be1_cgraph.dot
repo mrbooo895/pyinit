@@ -1,0 +1,13 @@
+digraph "pyinit.venv.manage_venv"
+{
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  rankdir="LR";
+  Node1 [id="Node000001",label="pyinit.venv.manage_venv",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip="Main dispatcher for 'venv' sub-commands."];
+  Node1 -> Node2 [id="edge1_Node000001_Node000002",color="steelblue1",style="solid",tooltip=" "];
+  Node2 [id="Node000002",label="pyinit.venv.create\l_virtual_env",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$namespacepyinit_1_1venv.html#a8eb94c37736a186d9dde9c9dc74c1ce0",tooltip="Creates a new virtual environment for the project."];
+  Node1 -> Node3 [id="edge2_Node000001_Node000003",color="steelblue1",style="solid",tooltip=" "];
+  Node3 [id="Node000003",label="pyinit.venv.remove\l_virtual_env",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$namespacepyinit_1_1venv.html#a7dd87f3aa251b201857476b0311b6cd1",tooltip="Removes the project's existing virtual environment."];
+}
