@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "##PROJECT_NAME##"
+version = "0.1.0"
+authors = [
+  { name = "##AUTHOR_NAME##", email = "##AUTHOR_EMAIL##" },
+]
+description = "A new Python project created with pyinit"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = []
+
+[tool.setuptools.packages.find]
+where = ["src"]

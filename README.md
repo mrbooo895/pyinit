@@ -24,7 +24,6 @@
 <td width="50%">
 
 ### 🎨 **Project Management**
-- ✅ Create new projects with templates
 - ✅ Initialize existing directories
 - ✅ Clean temporary & build files
 - ✅ Comprehensive project health checks
@@ -83,17 +82,9 @@ pip install -e .
 ### Create a New Project
 
 ```bash
-# Create a simple application
+# Create Your Project
 pyinit create my_project
 
-# Create a library
-pyinit create my_library --template library
-
-# Create a Flask web app
-pyinit create my_webapp --template flask
-
-# Create a CLI tool
-pyinit create my_cli --template cli
 ```
 
 ### Initialize an Existing Directory
@@ -134,7 +125,6 @@ pyinit uninstall flask numpy pandas
 | Command | Description |
 |---------|-------------|
 | `pyinit create <name>` | Create a new Python project |
-| `pyinit create <name> -t <template>` | Create project with specific template (app, library, flask, cli) |
 | `pyinit init` | Initialize PyInit structure in existing directory |
 | `pyinit info` | Display comprehensive project information |
 
@@ -213,19 +203,7 @@ pyinit build
 
 # 10. Increment version
 pyinit release patch
-```
 
-### Working with Templates
-
-```bash
-# Create a CLI application
-pyinit create my_cli --template cli
-
-# Create a library package
-pyinit create my_lib --template library
-
-# Create a Flask web application
-pyinit create my_webapp --template flask
 ```
 ## 📁 Project Structure
 
@@ -246,22 +224,6 @@ my_project/
 ├── README.md
 └── LICENSE
 ```
-
----
-
-## 🎨 Project Templates
-
-### 📱 **App Template** (Default)
-Perfect for standalone applications with a simple structure.
-
-### 📚 **Library Template**
-Optimized for creating reusable Python libraries.
-
-### 🌐 **Flask Template**
-Pre-configured Flask web application with routes and templates.
-
-### ⌨️ **CLI Template**
-Command-line application with argument parsing setup.
 
 ---
 

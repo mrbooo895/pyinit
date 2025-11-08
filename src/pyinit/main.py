@@ -56,12 +56,6 @@ def main():
     parser_create.add_argument(
         "project_name", metavar="PROJECT_NAME", help="The Name Of The New Project"
     )
-    parser_create.add_argument(
-        "-t",
-        "--template",
-        default="app",
-        help="The project template to use (CLI | Library | Flask | default: app)",
-    )
 
     # '--version' command
     parser.add_argument(
@@ -175,7 +169,7 @@ def main():
     # --- Command Dispatching ---
     match args.command:
         case "create":
-            create_project(args.project_name, args.template)
+            create_project(args.project_name)
         case "run":
             run_project(sub_args)
         case "install":

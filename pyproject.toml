@@ -19,6 +19,7 @@ dependencies = [
     "tomli-w",
     "pytest",
     "pytest-mock",
+    "importlib-resources",
 ]
 
 [project.scripts]

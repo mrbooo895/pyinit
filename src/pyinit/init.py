@@ -19,19 +19,22 @@ import sys
 import venv
 from pathlib import Path
 
+# Use importlib.resources to access package data in a cross-platform way.
+try:
+    from importlib.resources import files as resources_files
+except ImportError:
+    # Fallback for Python < 3.9
+    from importlib_resources import files as resources_files
+
 from rich.console import Console
 
-# Import shared functionality from the 'new' module.
-from .create import TEMPLATES_BASE_DIR, get_git_config, process_template
+from .create import get_git_config  # Re-use from create.py
 from .wrappers import error_handling
 
 
 def sanitize_name(name: str) -> str:
     """
     Cleans a string to make it a valid Python package name.
-
-    Converts to lowercase, replaces spaces and hyphens with underscores,
-    and removes any other non-alphanumeric characters.
 
     :param str name: The original directory or project name.
     :return: A sanitized string suitable for use as a package name.
@@ -48,12 +51,12 @@ def initialize_project():
     """
     Initializes a structured project in the current working directory.
 
-    This function serves as the entry point for the 'pyinit init' command. It performs:
+    This function performs the following:
     1. Derives and sanitizes a project name from the current directory name.
     2. Performs safety checks to prevent overwriting an existing project.
-    3. Safely migrates existing `.py` files from the root to a temporary location.
-    4. Scaffolds a new project structure using the default 'app' template.
-    5. Moves the migrated Python files into the new `src/<package_name>/` directory.
+    3. Manually creates the standard project structure (`src/`, `tests/`, etc.).
+    4. Generates `pyproject.toml` from a built-in template.
+    5. Migrates any existing `.py` files from the root into the new source directory.
     6. Initializes a Git repository and a virtual environment.
 
     :raises SystemExit: If the directory appears to be an existing project or
@@ -61,49 +64,24 @@ def initialize_project():
     """
     console = Console()
     project_root = Path.cwd()
-    template_name = "app"  # 'init' command always uses the default 'app' template.
-    template_dir = TEMPLATES_BASE_DIR / template_name
 
-    console.print(
-        f"[bold green]    Initializing[/bold green] project in '{project_root.name}' using '{template_name}' template"
-    )
+    console.print(f"[bold green]    Initializing[/bold green] project in '{project_root.name}'")
 
     # --- Pre-flight Checks ---
-    if not template_dir.is_dir():
-        console.print(
-            f"[bold red][ERROR][/bold red] Default template '{template_name}' not found at '{TEMPLATES_BASE_DIR}'."
-        )
-        sys.exit(1)
-
     original_name = project_root.name
     project_name = sanitize_name(original_name)
     if not project_name:
-        console.print(
-            f"[bold red][ERROR][/bold red] Could not derive a valid project name from '{original_name}'"
-        )
+        console.print(f"[bold red][ERROR][/bold red] Could not derive a valid project name from '{original_name}'")
         sys.exit(1)
 
-    console.print(
-        f"[bold green]     Setting[/bold green] Project Name to: '{project_name}'"
-    )
 
-    # Prevent running on an already initialized or structured directory.
-    if (
-        (project_root / "pyproject.toml").exists()
-        or (project_root / "src").exists()
-        or (project_root / "venv").exists()
-    ):
-        console.print(
-            "[bold red][ERROR][/bold red] Project already seems to be initialized ('pyproject.toml', 'src', or 'venv' exists)."
-        )
+    if (project_root / "pyproject.toml").exists() or (project_root / "src").exists() or (project_root / "venv").exists():
+        console.print("[bold red][ERROR][/bold red] Project already seems to be initialized ('pyproject.toml', 'src', or 'venv' exists).")
         sys.exit(1)
 
     # --- Safe File Migration (Phase 1) ---
-    # Temporarily move existing .py files to prevent conflicts during templating.
-    console.print("[bold green]      Locating[/bold green] '.py' files to migrate")
-    python_files_to_move = [
-        f for f in project_root.iterdir() if f.is_file() and f.suffix == ".py"
-    ]
+    python_files_to_move = [f for f in project_root.iterdir() if f.is_file() and f.suffix == ".py"]
+    has_main_py = any(f.name == "main.py" for f in python_files_to_move)
 
     temp_migration_dir = project_root / "__pyinit_migration_temp__"
     if python_files_to_move:
@@ -112,72 +90,69 @@ def initialize_project():
             shutil.move(py_file, temp_migration_dir / py_file.name)
 
     try:
-        # --- Scaffolding from Template ---
-        console.print(
-            "[bold green]       Creating[/bold green] project structure from template"
-        )
+        # --- Create Directory Structure ---
+        source_dir = project_root / "src" / project_name
+        tests_dir = project_root / "tests"
+        source_dir.mkdir(parents=True)
+        tests_dir.mkdir()
+        (source_dir / "__init__.py").touch()
+        (tests_dir / "__init__.py").touch()
+        (project_root / "README.md").write_text(f"# {project_name}\n")
 
+        # --- Safe File Migration (Phase 2) ---
+        if python_files_to_move:
+            for py_file in temp_migration_dir.iterdir():
+                shutil.move(py_file, source_dir / py_file.name)
+            temp_migration_dir.rmdir()
+        
+        # Create a default main.py only if one was not migrated.
+        if not has_main_py:
+            (source_dir / "main.py").write_text(f'print("Hello from {project_name}!")\n')
+
+        # --- Generate pyproject.toml ---
+        template_ref = resources_files("pyinit._templates").joinpath("pyproject.toml")
+        template_content = template_ref.read_text(encoding="utf-8")
+        
         author_name = get_git_config("user.name") or "Your Name"
         author_email = get_git_config("user.email") or "you@example.com"
 
-        replacements = {
-            "##PROJECT_NAME##": project_name,
-            "##AUTHOR_NAME##": author_name,
-            "##AUTHOR_EMAIL##": author_email,
-        }
+        pyproject_content = template_content.replace("##PROJECT_NAME##", project_name)
+        pyproject_content = pyproject_content.replace("##AUTHOR_NAME##", author_name)
+        pyproject_content = pyproject_content.replace("##AUTHOR_EMAIL##", author_email)
 
-        # Use the shared templating function from the 'new' module.
-        process_template(template_dir, project_root, replacements)
-
-        # --- Safe File Migration (Phase 2) ---
-        # Move the temporarily stored files into the new source directory.
-        if python_files_to_move:
-            console.print(
-                "[bold green]        Migrating[/bold green] existing Python files"
-            )
-            source_package_dir = project_root / "src" / project_name
-            # Remove the default main.py from the template to avoid conflicts.
-            (source_package_dir / "main.py").unlink(missing_ok=True)
-            for py_file in temp_migration_dir.iterdir():
-                shutil.move(py_file, source_package_dir / py_file.name)
-            temp_migration_dir.rmdir()
+        (project_root / "pyproject.toml").write_text(pyproject_content)
 
         # --- Finalization ---
-        # Initialize Git, create venv, and update .gitignore.
-        console.print("[bold green]         Finalizing[/bold green] setup")
-
         if not (project_root / ".git").exists():
-            subprocess.run(
-                ["git", "init"], cwd=project_root, check=True, capture_output=True
-            )
+            subprocess.run(["git", "init"], cwd=project_root, check=True, capture_output=True)
 
         venv.create(project_root / "venv", with_pip=True)
 
-        gitignore_path = project_root / ".gitignore"
-        gitignore_content = """\n# Virtual Environment
+        gitignore_content = """# Virtual Environment
 venv/
+.venv/
 __pycache__/
-*.pyc
 
 # Build artifacts
 dist/
 build/
 *.egg-info/
 
-# IDE Specific Files
+# IDE & OS files
 .idea/
 .vscode/
-"""
-        with open(gitignore_path, "a") as f:
-            f.write(gitignore_content)
+.DS_Store
 
-        console.print(
-            f"[bold green]\nSuccessfully[/bold green] initialized project '{project_name}'"
-        )
+# Test artifacts
+.pytest_cache/
+.coverage
+"""
+        (project_root / ".gitignore").write_text(gitignore_content.strip())
+
+        console.print(f"[bold green]Successfully[/bold green] initialized project '{project_name}'")
 
     except Exception as e:
         # --- Rollback on Failure ---
-        # If any part of the process fails, attempt to restore the original files.
         console.print(f"[bold red][ERROR][/bold red] Failed during initialization: {e}")
         if temp_migration_dir.exists():
             for py_file in temp_migration_dir.iterdir():
