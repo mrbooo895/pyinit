@@ -1,3 +1,16 @@
+# Copyright (c) 2025 mrbooo895.
+#
+# This software is released under the MIT License.
+# https://opensource.org/licenses/MIT
+
+"""
+Implements the 'test' command for the pyinit command-line tool.
+
+This module provides a convenient wrapper for running tests using the 'pytest'
+framework. It handles the automatic installation of pytest if it is not found
+and allows for passing additional arguments directly to the pytest runner.
+"""
+
 import subprocess
 import sys
 import time
@@ -10,14 +23,33 @@ from .wrappers import error_handling
 
 @error_handling
 def run_tests(pytest_args: list = None):
+    """
+    Runs the project's tests using pytest.
+
+    This function serves as the main entry point for the 'pyinit test' command.
+    It performs the following steps:
+    1. Verifies the project context and virtual environment.
+    2. Checks if a 'tests/' directory exists (unless specific test files are
+       passed as arguments).
+    3. Ensures pytest is installed in the virtual environment, installing it
+       if necessary.
+    4. Executes pytest, passing along any user-provided arguments.
+
+    :param list, optional pytest_args: A list of arguments to be passed directly
+                                       to the pytest command. Defaults to None.
+    :raises SystemExit: If not run within a valid project, if the virtual
+                        environment is not found, or if the installation of
+                        pytest fails.
+    """
     console = Console()
     project_root = find_project_root()
     if not pytest_args:
         pytest_args = []
 
+    # --- Pre-flight Checks ---
     if not project_root:
         console.print(
-            "[bold red][ERROR][/bold red] Not inside a project. Could not find 'pyproject.toml'."
+            "[bold red][ERROR][/bold red] Not inside a project. Could not find 'pyinit.toml'."
         )
         sys.exit(1)
 
@@ -28,6 +60,8 @@ def run_tests(pytest_args: list = None):
         )
         sys.exit(1)
 
+    # Check for the 'tests' directory only if the user hasn't specified
+    # explicit paths to run.
     tests_dir = project_root / "tests"
     if not tests_dir.exists() and not any(
         arg for arg in pytest_args if not arg.startswith("-")
@@ -37,6 +71,7 @@ def run_tests(pytest_args: list = None):
         )
         sys.exit(0)
 
+    # --- Determine Platform-specific Executables ---
     if sys.platform == "win32":
         python_executable = venv_dir / "Scripts" / "python.exe"
         pip_executable = venv_dir / "Scripts" / "pip.exe"
@@ -44,6 +79,7 @@ def run_tests(pytest_args: list = None):
         python_executable = venv_dir / "bin" / "python"
         pip_executable = venv_dir / "bin" / "pip"
 
+    # --- Ensure Pytest is Installed ---
     console.print("[bold green]    Checking[/bold green] for 'pytest'")
     time.sleep(0.25)
 
@@ -69,12 +105,17 @@ def run_tests(pytest_args: list = None):
         console.print("[bold green]     Found[/bold green] 'pytest'")
         time.sleep(0.5)
 
+    # --- Run Tests ---
     console.print("[bold green]Running[/bold green] tests...")
     time.sleep(0.5)
 
+    # Construct the command to run pytest as a module, ensuring it uses the
+    # correct interpreter from the virtual environment.
     run_tests_cmd = [str(python_executable), "-m", "pytest"] + pytest_args
 
     try:
+        # Execute pytest. CWD is set to project root for consistent path discovery.
+        # Output is streamed directly to the console.
         subprocess.run(run_tests_cmd, cwd=project_root)
         console.print("\n[bold green]Testing[/bold green] process completed.")
     except Exception as e:

@@ -1,20 +1,33 @@
+# Copyright (c) 2025 mrbooo895.
+#
+# This software is released under the MIT License.
+# https://opensource.org/licenses/MIT
+
+"""
+Main entry point for the pyinit command-line tool.
+
+This module is responsible for parsing command-line arguments, setting up the
+main parser and its subparsers for each command, and dispatching to the
+appropriate function based on the user's input.
+"""
+
 import argparse
 import sys
 
+# Import handler functions for each command from their respective modules.
 from .add import add_module
 from .build import build_project
-from .release import increase_version
+from .check import lint_project
 from .clean import clean_project
 from .docker import gen_docker_files
 from .env import manage_env
 from .format import format_project
 from .graph import show_dependency_graph
-from .hooks import add_git_hooks
 from .info import project_info
 from .init import initialize_project
-from .check import lint_project
 from .lock import lock_dependencies
 from .new import create_project
+from .release import increase_version
 from .run import run_project
 from .scan import scan_project
 from .test import run_tests
@@ -25,6 +38,10 @@ from .wrappers import error_handling
 
 @error_handling
 def main():
+    """
+    Parses arguments and executes the corresponding pyinit command.
+    """
+    # --- Main Parser Setup ---
     parser = argparse.ArgumentParser(
         description="Tool For Creating and Managing Python Projects"
     )
@@ -32,6 +49,8 @@ def main():
         dest="command", required=True, help="Available commands"
     )
 
+    # --- Command Definitions ---
+    # 'new' command
     parser_new = subparsers.add_parser(
         "new", help="Create a New Python Projcet Structure"
     )
@@ -45,7 +64,10 @@ def main():
         help="The project template to use (CLI | Library | Flask | default: app)",
     )
 
+    # 'run' command
     subparsers.add_parser("run", help="Run Your Project's Main File")
+
+    # 'add' command
     parser_add = subparsers.add_parser(
         "add", help="Install a Python Module/Library Into Your Project's venv"
     )
@@ -54,15 +76,25 @@ def main():
         metavar="MOUDLE_NAME",
         help="Name of The Module/Library To Install",
     )
-    subparsers.add_parser(
-        "build", help="Build Your Project Using Wheel"
-    )
+
+    # 'build' command
+    subparsers.add_parser("build", help="Build Your Project Using Wheel")
+
+    # 'init' command
     subparsers.add_parser(
         "init", help="Initialize a new project in an existing directory"
     )
+
+    # 'test' command
     subparsers.add_parser("test", help="Run tests with pytest")
+
+    # 'lock' command
     subparsers.add_parser("lock", help="Generate a requirements.txt file from the venv")
+
+    # 'format' command
     subparsers.add_parser("format", help="Format the codebase with black and isort")
+
+    # 'venv' command group
     parser_venv = subparsers.add_parser(
         "venv", help="Manage the project's virtual environment"
     )
@@ -71,9 +103,17 @@ def main():
     )
     venv_subparsers.add_parser("create", help="Create the virtual environment")
     venv_subparsers.add_parser("remove", help="Remove the virtual environment")
+
+    # 'check' command
     subparsers.add_parser("check", help="check the codebase with ruff")
+
+    # 'graph' command
     subparsers.add_parser("graph", help="Display the project's dependency graph")
+
+    # 'clean' command
     subparsers.add_parser("clean", help="Remove temporary and build-related files")
+
+    # 'release' command
     parser_release = subparsers.add_parser(
         "release", help="increment the project version (major, minor, patch)"
     )
@@ -82,16 +122,24 @@ def main():
         choices=["major", "minor", "patch"],
         help="The part of the version to release",
     )
+
+    # 'update' command
     parser_update = subparsers.add_parser(
         "update", help="Check for and apply modules updates"
     )
     parser_update.add_argument(
         "--upgrade", action="store_true", help="Upgrade venv modules"
     )
+
+    # 'scan' command
     subparsers.add_parser(
         "scan", help="Scan the project for configuration and structure issues"
     )
+
+    # 'dockerize' command
     subparsers.add_parser("dockerize", help="Generate a Dockerfile for the project")
+
+    # 'env' command group
     parser_env = subparsers.add_parser(
         "env", help="Manage project environment variables (.env file)"
     )
@@ -105,8 +153,12 @@ def main():
         "vars", nargs="+", metavar="KEY=VALUE", help="Variable(s) to set"
     )
 
+    # 'info' command
     subparsers.add_parser("info", help="Display information about the current project")
 
+    # --- Manual Argument Parsing for Passthrough Commands ---
+    # This logic separates arguments for pyinit from arguments intended for
+    # the underlying tool (e.g., pytest, ruff).
     passthrough_commands = ["run", "test", "check"]
     main_args = sys.argv[1:]
     sub_args = []
@@ -119,6 +171,8 @@ def main():
 
     args = parser.parse_args(main_args)
 
+    # --- Command Dispatching ---
+    # Call the appropriate function based on the parsed command.
     match args.command:
         case "new":
             create_project(args.project_name, args.template)
@@ -160,5 +214,6 @@ def main():
             project_info()
 
 
+# Standard boilerplate to run the main function when the script is executed.
 if __name__ == "__main__":
     main()

@@ -1,3 +1,17 @@
+# Copyright (c) 2025 mrbooo895.
+#
+# This software is released under the MIT License.
+# https://opensource.org/licenses/MIT
+
+"""
+Implements the 'update' command for the pyinit command-line tool.
+
+This module provides functionality to check for and apply updates to a
+project's dependencies. It offers two modes: a check-only mode that lists
+outdated packages, and an upgrade mode that actively updates the declared
+dependencies from `pyproject.toml`.
+"""
+
 import subprocess
 import sys
 import time
@@ -10,9 +24,24 @@ from .wrappers import error_handling
 
 @error_handling
 def update_modules(upgrade: bool = False):
+    """
+    Checks for or applies updates to project dependencies.
+
+    This function serves as the main entry point for the 'pyinit update' command.
+    - If `upgrade` is False (default), it runs `pip list --outdated` to show
+      available updates without making changes.
+    - If `upgrade` is True, it reads the direct dependencies from `pyproject.toml`
+      and runs `pip install --upgrade` on them.
+
+    :param bool upgrade: If True, upgrades packages. If False, only checks for
+                         outdated packages. Defaults to False.
+    :raises SystemExit: If not run within a valid project or if the virtual
+                        environment is missing.
+    """
     console = Console()
     project_root = find_project_root()
 
+    # --- Pre-flight Checks ---
     if not project_root:
         console.print(
             "[bold red][ERROR][/bold red] Not inside a project. Could not find 'pyproject.toml'."
@@ -26,15 +55,19 @@ def update_modules(upgrade: bool = False):
         )
         sys.exit(1)
 
+    # --- Determine Platform-specific Executables ---
     if sys.platform == "win32":
         pip_executable = venv_dir / "Scripts" / "pip.exe"
     else:
         pip_executable = venv_dir / "bin" / "pip"
 
     if upgrade:
+        # --- Upgrade Mode ---
+        # Actively installs the latest versions of declared dependencies.
         console.print("[bold green]    Upgrading[/bold green] project dependencies...")
         time.sleep(0.25)
 
+        # Fetch the list of direct dependencies from the project's config.
         project_deps = get_project_dependencies(project_root)
 
         if not project_deps:
@@ -48,6 +81,7 @@ def update_modules(upgrade: bool = False):
         )
 
         try:
+            # Construct and run the 'pip install --upgrade' command.
             upgrade_cmd = [str(pip_executable), "install", "--upgrade"] + project_deps
             subprocess.run(upgrade_cmd, check=True)
             console.print(
@@ -59,12 +93,15 @@ def update_modules(upgrade: bool = False):
             sys.exit(1)
 
     else:
+        # --- Check-Only Mode ---
+        # Lists outdated packages without installing them.
         console.print("[bold green]    Checking[/bold green] for outdated packages...")
         time.sleep(0.25)
 
         check_cmd = [str(pip_executable), "list", "--outdated"]
 
         try:
+            # Run 'pip list --outdated' and stream its output to the console.
             subprocess.run(check_cmd)
             console.print(
                 "\n[bold green]Run:[/bold green]\n     'pyinit update --upgrade' to upgrade project dependencies."

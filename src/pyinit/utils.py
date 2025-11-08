@@ -1,6 +1,9 @@
+import logging
 import re
 import sys
 from pathlib import Path
+
+from rich.logging import RichHandler
 
 
 def find_project_root() -> Path | None:
@@ -12,6 +15,19 @@ def find_project_root() -> Path | None:
     if (current_dir / "pyproject.toml").is_file():
         return current_dir
     return None
+
+
+def setup_logger():
+    logging.basicConfig(
+        level="INFO",
+        format="%(message)s",
+        datefmt="[%X]",
+        handlers=[
+            RichHandler(show_path=False, show_level=True, show_time=False, markup=True)
+        ],
+    )
+    log = logging.getLogger("rich")
+    return log
 
 
 if sys.version_info >= (3, 11):
