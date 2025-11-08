@@ -177,7 +177,6 @@ pyinit uninstall flask numpy pandas
 |---------|-------------|
 | `pyinit venv create` | Create virtual environment |
 | `pyinit venv remove` | Remove virtual environment |
-| `pyinit env set KEY=VALUE` | Set environment variables |
 
 ---
 
@@ -286,17 +285,6 @@ pyinit scan
 ---
 
 ## 🛠️ Advanced Features
-
-### Environment Variables Management
-
-```bash
-# Set environment variables
-pyinit env set DATABASE_URL=postgresql://localhost/mydb
-pyinit env set API_KEY=secret_key
-pyinit env set DEBUG=True
-```
-
-Variables are stored in `.env` file and automatically added to `.gitignore`.
 
 ### Semantic Versioning
 
