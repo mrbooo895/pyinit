@@ -17,6 +17,8 @@ dependencies = [
     "rich",
     "tomli",
     "tomli-w",
+    "pytest",
+    "pytest-mock",
 ]
 
 [project.scripts]
