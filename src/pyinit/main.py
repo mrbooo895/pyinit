@@ -193,7 +193,7 @@ def main():
         case "venv":
             manage_venv(args.venv_command)
         case "check":
-            lint_project(sub_args)
+            check_project(sub_args)
         case "graph":
             show_dependency_graph()
         case "clean":
