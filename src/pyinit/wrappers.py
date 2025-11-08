@@ -22,4 +22,4 @@ def error_handling(func):
             console.print("[red]\n-> [ERROR]: Interrupted By The User")
             sys.exit(1)
 
-    return wrapper
+    return wrapper(*args, **kwargs)
