@@ -12,6 +12,7 @@ project root, setting up logging, and parsing `pyproject.toml` for metadata.
 
 import re
 import sys
+import subprocess
 from pathlib import Path
 
 from rich.console import Console
@@ -123,3 +124,45 @@ def check_platform(venv_directory):
         python_executable = venv_directory / "bin" / "python"
         pip_executable = venv_directory / "bin" / "pip"
     return pip_executable, python_executable
+
+def ensure_tool_installed(
+    pip_executable: Path,
+    python_executable: Path,
+    tool_name: str,
+    import_name: str,
+    console: Console,
+):
+    """
+    Checks if a required tool is installed in the venv, installing it if not.
+
+    This utility handles the common pattern of verifying a tool's presence
+    by trying to import it, and running 'pip install' if the import fails.
+    It provides consistent user feedback throughout the process.
+
+    :param Path pip_executable: The absolute path to the venv's pip executable.
+    :param Path python_executable: The absolute path to the venv's python executable.
+    :param str tool_name: The package name of the tool as known by PyPI (e.g., 'ruff').
+    :param str import_name: The name used to import the package in Python (e.g., 'ruff').
+    :param Console console: The rich Console instance for printing messages.
+    :raises SystemExit: If the installation of the tool fails.
+    """
+    console.print(f"[bold green]    Checking[/bold green] for '{tool_name}'")
+
+    check_cmd = [str(python_executable), "-c", f"import {import_name}"]
+    is_installed = subprocess.run(check_cmd, capture_output=True).returncode == 0
+
+    if not is_installed:
+        console.print(f"[bold green]     Installing[/bold green] Required Module '{tool_name}'")
+        install_cmd = [str(pip_executable), "install", tool_name]
+        try:
+            subprocess.run(install_cmd, check=True, capture_output=True)
+            console.print(
+                f"[bold green]      Successfully[/bold green] installed '{tool_name}'"
+            )
+        except subprocess.CalledProcessError as e:
+            console.print(f"[bold red][ERROR][/bold red] Failed to install {tool_name}.")
+            if e.stderr:
+                console.print(f"[red]{e.stderr.decode()}[/red]")
+            sys.exit(1)
+    else:
+        console.print(f"[bold green]     Found[/bold green] Module '{tool_name}'")

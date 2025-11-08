@@ -21,6 +21,7 @@ from .utils import (
     check_platform,
     check_project_root,
     check_venv_exists,
+    ensure_tool_installed, 
     find_project_root,
 )
 from .wrappers import error_handling
@@ -45,36 +46,21 @@ def show_dependency_graph():
 
     # --- Pre-flight Checks ---
     check_project_root(project_root)
-
     venv_dir = project_root / "venv"
     check_venv_exists(venv_dir)
 
     # --- Determine Platform-specific Executables ---
-    pip_executable, _ = check_platform(venv_dir)
-    _, python_executable = check_platform(venv_dir)
+    pip_executable, python_executable = check_platform(venv_dir)
 
     # --- Ensure pipdeptree is Installed ---
-    console.print("[bold green]    Checking[/bold green] for 'pipdeptree'")
-
-    check_tool_cmd = [str(python_executable), "-c", "import pipdeptree"]
-    tool_installed = subprocess.run(check_tool_cmd, capture_output=True).returncode == 0
-
-    if not tool_installed:
-        console.print(
-            "[bold green]     Installing[/bold green] Required Module 'pipdeptree'"
-        )
-        install_cmd = [str(pip_executable), "install", "pipdeptree"]
-        try:
-            subprocess.run(install_cmd, check=True, capture_output=True)
-            console.print(
-                "[bold green]      Successfully[/bold green] installed 'pipdeptree'"
-            )
-        except subprocess.CalledProcessError as e:
-            console.print("[bold red][ERROR][/bold red] Failed to install pipdeptree.")
-            console.print(f"[red]{e.stderr.decode()}[/red]")
-            sys.exit(1)
-    else:
-        console.print("[bold green]     Found[/bold green] Module 'pipdeptree'")
+    # The logic for checking and installing is now handled by this utility.
+    ensure_tool_installed(
+        pip_executable=pip_executable,
+        python_executable=python_executable,
+        tool_name="pipdeptree",
+        import_name="pipdeptree",
+        console=console,
+    )
 
     # --- Generate and Display the Graph ---
     console.print("[bold green]\nGenerating[/bold green] dependency graph\n")

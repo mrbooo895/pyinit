@@ -67,8 +67,7 @@ def get_venv_info(project_root: Path) -> tuple[str, str]:
     if not venv_dir.exists():
         return "[dim]N/A[/dim]", "0"
 
-    pip_executable, _ = check_platform(venv_dir)
-    _, python_executable = check_platform(venv_dir)
+    pip_executable, python_executable = check_platform(venv_dir)
 
     if not python_executable.exists():
         return "[dim]N/A[/dim]", "0"

@@ -20,6 +20,7 @@ from .utils import (
     check_platform,
     check_project_root,
     check_venv_exists,
+    ensure_tool_installed, 
     find_project_root,
 )
 from .wrappers import error_handling
@@ -52,7 +53,6 @@ def run_tests(pytest_args: list = None):
 
     # --- Pre-flight Checks ---
     check_project_root(project_root)
-
     venv_dir = project_root / "venv"
     check_venv_exists(venv_dir)
 
@@ -68,36 +68,22 @@ def run_tests(pytest_args: list = None):
         sys.exit(0)
 
     # --- Determine Platform-specific Executables ---
-    pip_executable, _ = check_platform(venv_dir)
-    _, python_executable = check_platform(venv_dir)
+    pip_executable, python_executable = check_platform(venv_dir)
+
     # --- Ensure Pytest is Installed ---
-    console.print("[bold green]    Checking[/bold green] for 'pytest'")
-
-    check_pytest_cmd = [str(python_executable), "-c", "import pytest"]
-    pytest_installed = (
-        subprocess.run(check_pytest_cmd, capture_output=True).returncode == 0
+    # The utility function now handles the check and installation logic.
+    ensure_tool_installed(
+        pip_executable=pip_executable,
+        python_executable=python_executable,
+        tool_name="pytest",
+        import_name="pytest",
+        console=console,
     )
-
-    if not pytest_installed:
-        console.print(
-            "[bold green]     Installing[/bold green] 'pytest' into current venv"
-        )
-        install_pytest_cmd = [str(pip_executable), "install", "pytest"]
-        try:
-            subprocess.run(install_pytest_cmd, check=True, capture_output=True)
-            console.print("[bold green]Successfully[/bold green] installed 'pytest'.")
-        except subprocess.CalledProcessError as e:
-            console.print("[bold red][ERROR][/bold red] Failed to install pytest.")
-            console.print(f"[red]{e.stderr.decode()}[/red]")
-            sys.exit(1)
-    else:
-        console.print("[bold green]     Found[/bold green] 'pytest'")
 
     # --- Run Tests ---
     console.print("[bold green]Running[/bold green] tests...")
 
-    # Construct the command to run pytest as a module, ensuring it uses the
-    # correct interpreter from the virtual environment.
+    # Construct the command to run pytest as a module.
     run_tests_cmd = [str(python_executable), "-m", "pytest"] + pytest_args
 
     try:

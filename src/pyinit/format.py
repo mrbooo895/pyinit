@@ -21,6 +21,7 @@ from .utils import (
     check_platform,
     check_project_root,
     check_venv_exists,
+    ensure_tool_installed, 
     find_project_root,
 )
 from .wrappers import error_handling
@@ -48,51 +49,26 @@ def format_project():
 
     # --- Pre-flight Checks ---
     check_project_root(project_root)
-
     venv_dir = project_root / "venv"
     check_venv_exists(venv_dir)
 
     # --- Determine Platform-specific Executables ---
-    pip_executable, _ = check_platform(venv_dir)
-    _, python_executable = check_platform(venv_dir)
+    pip_executable, python_executable = check_platform(venv_dir)
 
     # --- Ensure Formatters are Installed ---
-    # Check if both formatters can be imported.
-    check_formatters_cmd = [str(python_executable), "-c", "import black, isort"]
-    formatters_installed = (
-        subprocess.run(check_formatters_cmd, capture_output=True).returncode == 0
-    )
-
-    console.print("[bold green]    Starting[/bold green] to format project's structure")
-
-    if not formatters_installed:
-        console.print(
-            "[bold green]     Installing[/bold green] Required formatting modules 'black' and 'isort'"
-        )
-        install_cmd = [str(pip_executable), "install", "black", "isort"]
-        try:
-            subprocess.run(install_cmd, check=True, capture_output=True)
-            console.print(
-                "[bold green]      Successfully[/bold green] installed formatting tools."
-            )
-        except subprocess.CalledProcessError as e:
-            console.print(
-                "[bold red][ERROR][/bold red] Failed to install formatting tools."
-            )
-            console.print(f"[red]{e.stderr.decode()}[/red]")
-            sys.exit(1)
+    # Use the shared utility to check for and install each required formatter.
+    console.print("[bold green]    Checking[/bold green] for formatting tools...")
+    ensure_tool_installed(pip_executable, python_executable, "black", "black", console)
+    ensure_tool_installed(pip_executable, python_executable, "isort", "isort", console)
 
     # --- Define and Run Formatting on Target Directories ---
     # Default directories to format.
     targets_to_format = [project_root / "src", project_root / "tests"]
     formatted_something = False
 
+    console.print("[bold green]     Formatting[/bold green] codebase...")
     for target_dir in targets_to_format:
         if target_dir.exists() and target_dir.is_dir():
-            console.print(
-                f"[bold green]     Formatting[/bold green] '{target_dir.relative_to(project_root)}/'"
-            )
-
             # Define commands for isort (sorts imports) and black (formats code).
             # isort should run first.
             isort_cmd = [str(python_executable), "-m", "isort", str(target_dir)]

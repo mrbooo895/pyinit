@@ -61,8 +61,7 @@ def build_project():
 
     # --- Determine Platform-specific Executables ---
     # The paths to executables within the venv differ based on the OS.
-    pip_executable, _ = check_platform(venv_dir)
-    _, python_executable = check_platform(venv_dir)
+    pip_executable, python_executable = check_platform(venv_dir)
     try:
         # --- Step 1: Install Build Dependencies ---
         # Ensure that the PEP 517 build frontend and backend tools are installed.

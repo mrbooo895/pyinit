@@ -21,6 +21,7 @@ from .utils import (
     check_platform,
     check_project_root,
     check_venv_exists,
+    ensure_tool_installed, 
     find_project_root,
 )
 from .wrappers import error_handling
@@ -36,8 +37,8 @@ def check_project(check_args: list = None):
     If no specific paths or arguments are provided by the user, it defaults to
     linting the `src/` and `tests/` directories.
 
-    :param list, optional Check_args: A list of arguments to be passed directly
-                                     to the 'ruff check' command. Defaults to None.
+    :param list, optional check_args: A list of arguments to be passed directly
+                                      to the 'ruff check' command. Defaults to None.
     :raises SystemExit: If the command is not run within a valid project,
                         if the virtual environment is not found, or if the
                         installation of ruff fails.
@@ -49,46 +50,27 @@ def check_project(check_args: list = None):
 
     # --- Pre-flight Checks ---
     check_project_root(project_root)
-
     venv_dir = project_root / "venv"
     check_venv_exists(venv_dir)
 
     # --- Determine Platform-specific Executables ---
-    pip_executable, _ = check_platform(venv_dir)
-    _, python_executable = check_platform(venv_dir)
+    pip_executable, python_executable = check_platform(venv_dir)
 
     # --- Ensure Linter is Installed ---
-    console.print("[bold green]    Checking[/bold green] for linter 'ruff'")
-
-    # A simple way to check for a package without parsing `pip list`.
-    check_linter_cmd = [str(python_executable), "-c", "import ruff"]
-    linter_installed = (
-        subprocess.run(check_linter_cmd, capture_output=True).returncode == 0
+    # The complex logic for checking and installing is now handled by this single function call.
+    ensure_tool_installed(
+        pip_executable=pip_executable,
+        python_executable=python_executable,
+        tool_name="ruff",
+        import_name="ruff",
+        console=console,
     )
-
-    if not linter_installed:
-        console.print(
-            "[bold green]     Installing[/bold green] Required Checking Module 'ruff'"
-        )
-        install_cmd = [str(pip_executable), "install", "ruff"]
-        try:
-            subprocess.run(install_cmd, check=True, capture_output=True)
-            console.print(
-                "[bold green]      Successfully[/bold green] installed 'ruff'"
-            )
-        except subprocess.CalledProcessError as e:
-            console.print("[bold red][ERROR][/bold red] Failed to install ruff.")
-            console.print(f"[red]{e.stderr.decode()}[/red]")
-            sys.exit(1)
-    else:
-        console.print("[bold green]     Found[/bold green] Linting Module 'ruff'")
 
     # --- Prepare and Run Linter Command ---
     # Base command to execute ruff.
     lint_cmd = [str(python_executable), "-m", "ruff", "check"] + check_args
 
     # If no arguments were passed, use default target directories.
-    # This prevents ruff from running on the entire project root by default.
     if not check_args:
         targets = []
         src_dir = project_root / "src"
@@ -100,7 +82,7 @@ def check_project(check_args: list = None):
 
         if not targets:
             console.print(
-                "[bold yellow][INFO][/bold yellow] No source ('src') or test ('tests') directories found to lint."
+                "[bold yellow][INFO][/bold yellow] No source 'src' or test 'tests' directories found to lint."
             )
             sys.exit(0)
 
