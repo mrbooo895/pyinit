@@ -1,185 +1,408 @@
-# 🚀 pyinit - Your All-in-One Python Project Manager
+<div align="center">
 
-**pyinit** is a comprehensive command-line tool that streamlines and automates the entire lifecycle of your Python projects. From initialization to deployment, pyinit handles the tedious setup tasks so you can focus on writing exceptional code.
+# 🚀 PyInit
+
+### *Your All-in-One Python Project Manager*
+
+[![Version](https://img.shields.io/badge/version-1.0.3-blue.svg)](https://github.com/mrbooo895/pyinit)
+[![Python](https://img.shields.io/badge/python-3.10+-brightgreen.svg)](https://www.python.org/)
+[![License](https://img.shields.io/badge/license-MIT-orange.svg)](LICENSE)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/mrbooo895/pyinit/pulls)
+
+**PyInit** is a powerful, all-in-one command-line tool for managing Python projects professionally. From project creation to deployment, PyInit provides everything you need! 🎯
+
+[Installation](#-installation) • [Features](#-features) • [Quick Start](#-quick-start) • [Commands](#-commands) • [Documentation](#-documentation)
+
+</div>
 
 ---
 
-## ✨ What Makes pyinit Special?
+## ✨ Features
 
-- **🎯 Zero-Config Project Scaffolding**: Launch production-ready projects in seconds with professional templates (app, cli, flask, lib)
-- **📦 Smart Dependency Management**: Add, lock, update, and visualize your project's dependencies effortlessly
-- **🔍 Automated Code Quality**: Format, lint, and test your code with unified, simple commands
-- **🐍 Virtual Environment Management**: Create and remove isolated Python environments with explicit control
-- **🐳 Deployment Ready**: Generate Dockerfiles, release semantic versions, and clean your workspace instantly
-- **🔬 Intelligent Project Diagnostics**: Scan your project structure and configuration for issues with actionable suggestions
+<table>
+<tr>
+<td width="50%">
+
+### 🎨 **Project Management**
+- ✅ Create new projects with templates
+- ✅ Initialize existing directories
+- ✅ Clean temporary & build files
+- ✅ Comprehensive project health checks
+
+</td>
+<td width="50%">
+
+### 📦 **Dependency Management**
+- ✅ Add & update packages effortlessly
+- ✅ Lock dependencies to `requirements.txt`
+- ✅ Visualize dependency graphs
+- ✅ Auto-sync dependencies
+
+</td>
+</tr>
+<tr>
+<td width="50%">
+
+### 🔧 **Development Tools**
+- ✅ Format code with Black & isort
+- ✅ Lint code with Ruff
+- ✅ Run tests with Pytest
+- ✅ Virtual environment management
+
+</td>
+<td width="50%">
+
+### 🚢 **Build & Deployment**
+- ✅ Build wheels & source distributions
+- ✅ Semantic version management
+- ✅ Docker configuration generation
+- ✅ Environment variable management
+
+</td>
+</tr>
+</table>
 
 ---
 
-## 🔧 Installation
+## 📥 Installation
 
-Get pyinit up and running in 3 simple steps:
+### Install via pip
 
-### 1️⃣ Clone the Repository
+```bash
+pip install pyinit
+```
+
+### Install from source
 
 ```bash
 git clone https://github.com/mrbooo895/pyinit.git
 cd pyinit
+pip install -e .
 ```
 
-### 2️⃣ Install Project Templates
+### Requirements
 
-**⚠️ Critical Step**: pyinit requires templates to be installed in a system-wide location.
+- Python 3.10+
+- pip
+- Git (optional, for version control)
+
+---
+
+## 🚀 Quick Start
+
+### Create a New Project
 
 ```bash
-sudo cp -r templates /usr/share/pyinit/
+# Create a simple application
+pyinit new my_project
+
+# Create a library
+pyinit new my_library --template library
+
+# Create a Flask web app
+pyinit new my_webapp --template flask
+
+# Create a CLI tool
+pyinit new my_cli --template cli
 ```
 
-> **💡 Why sudo?** Templates are copied to `/usr/share/pyinit/` (a system directory) to make them globally accessible, regardless of where you run the tool.
-
-### 3️⃣ Install the Tool
-
-Install pyinit in editable mode so any source code changes take effect immediately:
+### Initialize an Existing Directory
 
 ```bash
-sudo pip install -e .
+cd my_existing_code
+pyinit init
 ```
 
-> **📝 Note for Arch Linux Users**: You may need to add the `--break-system-packages` flag. **Important**: Always run commands with this flag as a non-root user.
+### Run Your Project
 
-**Verify Installation**:
 ```bash
-pyinit --help
+pyinit run
+```
+
+### Add Dependencies
+
+```bash
+pyinit add requests
+pyinit add flask numpy pandas
 ```
 
 ---
 
-## 🛠️ Complete Command Reference
+## 📚 Commands
 
 ### 🆕 Project Creation & Initialization
 
-| Command | Description | Example |
-|---------|-------------|---------|
-| `new` | Create a new Python project from scratch using a template | `pyinit new my-app --template flask` |
-| `init` | Convert an existing directory into a pyinit project | `pyinit init` |
+| Command | Description |
+|---------|-------------|
+| `pyinit new <name>` | Create a new Python project |
+| `pyinit new <name> -t <template>` | Create project with specific template (app, library, flask, cli) |
+| `pyinit init` | Initialize PyInit structure in existing directory |
+| `pyinit info` | Display comprehensive project information |
 
-### 🏃 Running & Building
+### ▶️ Running & Testing
 
-| Command | Description | Example |
-|---------|-------------|---------|
-| `run` | Execute your project's main entry point | `pyinit run -- --port 8080` |
-| `build` | Build and install your project package system-wide | `pyinit build` |
+| Command | Description |
+|---------|-------------|
+| `pyinit run [args]` | Run your project's main file |
+| `pyinit test [pytest-args]` | Run tests with pytest |
 
 ### 📦 Dependency Management
 
-| Command | Description | Example |
-|---------|-------------|---------|
-| `add` | Install a new dependency into the virtual environment | `pyinit add "requests==2.28.0"` |
-| `lock` | Generate `requirements.txt` from installed packages | `pyinit lock` |
-| `update` | Check for outdated dependencies or upgrade them | `pyinit update --upgrade` |
-| `graph` | Display a visual tree of project dependencies | `pyinit graph` |
+| Command | Description |
+|---------|-------------|
+| `pyinit add <package>` | Install a package to your project |
+| `pyinit update` | Check for outdated packages |
+| `pyinit update --upgrade` | Upgrade project dependencies |
+| `pyinit lock` | Generate requirements.txt from venv |
+| `pyinit graph` | Display dependency tree |
 
-### 🧪 Code Quality & Testing
+### 🔧 Code Quality
 
-| Command | Description | Example |
-|---------|-------------|---------|
-| `test` | Run your test suite using pytest | `pyinit test -v -k "login"` |
-| `check` | Analyze code for errors and style issues with ruff | `pyinit lint` |
-| `format` | Auto-format code with black and isort | `pyinit format` |
+| Command | Description |
+|---------|-------------|
+| `pyinit format` | Format code with Black & isort |
+| `pyinit check [ruff-args]` | Lint code with Ruff |
+| `pyinit scan` | Scan project for issues |
+| `pyinit clean` | Remove temporary files |
 
-### 🐍 Environment Management
+### 🏗️ Building & Releasing
 
-| Command | Description | Example |
-|---------|-------------|---------|
-| `venv` | Create or remove the project's virtual environment | `pyinit venv remove` |
-| `env` | Manage environment variables in `.env` file | `pyinit env set DEBUG=True` |
+| Command | Description |
+|---------|-------------|
+| `pyinit build` | Build distributable packages |
+| `pyinit release <major\|minor\|patch>` | Increment version number |
 
-### 🚀 Deployment & Maintenance
+### 🌐 Environment & Deployment
 
-| Command | Description | Example |
-|---------|-------------|---------|
-| `docker` | Generate production-ready Dockerfile and .dockerignore | `pyinit docker` |
-| `release` | Increment project version (semantic versioning) | `pyinit release patch` |
-| `clean` | Remove temporary files and build artifacts | `pyinit clean` |
-| `scan` | Diagnose project structure and configuration issues | `pyinit scan` |
-
----
-
-## 📂 Project Templates
-
-Kickstart your development with battle-tested project structures:
-
-### 🔹 **app** (Default)
-A versatile structure for general-purpose Python applications with a clean `main.py` entry point.
-
-### 🔹 **cli**
-Boilerplate for building powerful command-line tools using `argparse` and `rich` for beautiful terminal output.
-
-### 🔹 **flask**
-Minimal web application template using Flask, ready for API or web development.
-
-### 🔹 **lib**
-Structure optimized for building distributable Python libraries with proper packaging configuration.
+| Command | Description |
+|---------|-------------|
+| `pyinit venv create` | Create virtual environment |
+| `pyinit venv remove` | Remove virtual environment |
+| `pyinit env set KEY=VALUE` | Set environment variables |
+| `pyinit docker` | Generate Dockerfile & .dockerignore |
 
 ---
 
-## 📖 Quick Start Guide
+## 🎯 Usage Examples
+
+### Complete Workflow Example
 
 ```bash
-# Create a new Flask web app
-pyinit new my-webapp --template flask
-cd my-webapp
+# 1. Create a new project
+pyinit new awesome_project
 
-# Add dependencies
-pyinit add "flask-sqlalchemy"
-pyinit add "python-dotenv"
+# 2. Navigate to the project
+cd awesome_project
 
-# Set up environment variables
-pyinit env set DATABASE_URL=sqlite:///app.db
-pyinit env set SECRET_KEY=your-secret-key
+# 3. Add dependencies
+pyinit add requests beautifulsoup4 pandas
 
-# Format and check your code
+# 4. Write your code in src/awesome_project/
+
+# 5. Run the project
+pyinit run
+
+# 6. Add tests in tests/
+
+# 7. Run tests
+pyinit test
+
+# 8. Format and check code
 pyinit format
 pyinit check
 
-# Run tests
-pyinit test
-
-# Lock dependencies
+# 9. Lock dependencies
 pyinit lock
 
-# Scan for issues
-pyinit scan
+# 10. Build the package
+pyinit build
 
-# Generate Docker configuration
+# 11. Increment version
+pyinit release patch
+```
+
+### Working with Templates
+
+```bash
+# Create a CLI application
+pyinit new my_cli --template cli
+
+# Create a library package
+pyinit new my_lib --template library
+
+# Create a Flask web application
+pyinit new my_webapp --template flask
+```
+
+### Docker Deployment
+
+```bash
+# Generate Docker files
 pyinit docker
 
-# release new version
+# Build Docker image
+docker build -t my_project .
+
+# Run container
+docker run my_project
+```
+
+---
+
+## 📁 Project Structure
+
+PyInit creates a clean, standardized project structure:
+
+```
+my_project/
+├── src/
+│   └── my_project/
+│       ├── __init__.py
+│       └── main.py
+├── tests/
+│   └── __init__.py
+├── docs/
+├── venv/
+├── .gitignore
+├── pyproject.toml
+├── README.md
+└── LICENSE
+```
+
+---
+
+## 🎨 Project Templates
+
+### 📱 **App Template** (Default)
+Perfect for standalone applications with a simple structure.
+
+### 📚 **Library Template**
+Optimized for creating reusable Python libraries.
+
+### 🌐 **Flask Template**
+Pre-configured Flask web application with routes and templates.
+
+### ⌨️ **CLI Template**
+Command-line application with argument parsing setup.
+
+---
+
+## 🔍 Project Health Check
+
+Run a comprehensive health check on your project:
+
+```bash
+pyinit scan
+```
+
+**Checks include:**
+- ✅ `pyproject.toml` validity
+- ✅ Source directory structure
+- ✅ Virtual environment existence
+- ✅ Dependency synchronization
+- ✅ Git repository initialization
+- ✅ `.gitignore` presence
+- ✅ Tests directory existence
+
+---
+
+## 🛠️ Advanced Features
+
+### Environment Variables Management
+
+```bash
+# Set environment variables
+pyinit env set DATABASE_URL=postgresql://localhost/mydb
+pyinit env set API_KEY=secret_key
+pyinit env set DEBUG=True
+```
+
+Variables are stored in `.env` file and automatically added to `.gitignore`.
+
+### Semantic Versioning
+
+```bash
+# Increment patch version (1.0.0 → 1.0.1)
+pyinit release patch
+
+# Increment minor version (1.0.0 → 1.1.0)
 pyinit release minor
 
-# Build and install
-pyinit build
+# Increment major version (1.0.0 → 2.0.0)
+pyinit release major
 ```
+
+### Dependency Graph Visualization
+
+```bash
+pyinit graph
+```
+
+View your project's complete dependency tree with `pipdeptree`.
+
+---
+
+## 📖 Documentation
+
+Full HTML documentation is available in the `docs/html/` directory. Open `index.html` in your browser to explore:
+
+- API Reference
+- Module Documentation
+- Function Signatures
+- Class Diagrams
+- Dependency Graphs
 
 ---
 
 ## 🤝 Contributing
 
-We welcome contributions! This project is open-source and thrives on community input. Feel free to:
-- 🐛 Report bugs
-- 💡 Suggest new features
-- 🔧 Submit pull requests
-- 📚 Improve documentation
+Contributions are welcome! Here's how you can help:
+
+1. **Fork** the repository
+2. **Create** a feature branch (`git checkout -b feature/amazing-feature`)
+3. **Commit** your changes (`git commit -m 'Add amazing feature'`)
+4. **Push** to the branch (`git push origin feature/amazing-feature`)
+5. **Open** a Pull Request
 
 ---
 
-## 📜 License
+## 📝 License
 
-This project is licensed under the **MIT License**. See the `LICENSE` file for details.
+This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
+
+```
+Copyright (c) 2025 mrbooo895
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files...
+```
 
 ---
 
-## 🎯 Philosophy
+## 🙏 Acknowledgments
 
-pyinit is built on the principle that **project management should be simple, consistent, and powerful**. By providing a unified interface for common development tasks, pyinit lets you spend less time on setup and more time building amazing software.
+- **Rich** - Beautiful terminal formatting
+- **Black** & **isort** - Code formatting
+- **Ruff** - Fast Python linter
+- **Pytest** - Testing framework
+- **Build** - PEP 517 build backend
 
-**Happy Coding! 🚀**
+---
+
+## 📞 Support
+
+- 🐛 **Issues**: [GitHub Issues](https://github.com/mrbooo895/pyinit/issues)
+- 💬 **Discussions**: [GitHub Discussions](https://github.com/mrbooo895/pyinit/discussions)
+- 📧 **Email**: you@example.com
+
+---
+
+<div align="center">
+
+### ⭐ If you find PyInit useful, please consider giving it a star!
+
+**Made with ❤️ by mrbooo895**
+
+[⬆ Back to Top](#-pyinit)
+
+</div>
