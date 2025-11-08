@@ -31,7 +31,9 @@ else:
     import tomli as tomllib
 
 
-def update_init_version(project_root: Path, project_name: str, new_version: str) -> bool:
+def update_init_version(
+    project_root: Path, project_name: str, new_version: str
+) -> bool:
     """
     Updates the `__version__` variable in the package's `__init__.py` file.
 
@@ -46,7 +48,7 @@ def update_init_version(project_root: Path, project_name: str, new_version: str)
     """
     if not project_name:
         return False
-        
+
     init_file = project_root / "src" / project_name / "__init__.py"
     if not init_file.is_file():
         return False
@@ -125,7 +127,7 @@ def increase_version(part: str):
             patch += 1
 
         new_version = f"{major}.{minor}.{patch}"
-        
+
         # --- Update pyproject.toml ---
         data["project"]["version"] = new_version
         try:
@@ -136,16 +138,19 @@ def increase_version(part: str):
                 f"[bold red][ERROR][/bold red] Failed to write updated version to '{pyproject_path.name}': {e}"
             )
             sys.exit(1)
-        
+
         # --- Update __init__.py ---
         project_name = get_project_name(project_root)
         init_updated = update_init_version(project_root, project_name, new_version)
-        
+
         # --- Final User Feedback ---
         console.print(
             f"[bold green]     Updating[/bold green] version from [yellow]{old_version}[/yellow] to [cyan]{new_version}[/cyan]"
         )
-            
+
+        if not init_updated:
+            pass
+
         console.print(
             "\n[bold green]Successfully[/bold green] Released New project version."
         )

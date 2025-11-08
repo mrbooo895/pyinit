@@ -24,7 +24,7 @@ from .format import format_project
 from .graph import show_dependency_graph
 from .info import project_info
 from .init import initialize_project
-from .install import install_modules 
+from .install import install_modules
 from .release import increase_version
 from .run import run_project
 from .scan import scan_project
@@ -92,7 +92,7 @@ def main():
     )
     parser_uninstall.add_argument(
         "modules",
-        nargs="+", 
+        nargs="+",
         metavar="PACKAGE",
         help="One or more packages to uninstall",
     )
@@ -179,9 +179,9 @@ def main():
         case "run":
             run_project(sub_args)
         case "install":
-            install_modules(args.modules) 
+            install_modules(args.modules)
         case "uninstall":
-            uninstall_modules(args.modules) 
+            uninstall_modules(args.modules)
         case "build":
             build_project()
         case "init":
@@ -204,12 +204,6 @@ def main():
             update_modules(args.upgrade)
         case "scan":
             scan_project()
-        case "docker":
-            gen_docker_files()
-        case "env":
-            match args.env_command:
-                case "set":
-                    manage_env(args.vars)
         case "info":
             project_info()
 

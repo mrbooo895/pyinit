@@ -4,7 +4,6 @@ pyinit - Your All-in-One Python Project Manager
 """
 
 __version__ = "1.0.4"
-from . import __version__
 from .build import build_project
 from .check import check_project
 from .clean import clean_project
@@ -13,7 +12,7 @@ from .format import format_project
 from .graph import show_dependency_graph
 from .info import project_info
 from .init import initialize_project
-from .install import install_modules 
+from .install import install_modules
 from .release import increase_version
 from .run import run_project
 from .scan import scan_project
@@ -28,8 +27,8 @@ __all__ = [
     "initialize_project",
     "run_project",
     "install_modules",
-    "uninstall_modules"
     "update_modules",
+    "uninstall_modules",
     "build_project",
     "run_tests",
     "check_project",
@@ -39,5 +38,10 @@ __all__ = [
     "scan_project",
     "increase_version",
     "manage_venv",
+    "gen_docker_files",
+    "manage_env",
+    "project_info",
+    "add_git_hooks",
     "main",
+    "error_handling",
 ]

@@ -18,7 +18,12 @@ from pathlib import Path
 
 from rich.console import Console
 
-from .utils import check_platform, check_project_root, check_venv_exists, find_project_root
+from .utils import (
+    check_platform,
+    check_project_root,
+    check_venv_exists,
+    find_project_root,
+)
 from .wrappers import error_handling
 
 
@@ -38,10 +43,7 @@ def update_requirements(project_root: Path, pip_executable: Path, console: Conso
     try:
         # Run 'pip freeze' to get an exact list of installed packages.
         result = subprocess.run(
-            [str(pip_executable), "freeze"],
-            check=True,
-            capture_output=True,
-            text=True
+            [str(pip_executable), "freeze"], check=True, capture_output=True, text=True
         )
         # Overwrite the requirements file with the new state.
         with open(requirements_file, "w") as f:
@@ -49,7 +51,9 @@ def update_requirements(project_root: Path, pip_executable: Path, console: Conso
     except Exception as e:
         # Warn the user if the lock file update fails, but don't exit,
         # as the primary installation task was successful.
-        console.print(f"\n[bold yellow][WARNING][/bold yellow] Failed to update '{requirements_file.name}'\n[green]->[/] {e}")
+        console.print(
+            f"\n[bold yellow][WARNING][/bold yellow] Failed to update '{requirements_file.name}'\n[green]->[/] {e}"
+        )
 
 
 @error_handling
@@ -79,32 +83,41 @@ def install_modules(modules_to_install: list):
     # --- Verify which packages are already installed ---
     try:
         freeze_result = subprocess.run(
-            [str(pip_executable), "freeze"],
-            check=True,
-            capture_output=True,
-            text=True
+            [str(pip_executable), "freeze"], check=True, capture_output=True, text=True
         )
         installed_packages = {
             line.split("==")[0].lower().replace("-", "_")
             for line in freeze_result.stdout.strip().split("\n")
         }
     except Exception:
-        console.print("[bold red][ERROR][/bold red] Could not list installed packages from venv.")
+        console.print(
+            "[bold red][ERROR][/bold red] Could not list installed packages from venv."
+        )
         sys.exit(1)
 
     # Filter the user's list to only include packages that are not already installed.
     packages_to_actually_install = []
     for module in modules_to_install:
         # We only check the base name, ignoring version specifiers for this check.
-        base_module_name = module.split("==")[0].split(">")[0].split("<")[0].split("~")[0].split("!=")[0]
+        base_module_name = (
+            module.split("==")[0]
+            .split(">")[0]
+            .split("<")[0]
+            .split("~")[0]
+            .split("!=")[0]
+        )
         normalized_module = base_module_name.lower().replace("-", "_")
         if normalized_module not in installed_packages:
             packages_to_actually_install.append(module)
         else:
-            console.print(f"[bold yellow][INFO][/] Requirement already satisfied: '{module}'")
+            console.print(
+                f"[bold yellow][INFO][/] Requirement already satisfied: '{module}'"
+            )
 
     if not packages_to_actually_install:
-        console.print("[bold green]\n->[/] All specified packages are already installed, nothing to do.")
+        console.print(
+            "[bold green]\n->[/] All specified packages are already installed, nothing to do."
+        )
         sys.exit(0)
 
     # --- Installation Process ---
@@ -126,10 +139,12 @@ def install_modules(modules_to_install: list):
         update_requirements(project_root, pip_executable, console)
 
     except subprocess.CalledProcessError as e:
-        console.print(f"\n[bold red][ERROR][/bold red] Failed to install packages.")
+        console.print("\n[bold red][ERROR][/bold red] Failed to install packages.")
         if e.stderr:
             console.print(f"[dim red]{e.stderr.decode().strip()}[/dim red]")
         sys.exit(1)
     except Exception as e:
-        console.print(f"\n[bold red][ERROR][/bold red] An unexpected error occurred: {e}")
+        console.print(
+            f"\n[bold red][ERROR][/bold red] An unexpected error occurred: {e}"
+        )
         sys.exit(1)

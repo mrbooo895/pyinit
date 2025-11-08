@@ -13,13 +13,17 @@ outdated before performing any action, making it more efficient and user-friendl
 
 import subprocess
 import sys
-from pathlib import Path
 
 from rich.console import Console
 
 # Import the shared utility function from the 'install' module.
 from .install import update_requirements
-from .utils import check_platform, check_project_root, check_venv_exists, find_project_root
+from .utils import (
+    check_platform,
+    check_project_root,
+    check_venv_exists,
+    find_project_root,
+)
 from .wrappers import error_handling
 
 
@@ -65,7 +69,9 @@ def update_modules(upgrade: bool = False):
 
     # --- Step 2: Decide action based on check results ---
     if not has_updates:
-        console.print("[bold green]\n->[/bold green] All modules are up to date, nothing to do.")
+        console.print(
+            "[bold green]\n->[/bold green] All modules are up to date, nothing to do."
+        )
         sys.exit(0)
 
     if upgrade:
@@ -74,24 +80,30 @@ def update_modules(upgrade: bool = False):
         packages_to_upgrade = [
             line.split()[0] for line in outdated_packages_output.splitlines()[2:]
         ]
-        
-        console.print(f"[bold green]     Found[/bold green] {len(packages_to_upgrade)} module(s) to upgrade.")
-        
+
+        console.print(
+            f"[bold green]     Found[/bold green] {len(packages_to_upgrade)} module(s) to upgrade."
+        )
+
         try:
-            upgrade_cmd = [str(pip_executable), "install", "--upgrade"] + packages_to_upgrade
+            upgrade_cmd = [
+                str(pip_executable),
+                "install",
+                "--upgrade",
+            ] + packages_to_upgrade
             subprocess.run(upgrade_cmd, check=True)
             console.print(
                 "\n[bold green]Successfully[/bold green] upgraded all modules."
             )
             # Update the lock file after a successful upgrade.
             update_requirements(project_root, pip_executable, console)
-            
+
         except subprocess.CalledProcessError as e:
             console.print("[bold red][ERROR][/bold red] Failed to upgrade modules.")
             if e.stderr:
                 console.print(f"[red]{e.stderr.decode()}[/red]")
             sys.exit(1)
-            
+
     else:
         # --- Check-Only Mode ---
         # Simply print the list of outdated packages that we already fetched.
