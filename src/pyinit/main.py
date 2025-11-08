@@ -3,7 +3,7 @@ import sys
 
 from .add import add_module
 from .build import build_project
-from .bump import increase_version
+from .release import increase_version
 from .clean import clean_project
 from .docker import gen_docker_files
 from .env import manage_env
@@ -12,7 +12,7 @@ from .graph import show_dependency_graph
 from .hooks import add_git_hooks
 from .info import project_info
 from .init import initialize_project
-from .lint import lint_project
+from .check import lint_project
 from .lock import lock_dependencies
 from .new import create_project
 from .run import run_project
@@ -42,7 +42,7 @@ def main():
         "-t",
         "--template",
         default="app",
-        help="The project template to use (default: app)",
+        help="The project template to use (CLI | Library | Flask | default: app)",
     )
 
     subparsers.add_parser("run", help="Run Your Project's Main File")
@@ -55,7 +55,7 @@ def main():
         help="Name of The Module/Library To Install",
     )
     subparsers.add_parser(
-        "build", help="Build Your Project and install it into the system"
+        "build", help="Build Your Project Using Wheel"
     )
     subparsers.add_parser(
         "init", help="Initialize a new project in an existing directory"
@@ -71,22 +71,22 @@ def main():
     )
     venv_subparsers.add_parser("create", help="Create the virtual environment")
     venv_subparsers.add_parser("remove", help="Remove the virtual environment")
-    subparsers.add_parser("lint", help="Lint the codebase with ruff")
+    subparsers.add_parser("check", help="check the codebase with ruff")
     subparsers.add_parser("graph", help="Display the project's dependency graph")
     subparsers.add_parser("clean", help="Remove temporary and build-related files")
-    parser_bump = subparsers.add_parser(
-        "bump", help="Increment the project version (major, minor, patch)"
+    parser_release = subparsers.add_parser(
+        "release", help="increment the project version (major, minor, patch)"
     )
-    parser_bump.add_argument(
+    parser_release.add_argument(
         "part",
         choices=["major", "minor", "patch"],
-        help="The part of the version to bump",
+        help="The part of the version to release",
     )
     parser_update = subparsers.add_parser(
-        "update", help="Check for and apply dependency updates"
+        "update", help="Check for and apply modules updates"
     )
     parser_update.add_argument(
-        "--upgrade", action="store_true", help="Upgrade outdated packages"
+        "--upgrade", action="store_true", help="Upgrade venv modules"
     )
     subparsers.add_parser(
         "scan", help="Scan the project for configuration and structure issues"
@@ -104,11 +104,10 @@ def main():
     parser_env_set.add_argument(
         "vars", nargs="+", metavar="KEY=VALUE", help="Variable(s) to set"
     )
-    subparsers.add_parser("add-hooks", help="Set up pre-commit hooks for the project")
 
     subparsers.add_parser("info", help="Display information about the current project")
 
-    passthrough_commands = ["run", "test", "lint"]
+    passthrough_commands = ["run", "test", "check"]
     main_args = sys.argv[1:]
     sub_args = []
 
@@ -139,26 +138,24 @@ def main():
             format_project()
         case "venv":
             manage_venv(args.venv_command)
-        case "lint":
+        case "check":
             lint_project(sub_args)
         case "graph":
             show_dependency_graph()
         case "clean":
             clean_project()
-        case "bump":
+        case "release":
             increase_version(args.part)
         case "update":
             update_modules(args.upgrade)
         case "scan":
             scan_project()
-        case "dockerize":
+        case "docker":
             gen_docker_files()
         case "env":
             match args.env_command:
                 case "set":
                     manage_env(args.vars)
-        case "add-hooks":
-            add_git_hooks()
         case "info":
             project_info()
 

@@ -6,14 +6,14 @@ pyinit - Your All-in-One Python Project Manager
 __version__ = "1.0.1"
 from .add import add_module
 from .build import build_project
-from .bump import increase_version
+from .release import increase_version
 from .clean import clean_project
 from .docker import gen_docker_files
 from .env import manage_env
 from .format import format_project
 from .hooks import add_git_hooks
 from .init import initialize_project
-from .lint import lint_project
+from .check import lint_project
 from .main import main
 from .new import create_project
 from .run import run_project
