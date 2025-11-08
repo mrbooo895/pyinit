@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.15.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>pyinit: pyinit.scan.ProjectScanner Class Reference</title>
+<title>PyInit: pyinit.scan.ProjectScanner Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -26,7 +26,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">pyinit
+   <div id="projectname">PyInit
    </div>
   </td>
  </tr>
@@ -101,22 +101,24 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a8778d4479e2e35b411d90de7b121f288"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the <a class="el" href="classpyinit_1_1scan_1_1ProjectScanner.html" title="A class that encapsulates the logic for scanning a project.">ProjectScanner</a>.  <br /></td></tr>
 <tr class="memitem:ae90377fcc92225956999520245c67300" id="r_ae90377fcc92225956999520245c67300"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae90377fcc92225956999520245c67300">run_check</a> (self, title, check_func)</td></tr>
 <tr class="memdesc:ae90377fcc92225956999520245c67300"><td class="mdescLeft">&#160;</td><td class="mdescRight">Executes a single check function and reports its status.  <br /></td></tr>
-<tr class="memitem:ae138d2aedabb2c56521fbb748d4e2f8a" id="r_ae138d2aedabb2c56521fbb748d4e2f8a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae138d2aedabb2c56521fbb748d4e2f8a">check_pyproject_exists</a> (self)</td></tr>
-<tr class="memdesc:ae138d2aedabb2c56521fbb748d4e2f8a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks for the existence of the <span class="tt">pyproject.toml</span> file.  <br /></td></tr>
 <tr class="memitem:a76d1c6ea79ed4639d708c00db955f01a" id="r_a76d1c6ea79ed4639d708c00db955f01a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a76d1c6ea79ed4639d708c00db955f01a">check_pyproject_parsable</a> (self)</td></tr>
 <tr class="memdesc:a76d1c6ea79ed4639d708c00db955f01a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if <span class="tt">pyproject.toml</span> is a valid, parsable TOML file.  <br /></td></tr>
+<tr class="memitem:aff6c47dccc9952905a49d92de75c9d03" id="r_aff6c47dccc9952905a49d92de75c9d03"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aff6c47dccc9952905a49d92de75c9d03">check_readme_exists</a> (self)</td></tr>
+<tr class="memdesc:aff6c47dccc9952905a49d92de75c9d03"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks for a non-empty README.md file.  <br /></td></tr>
 <tr class="memitem:ad063482bd012e37ea2a26a8a7ca20802" id="r_ad063482bd012e37ea2a26a8a7ca20802"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad063482bd012e37ea2a26a8a7ca20802">check_src_layout</a> (self)</td></tr>
 <tr class="memdesc:ad063482bd012e37ea2a26a8a7ca20802"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks for the presence of the standard <span class="tt">src/</span> directory.  <br /></td></tr>
-<tr class="memitem:ad3b4022da0f84c3e39981ee6856c8268" id="r_ad3b4022da0f84c3e39981ee6856c8268"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad3b4022da0f84c3e39981ee6856c8268">check_venv_exists</a> (self)</td></tr>
-<tr class="memdesc:ad3b4022da0f84c3e39981ee6856c8268"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks for the presence of the <span class="tt">venv/</span> virtual environment directory.  <br /></td></tr>
-<tr class="memitem:a7762fbb1cf5c031e6735f3f1a6382252" id="r_a7762fbb1cf5c031e6735f3f1a6382252"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7762fbb1cf5c031e6735f3f1a6382252">check_git_initialized</a> (self)</td></tr>
-<tr class="memdesc:a7762fbb1cf5c031e6735f3f1a6382252"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the project directory is a Git repository.  <br /></td></tr>
-<tr class="memitem:a509d297ec9b749d1f07d0cd8fd6b0948" id="r_a509d297ec9b749d1f07d0cd8fd6b0948"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a509d297ec9b749d1f07d0cd8fd6b0948">check_gitignore_exists</a> (self)</td></tr>
-<tr class="memdesc:a509d297ec9b749d1f07d0cd8fd6b0948"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks for the presence of a <span class="tt">.gitignore</span> file.  <br /></td></tr>
 <tr class="memitem:a2a7db9fcd3e466d18f9fecb7feeb5282" id="r_a2a7db9fcd3e466d18f9fecb7feeb5282"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2a7db9fcd3e466d18f9fecb7feeb5282">check_tests_dir_exists</a> (self)</td></tr>
 <tr class="memdesc:a2a7db9fcd3e466d18f9fecb7feeb5282"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks for the presence of a <span class="tt">tests/</span> directory, encouraging testing.  <br /></td></tr>
+<tr class="memitem:ad3b4022da0f84c3e39981ee6856c8268" id="r_ad3b4022da0f84c3e39981ee6856c8268"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad3b4022da0f84c3e39981ee6856c8268">check_venv_exists</a> (self)</td></tr>
+<tr class="memdesc:ad3b4022da0f84c3e39981ee6856c8268"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks for the presence of the <span class="tt">venv/</span> virtual environment directory.  <br /></td></tr>
 <tr class="memitem:acd59432ef04d75a9eb0089463b7dbf4b" id="r_acd59432ef04d75a9eb0089463b7dbf4b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acd59432ef04d75a9eb0089463b7dbf4b">check_dependencies_synced</a> (self)</td></tr>
 <tr class="memdesc:acd59432ef04d75a9eb0089463b7dbf4b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Verifies if dependencies in <span class="tt">pyproject.toml</span> are installed in the venv.  <br /></td></tr>
+<tr class="memitem:a3709f311c49951e79ed97942e937e4c9" id="r_a3709f311c49951e79ed97942e937e4c9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3709f311c49951e79ed97942e937e4c9">check_requirements_file_synced</a> (self)</td></tr>
+<tr class="memdesc:a3709f311c49951e79ed97942e937e4c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if <span class="tt">requirements.txt</span> exists and matches the virtual environment.  <br /></td></tr>
+<tr class="memitem:a7762fbb1cf5c031e6735f3f1a6382252" id="r_a7762fbb1cf5c031e6735f3f1a6382252"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7762fbb1cf5c031e6735f3f1a6382252">check_git_initialized</a> (self)</td></tr>
+<tr class="memdesc:a7762fbb1cf5c031e6735f3f1a6382252"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the project directory is a Git repository.  <br /></td></tr>
+<tr class="memitem:a79a19429803a599ae60dcf71655acf1f" id="r_a79a19429803a599ae60dcf71655acf1f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a79a19429803a599ae60dcf71655acf1f">check_git_clean_status</a> (self)</td></tr>
+<tr class="memdesc:a79a19429803a599ae60dcf71655acf1f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the Git working directory is clean (no uncommitted changes).  <br /></td></tr>
 <tr class="memitem:a4441ec31e515e33164f29f4c79a739bb" id="r_a4441ec31e515e33164f29f4c79a739bb"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4441ec31e515e33164f29f4c79a739bb">print_summary</a> (self)</td></tr>
 <tr class="memdesc:a4441ec31e515e33164f29f4c79a739bb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints the final summary report of the scan.  <br /></td></tr>
 </table><table class="memberdecls">
@@ -127,6 +129,15 @@ Public Attributes</h2></td></tr>
 <tr class="memitem:a7e9498a50531fe896fb2da62224772b3" id="r_a7e9498a50531fe896fb2da62224772b3"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7e9498a50531fe896fb2da62224772b3">checks_passed</a> = 0</td></tr>
 <tr class="memitem:a8a0f295efdf82a8e560156d232ccfc13" id="r_a8a0f295efdf82a8e560156d232ccfc13"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8a0f295efdf82a8e560156d232ccfc13">total_checks</a> = 0</td></tr>
 <tr class="memitem:a352cdf0dae63f60a43d4f846bc557454" id="r_a352cdf0dae63f60a43d4f846bc557454"><td class="memItemLeft" align="right" valign="top">list&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a352cdf0dae63f60a43d4f846bc557454">issues</a> = []</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pro-methods" class="groupheader"><a id="pro-methods" name="pro-methods"></a>
+Protected Member Functions</h2></td></tr>
+<tr class="memitem:a2d53f2abe4bd539fcf862a47ff410e20" id="r_a2d53f2abe4bd539fcf862a47ff410e20"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2d53f2abe4bd539fcf862a47ff410e20">_get_pip_freeze</a> (self)</td></tr>
+<tr class="memdesc:a2d53f2abe4bd539fcf862a47ff410e20"><td class="mdescLeft">&#160;</td><td class="mdescRight">Internal helper to get and cache the output of 'pip freeze'.  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pro-attribs" class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
+Protected Attributes</h2></td></tr>
+<tr class="memitem:af57a54da1d067018d09f3c650eefb66e" id="r_af57a54da1d067018d09f3c650eefb66e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af57a54da1d067018d09f3c650eefb66e">_pip_freeze_output</a> = None</td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A class that encapsulates the logic for scanning a project. </p>
@@ -162,6 +173,38 @@ Public Attributes</h2></td></tr>
 </div>
 </div>
 <a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
+<a id="a2d53f2abe4bd539fcf862a47ff410e20" name="a2d53f2abe4bd539fcf862a47ff410e20"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2d53f2abe4bd539fcf862a47ff410e20">&#9670;&#160;</a></span>_get_pip_freeze()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">pyinit.scan.ProjectScanner._get_pip_freeze </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Internal helper to get and cache the output of 'pip freeze'. </p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classpyinit_1_1scan_1_1ProjectScanner_a2d53f2abe4bd539fcf862a47ff410e20_icgraph.png" border="0" usemap="#aclasspyinit_1_1scan_1_1ProjectScanner_a2d53f2abe4bd539fcf862a47ff410e20_icgraph" loading="lazy" alt=""/></div>
+</div>
+
+</div>
+</div>
 <a id="acd59432ef04d75a9eb0089463b7dbf4b" name="acd59432ef04d75a9eb0089463b7dbf4b"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#acd59432ef04d75a9eb0089463b7dbf4b">&#9670;&#160;</a></span>check_dependencies_synced()</h2>
 
@@ -178,7 +221,25 @@ Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Verifies if dependencies in <span class="tt">pyproject.toml</span> are installed in the venv. </p>
-<p>This is a critical check for environment consistency. It compares the output of <span class="tt">pip freeze</span> with the dependencies declared in the project's configuration file. </p>
+
+</div>
+</div>
+<a id="a79a19429803a599ae60dcf71655acf1f" name="a79a19429803a599ae60dcf71655acf1f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a79a19429803a599ae60dcf71655acf1f">&#9670;&#160;</a></span>check_git_clean_status()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">pyinit.scan.ProjectScanner.check_git_clean_status </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks if the Git working directory is clean (no uncommitted changes). </p>
 
 </div>
 </div>
@@ -201,44 +262,6 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a509d297ec9b749d1f07d0cd8fd6b0948" name="a509d297ec9b749d1f07d0cd8fd6b0948"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a509d297ec9b749d1f07d0cd8fd6b0948">&#9670;&#160;</a></span>check_gitignore_exists()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">pyinit.scan.ProjectScanner.check_gitignore_exists </td>
-          <td>(</td>
-          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Checks for the presence of a <span class="tt">.gitignore</span> file. </p>
-
-</div>
-</div>
-<a id="ae138d2aedabb2c56521fbb748d4e2f8a" name="ae138d2aedabb2c56521fbb748d4e2f8a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae138d2aedabb2c56521fbb748d4e2f8a">&#9670;&#160;</a></span>check_pyproject_exists()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">pyinit.scan.ProjectScanner.check_pyproject_exists </td>
-          <td>(</td>
-          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Checks for the existence of the <span class="tt">pyproject.toml</span> file. </p>
-
-</div>
-</div>
 <a id="a76d1c6ea79ed4639d708c00db955f01a" name="a76d1c6ea79ed4639d708c00db955f01a"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a76d1c6ea79ed4639d708c00db955f01a">&#9670;&#160;</a></span>check_pyproject_parsable()</h2>
 
@@ -255,6 +278,49 @@ Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Checks if <span class="tt">pyproject.toml</span> is a valid, parsable TOML file. </p>
+
+</div>
+</div>
+<a id="aff6c47dccc9952905a49d92de75c9d03" name="aff6c47dccc9952905a49d92de75c9d03"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aff6c47dccc9952905a49d92de75c9d03">&#9670;&#160;</a></span>check_readme_exists()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">pyinit.scan.ProjectScanner.check_readme_exists </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks for a non-empty README.md file. </p>
+
+</div>
+</div>
+<a id="a3709f311c49951e79ed97942e937e4c9" name="a3709f311c49951e79ed97942e937e4c9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3709f311c49951e79ed97942e937e4c9">&#9670;&#160;</a></span>check_requirements_file_synced()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">pyinit.scan.ProjectScanner.check_requirements_file_synced </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks if <span class="tt">requirements.txt</span> exists and matches the virtual environment. </p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classpyinit_1_1scan_1_1ProjectScanner_a3709f311c49951e79ed97942e937e4c9_cgraph.png" border="0" usemap="#aclasspyinit_1_1scan_1_1ProjectScanner_a3709f311c49951e79ed97942e937e4c9_cgraph" loading="lazy" alt=""/></div>
+</div>
 
 </div>
 </div>
@@ -312,6 +378,11 @@ Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Checks for the presence of the <span class="tt">venv/</span> virtual environment directory. </p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classpyinit_1_1scan_1_1ProjectScanner_ad3b4022da0f84c3e39981ee6856c8268_cgraph.png" border="0" usemap="#aclasspyinit_1_1scan_1_1ProjectScanner_ad3b4022da0f84c3e39981ee6856c8268_cgraph" loading="lazy" alt=""/></div>
+</div>
 
 </div>
 </div>
@@ -331,7 +402,6 @@ Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Prints the final summary report of the scan. </p>
-<p>Displays the overall pass/fail count and lists detailed messages for any issues that were found. </p>
 
 </div>
 </div>
@@ -360,12 +430,32 @@ Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Executes a single check function and reports its status. </p>
-<p>This runner method provides consistent output formatting for each check, displaying a title and a pass/fail status. It updates the internal counters and stores issue messages upon failure.</p>
-<p>:param str title: A user-friendly title for the check being performed. :param function check_func: The check function to execute. This function must return a tuple (bool, str) indicating success and an issue message if applicable. </p>
 
 </div>
 </div>
 <a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
+<a id="af57a54da1d067018d09f3c650eefb66e" name="af57a54da1d067018d09f3c650eefb66e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af57a54da1d067018d09f3c650eefb66e">&#9670;&#160;</a></span>_pip_freeze_output</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">pyinit.scan.ProjectScanner._pip_freeze_output = None</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a7e9498a50531fe896fb2da62224772b3" name="a7e9498a50531fe896fb2da62224772b3"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a7e9498a50531fe896fb2da62224772b3">&#9670;&#160;</a></span>checks_passed</h2>
 
@@ -437,7 +527,7 @@ Public Attributes</h2></td></tr>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>src/pyinit/<a class="el" href="scan_8py.html">scan.py</a></li>
+<li>/home/Karim/python/pyinit/src/pyinit/<a class="el" href="scan_8py.html">scan.py</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

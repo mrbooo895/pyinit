@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.15.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>pyinit: src/pyinit/utils.py File Reference</title>
+<title>PyInit: /home/Karim/python/pyinit/src/pyinit/utils.py File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -26,7 +26,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">pyinit
+   <div id="projectname">PyInit
    </div>
   </td>
  </tr>
@@ -101,12 +101,19 @@ Namespaces</h2></td></tr>
 Functions</h2></td></tr>
 <tr class="memitem:a515299aefd90d136b298abfb7ebc3763" id="r_a515299aefd90d136b298abfb7ebc3763"><td class="memItemLeft" align="right" valign="top">Path|None&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacepyinit_1_1utils.html#a515299aefd90d136b298abfb7ebc3763">pyinit.utils.find_project_root</a> ()</td></tr>
 <tr class="memdesc:a515299aefd90d136b298abfb7ebc3763"><td class="mdescLeft">&#160;</td><td class="mdescRight">Finds the project root by searching upwards for a <span class="tt">pyproject.toml</span> file.  <br /></td></tr>
-<tr class="memitem:a58064e90df55625082b0653190b502ac" id="r_a58064e90df55625082b0653190b502ac"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacepyinit_1_1utils.html#a58064e90df55625082b0653190b502ac">pyinit.utils.setup_logger</a> ()</td></tr>
-<tr class="memdesc:a58064e90df55625082b0653190b502ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configures and returns a logger instance with rich formatting.  <br /></td></tr>
 <tr class="memitem:ae38a56363a6f9db1b367f4ceb827ad3e" id="r_ae38a56363a6f9db1b367f4ceb827ad3e"><td class="memItemLeft" align="right" valign="top">str|None&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacepyinit_1_1utils.html#ae38a56363a6f9db1b367f4ceb827ad3e">pyinit.utils.get_project_name</a> (Path project_root)</td></tr>
 <tr class="memdesc:ae38a56363a6f9db1b367f4ceb827ad3e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parses <span class="tt">pyproject.toml</span> to extract the project's name.  <br /></td></tr>
 <tr class="memitem:a90d7d1bb65721b80335345f4e8ab5781" id="r_a90d7d1bb65721b80335345f4e8ab5781"><td class="memItemLeft" align="right" valign="top">list[str]&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacepyinit_1_1utils.html#a90d7d1bb65721b80335345f4e8ab5781">pyinit.utils.get_project_dependencies</a> (Path project_root)</td></tr>
 <tr class="memdesc:a90d7d1bb65721b80335345f4e8ab5781"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parses <span class="tt">pyproject.toml</span> to extract all declared dependencies.  <br /></td></tr>
+<tr class="memitem:a0a8e00fdeb87a3efb350a8947b0afcfa" id="r_a0a8e00fdeb87a3efb350a8947b0afcfa"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacepyinit_1_1utils.html#a0a8e00fdeb87a3efb350a8947b0afcfa">pyinit.utils.check_project_root</a> (proj_root)</td></tr>
+<tr class="memitem:ae4bf86e49c6cf465fccdffc69c6b039f" id="r_ae4bf86e49c6cf465fccdffc69c6b039f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacepyinit_1_1utils.html#ae4bf86e49c6cf465fccdffc69c6b039f">pyinit.utils.check_venv_exists</a> (venv_dir)</td></tr>
+<tr class="memitem:a23eb58b014c58281444541fb1c2b1421" id="r_a23eb58b014c58281444541fb1c2b1421"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacepyinit_1_1utils.html#a23eb58b014c58281444541fb1c2b1421">pyinit.utils.check_platform</a> (venv_directory)</td></tr>
+<tr class="memitem:a6fd06f2dd51e5c5eb40ec75bbd8213b8" id="r_a6fd06f2dd51e5c5eb40ec75bbd8213b8"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacepyinit_1_1utils.html#a6fd06f2dd51e5c5eb40ec75bbd8213b8">pyinit.utils.ensure_tool_installed</a> (Path pip_executable, Path python_executable, str tool_name, str import_name, Console <a class="el" href="namespacepyinit_1_1utils.html#a00a9cd0499b0863b55c720f887e15751">console</a>)</td></tr>
+<tr class="memdesc:a6fd06f2dd51e5c5eb40ec75bbd8213b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if a required tool is installed in the venv, installing it if not.  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-var-members" class="groupheader"><a id="var-members" name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:a00a9cd0499b0863b55c720f887e15751" id="r_a00a9cd0499b0863b55c720f887e15751"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacepyinit_1_1utils.html#a00a9cd0499b0863b55c720f887e15751">pyinit.utils.console</a> = Console()</td></tr>
 </table>
 </div><!-- contents -->
 </div><!-- doc-content -->

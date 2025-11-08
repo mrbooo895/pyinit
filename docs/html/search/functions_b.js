@@ -1,8 +1,7 @@
 var searchData=
 [
-  ['remove_5fvirtual_5fenv_0',['remove_virtual_env',['../namespacepyinit_1_1venv.html#a7dd87f3aa251b201857476b0311b6cd1',1,'pyinit::venv']]],
-  ['run_5fcheck_1',['run_check',['../classpyinit_1_1scan_1_1ProjectScanner.html#ae90377fcc92225956999520245c67300',1,'pyinit::scan::ProjectScanner']]],
-  ['run_5fcommand_2',['run_command',['../namespacepyinit_1_1info.html#aee4dccd72d615b4791f196c2a737c118',1,'pyinit::info']]],
-  ['run_5fproject_3',['run_project',['../namespacepyinit_1_1run.html#a041cc4e788f2e91a621a6f904377c058',1,'pyinit::run']]],
-  ['run_5ftests_4',['run_tests',['../namespacepyinit_1_1test.html#ae5377bcafe3f0b176d35c0dc179ae90b',1,'pyinit::test']]]
+  ['uninstall_5fmodules_0',['uninstall_modules',['../namespacepyinit_1_1uninstall.html#ab4d7493b19bfb74ac0abf7f15032ce98',1,'pyinit::uninstall']]],
+  ['update_5finit_5fversion_1',['update_init_version',['../namespacepyinit_1_1release.html#aba779557b152398dc55cdcf834520140',1,'pyinit::release']]],
+  ['update_5fmodules_2',['update_modules',['../namespacepyinit_1_1update.html#a49249dbe9d6436cd0be65c370d1bbdd3',1,'pyinit::update']]],
+  ['update_5frequirements_3',['update_requirements',['../namespacepyinit_1_1install.html#a557f2fa7fd3920d049e9f4235796dd61',1,'pyinit::install']]]
 ];

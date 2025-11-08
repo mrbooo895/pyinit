@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.15.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>pyinit: pyinit.env Namespace Reference</title>
+<title>PyInit: pyinit.create Namespace Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -26,7 +26,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">pyinit
+   <div id="projectname">PyInit
    </div>
   </td>
  </tr>
@@ -62,7 +62,7 @@ $(function() {
   </div>
 </div>
 <script type="text/javascript">
-$(function(){initNavTree('namespacepyinit_1_1env.html','',''); });
+$(function(){initNavTree('namespacepyinit_1_1create.html','',''); });
 </script>
 <div id="container">
 <div id="doc-content">
@@ -88,66 +88,67 @@ $(function(){initNavTree('namespacepyinit_1_1env.html','',''); });
 </div>
 
 <div class="header">
-  <div class="headertitle"><div class="title">pyinit.env Namespace Reference</div></div>
+  <div class="headertitle"><div class="title">pyinit.create Namespace Reference</div></div>
 </div><!--header-->
 <div class="contents">
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ad20dbafa10b96fac178ba33de9a62e23" id="r_ad20dbafa10b96fac178ba33de9a62e23"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad20dbafa10b96fac178ba33de9a62e23">update_gitignore</a> (Path project_root, Console console)</td></tr>
-<tr class="memdesc:ad20dbafa10b96fac178ba33de9a62e23"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ensures that the <span class="tt">.<a class="el" href="namespacepyinit_1_1env.html">env</a></span> file is listed in the project's <span class="tt">.gitignore</span>.  <br /></td></tr>
-<tr class="memitem:a203433f3f11ce1cd1664962788d91e2b" id="r_a203433f3f11ce1cd1664962788d91e2b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a203433f3f11ce1cd1664962788d91e2b">manage_env</a> (list vars_to_set)</td></tr>
-<tr class="memdesc:a203433f3f11ce1cd1664962788d91e2b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets one or more environment variables in the project's <span class="tt">.<a class="el" href="namespacepyinit_1_1env.html">env</a></span> file.  <br /></td></tr>
+<tr class="memitem:ae0281a81d24a85497f6a0ef1bf077fa3" id="r_ae0281a81d24a85497f6a0ef1bf077fa3"><td class="memItemLeft" align="right" valign="top">str|None&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae0281a81d24a85497f6a0ef1bf077fa3">get_git_config</a> (str key)</td></tr>
+<tr class="memdesc:ae0281a81d24a85497f6a0ef1bf077fa3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves a specified configuration value from the global Git config.  <br /></td></tr>
+<tr class="memitem:a955da2790691601b837aa6134f938796" id="r_a955da2790691601b837aa6134f938796"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a955da2790691601b837aa6134f938796">create_project</a> (str project_path)</td></tr>
+<tr class="memdesc:a955da2790691601b837aa6134f938796"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new, standardized Python project structure.  <br /></td></tr>
 </table>
 <a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Function Documentation</h2>
-<a id="a203433f3f11ce1cd1664962788d91e2b" name="a203433f3f11ce1cd1664962788d91e2b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a203433f3f11ce1cd1664962788d91e2b">&#9670;&#160;</a></span>manage_env()</h2>
+<a id="a955da2790691601b837aa6134f938796" name="a955da2790691601b837aa6134f938796"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a955da2790691601b837aa6134f938796">&#9670;&#160;</a></span>create_project()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">pyinit.env.manage_env </td>
+          <td class="memname">pyinit.create.create_project </td>
           <td>(</td>
-          <td class="paramtype">list</td>          <td class="paramname"><span class="paramname"><em>vars_to_set</em></span></td><td>)</td>
+          <td class="paramtype">str</td>          <td class="paramname"><span class="paramname"><em>project_path</em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Sets one or more environment variables in the project's <span class="tt">.<a class="el" href="namespacepyinit_1_1env.html">env</a></span> file. </p>
-<p>This function serves as the main entry point for the 'pyinit env set' command. It reads the existing <span class="tt">.<a class="el" href="namespacepyinit_1_1env.html">env</a></span> file (if any), updates or adds the new variables provided by the user, and writes the result back to the file. It also calls <span class="tt"><a class="el" href="#ad20dbafa10b96fac178ba33de9a62e23" title="Ensures that the .env file is listed in the project&#39;s .gitignore.">update_gitignore</a></span> to ensure the file is ignored by Git.</p>
-<p>:param list vars_to_set: A list of strings, each in 'KEY=VALUE' format. :raises SystemExit: If not run within a valid project. </p>
+<p>Creates a new, standardized Python project structure. </p>
+<p>This is the main entry point for the 'pyinit create' command. It orchestrates the entire project creation process, including directory creation, generation of configuration files from an internal template, and initialization of Git and a virtual environment.</p>
+<p>:param str project_path: The path/name for the new project directory. :raises SystemExit: If the destination directory already exists or if any part of the creation process fails. </p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="namespacepyinit_1_1env_a203433f3f11ce1cd1664962788d91e2b_cgraph.png" border="0" usemap="#anamespacepyinit_1_1env_a203433f3f11ce1cd1664962788d91e2b_cgraph" loading="lazy" alt=""/></div>
+<div class="center"><img src="namespacepyinit_1_1create_a955da2790691601b837aa6134f938796_cgraph.png" border="0" usemap="#anamespacepyinit_1_1create_a955da2790691601b837aa6134f938796_cgraph" loading="lazy" alt=""/></div>
 </div>
 
 </div>
 </div>
-<a id="ad20dbafa10b96fac178ba33de9a62e23" name="ad20dbafa10b96fac178ba33de9a62e23"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad20dbafa10b96fac178ba33de9a62e23">&#9670;&#160;</a></span>update_gitignore()</h2>
+<a id="ae0281a81d24a85497f6a0ef1bf077fa3" name="ae0281a81d24a85497f6a0ef1bf077fa3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae0281a81d24a85497f6a0ef1bf077fa3">&#9670;&#160;</a></span>get_git_config()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">pyinit.env.update_gitignore </td>
+          <td class="memname"> str | None pyinit.create.get_git_config </td>
           <td>(</td>
-          <td class="paramtype">Path</td>          <td class="paramname"><span class="paramname"><em>project_root</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramtype">str</td>          <td class="paramname"><span class="paramname"><em>key</em></span></td><td>)</td>
           <td></td>
-          <td class="paramtype">Console</td>          <td class="paramname"><span class="paramname"><em>console</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Ensures that the <span class="tt">.<a class="el" href="namespacepyinit_1_1env.html">env</a></span> file is listed in the project's <span class="tt">.gitignore</span>. </p>
-<p>This utility function checks if <span class="tt">.gitignore</span> exists and contains an entry for <span class="tt">.<a class="el" href="namespacepyinit_1_1env.html">env</a></span>. If not, it creates the file or appends the entry, providing a safeguard against committing sensitive data.</p>
-<p>:param Path project_root: The root directory of the project. :param Console console: The rich Console instance for printing messages. </p>
+<p>Retrieves a specified configuration value from the global Git config. </p>
+<p>Used to fetch user details like name and email to pre-fill project metadata.</p>
+<p>:param str key: The Git configuration key to retrieve (e.g., 'user.name'). :return: The configured value, or None if not found or Git is not installed. :rtype: str or None </p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="namespacepyinit_1_1create_ae0281a81d24a85497f6a0ef1bf077fa3_icgraph.png" border="0" usemap="#anamespacepyinit_1_1create_ae0281a81d24a85497f6a0ef1bf077fa3_icgraph" loading="lazy" alt=""/></div>
+</div>
 
 </div>
 </div>
@@ -164,7 +165,7 @@ Here is the call graph for this function:</div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a href="namespacepyinit.html">pyinit</a></li><li class="navelem"><a href="namespacepyinit_1_1env.html">env</a></li>
+    <li class="navelem"><a href="namespacepyinit.html">pyinit</a></li><li class="navelem"><a href="namespacepyinit_1_1create.html">create</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.15.0 </li>
   </ul>
 </div>

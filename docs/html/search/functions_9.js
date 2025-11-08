@@ -1,6 +1,8 @@
 var searchData=
 [
-  ['main_0',['main',['../namespacepyinit_1_1main.html#aef47141642a9d08aa31c0c6f00504093',1,'pyinit::main']]],
-  ['manage_5fenv_1',['manage_env',['../namespacepyinit_1_1env.html#a203433f3f11ce1cd1664962788d91e2b',1,'pyinit::env']]],
-  ['manage_5fvenv_2',['manage_venv',['../namespacepyinit_1_1venv.html#ad2892fb7bc5bc6513c03cd58d9251be1',1,'pyinit::venv']]]
+  ['remove_5fvirtual_5fenv_0',['remove_virtual_env',['../namespacepyinit_1_1venv.html#a7dd87f3aa251b201857476b0311b6cd1',1,'pyinit::venv']]],
+  ['run_5fcheck_1',['run_check',['../classpyinit_1_1scan_1_1ProjectScanner.html#ae90377fcc92225956999520245c67300',1,'pyinit::scan::ProjectScanner']]],
+  ['run_5fcommand_2',['run_command',['../namespacepyinit_1_1info.html#aee4dccd72d615b4791f196c2a737c118',1,'pyinit::info']]],
+  ['run_5fproject_3',['run_project',['../namespacepyinit_1_1run.html#a041cc4e788f2e91a621a6f904377c058',1,'pyinit::run']]],
+  ['run_5ftests_4',['run_tests',['../namespacepyinit_1_1test.html#ae5377bcafe3f0b176d35c0dc179ae90b',1,'pyinit::test']]]
 ];

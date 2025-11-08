@@ -1,4 +1,4 @@
 var check_8py =
 [
-    [ "pyinit.check.lint_project", "namespacepyinit_1_1check.html#a4d6fc8d3a5dc42c9e42d33f563f0779b", null ]
+    [ "pyinit.check.check_project", "namespacepyinit_1_1check.html#ac0bab13bb224224017478a7fa91ed5ce", null ]
 ];

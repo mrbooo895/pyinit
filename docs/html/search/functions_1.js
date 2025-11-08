@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['add_5fmodule_0',['add_module',['../namespacepyinit_1_1add.html#a2c088e57783dc582e73476145b2971bd',1,'pyinit::add']]]
+  ['build_5fproject_0',['build_project',['../namespacepyinit_1_1build.html#a55121f987a2243f7b6ded15d3ed85ed5',1,'pyinit::build']]]
 ];

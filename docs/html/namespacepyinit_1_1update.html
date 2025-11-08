@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.15.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>pyinit: pyinit.update Namespace Reference</title>
+<title>PyInit: pyinit.update Namespace Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -26,7 +26,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">pyinit
+   <div id="projectname">PyInit
    </div>
   </td>
  </tr>
@@ -95,7 +95,7 @@ $(function(){initNavTree('namespacepyinit_1_1update.html','',''); });
 <tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a49249dbe9d6436cd0be65c370d1bbdd3" id="r_a49249dbe9d6436cd0be65c370d1bbdd3"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a49249dbe9d6436cd0be65c370d1bbdd3">update_modules</a> (bool upgrade=False)</td></tr>
-<tr class="memdesc:a49249dbe9d6436cd0be65c370d1bbdd3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks for or applies updates to project dependencies.  <br /></td></tr>
+<tr class="memdesc:a49249dbe9d6436cd0be65c370d1bbdd3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks for or applies updates to project dependencies intelligently.  <br /></td></tr>
 </table>
 <a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Function Documentation</h2>
 <a id="a49249dbe9d6436cd0be65c370d1bbdd3" name="a49249dbe9d6436cd0be65c370d1bbdd3"></a>
@@ -113,12 +113,12 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Checks for or applies updates to project dependencies. </p>
-<p>This function serves as the main entry point for the 'pyinit update' command.</p><ul>
-<li>If <span class="tt">upgrade</span> is False (default), it runs <span class="tt">pip list --outdated</span> to show available updates without making changes.</li>
-<li>If <span class="tt">upgrade</span> is True, it reads the direct dependencies from <span class="tt">pyproject.toml</span> and runs <span class="tt">pip install --upgrade</span> on them.</li>
+<p>Checks for or applies updates to project dependencies intelligently. </p>
+<p>This function is the entry point for the 'pyinit update' command. It first runs <span class="tt">pip list --outdated</span> to identify which packages have updates.</p><ul>
+<li>If <span class="tt">upgrade</span> is False, it displays this list.</li>
+<li>If <span class="tt">upgrade</span> is True, it proceeds to upgrade only those outdated packages. It exits gracefully if all packages are already up-to-date.</li>
 </ul>
-<p>:param bool upgrade: If True, upgrades packages. If False, only checks for outdated packages. Defaults to False. :raises SystemExit: If not run within a valid project or if the virtual environment is missing. </p>
+<p>:param bool upgrade: If True, upgrades outdated packages. If False, only checks for them. Defaults to False. :raises SystemExit: If not run in a valid project or if a subprocess fails. </p>
 
 </div>
 </div>

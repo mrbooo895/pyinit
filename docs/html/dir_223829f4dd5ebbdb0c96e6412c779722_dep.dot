@@ -1,4 +1,4 @@
-digraph "src/pyinit"
+digraph "/home/Karim/python/pyinit/src/pyinit"
 {
  // LATEX_PDF_SIZE
   bgcolor="transparent";

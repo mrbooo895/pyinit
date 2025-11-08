@@ -1,24 +1,17 @@
 var namespacepyinit =
 [
-    [ "add", "namespacepyinit_1_1add.html", [
-      [ "add_module", "namespacepyinit_1_1add.html#a2c088e57783dc582e73476145b2971bd", null ]
-    ] ],
     [ "build", "namespacepyinit_1_1build.html", [
       [ "build_project", "namespacepyinit_1_1build.html#a55121f987a2243f7b6ded15d3ed85ed5", null ]
     ] ],
     [ "check", "namespacepyinit_1_1check.html", [
-      [ "lint_project", "namespacepyinit_1_1check.html#a4d6fc8d3a5dc42c9e42d33f563f0779b", null ]
+      [ "check_project", "namespacepyinit_1_1check.html#ac0bab13bb224224017478a7fa91ed5ce", null ]
     ] ],
     [ "clean", "namespacepyinit_1_1clean.html", [
       [ "clean_project", "namespacepyinit_1_1clean.html#a149710f4400f9588c999e1313a303287", null ]
     ] ],
-    [ "docker", "namespacepyinit_1_1docker.html", [
-      [ "gen_docker_files", "namespacepyinit_1_1docker.html#a353e4d669f4bb7a5bb25f8c405a7c3fa", null ],
-      [ "get_python_version_from_specifier", "namespacepyinit_1_1docker.html#a344a533caeda379245c5f401568a509c", null ]
-    ] ],
-    [ "env", "namespacepyinit_1_1env.html", [
-      [ "manage_env", "namespacepyinit_1_1env.html#a203433f3f11ce1cd1664962788d91e2b", null ],
-      [ "update_gitignore", "namespacepyinit_1_1env.html#ad20dbafa10b96fac178ba33de9a62e23", null ]
+    [ "create", "namespacepyinit_1_1create.html", [
+      [ "create_project", "namespacepyinit_1_1create.html#a955da2790691601b837aa6134f938796", null ],
+      [ "get_git_config", "namespacepyinit_1_1create.html#ae0281a81d24a85497f6a0ef1bf077fa3", null ]
     ] ],
     [ "format", "namespacepyinit_1_1format.html", [
       [ "format_project", "namespacepyinit_1_1format.html#a8a577bb3e874a5210bceb4d84c2e6163", null ]
@@ -36,20 +29,16 @@ var namespacepyinit =
       [ "initialize_project", "namespacepyinit_1_1init.html#a9a768e6d06e6cc742d3c040b0d5bef9b", null ],
       [ "sanitize_name", "namespacepyinit_1_1init.html#a5e8d6ae48dfca66e1f3d836943a1de01", null ]
     ] ],
-    [ "lock", "namespacepyinit_1_1lock.html", [
-      [ "lock_dependencies", "namespacepyinit_1_1lock.html#a2aa8b577a63047c31c5210f6032ddca6", null ]
+    [ "install", "namespacepyinit_1_1install.html", [
+      [ "install_modules", "namespacepyinit_1_1install.html#a40a8248858a2357c0759729b43d5bc75", null ],
+      [ "update_requirements", "namespacepyinit_1_1install.html#a557f2fa7fd3920d049e9f4235796dd61", null ]
     ] ],
     [ "main", "namespacepyinit_1_1main.html", [
       [ "main", "namespacepyinit_1_1main.html#aef47141642a9d08aa31c0c6f00504093", null ]
     ] ],
-    [ "new", "namespacepyinit_1_1new.html", [
-      [ "create_project", "namespacepyinit_1_1new.html#a263fc6d9ed40722936a8e15d221a4dff", null ],
-      [ "get_git_config", "namespacepyinit_1_1new.html#acd436cb82db290958ce41d3eea662eb5", null ],
-      [ "process_template", "namespacepyinit_1_1new.html#a06568cbcb4d807c6eabff87048ad46b0", null ],
-      [ "TEMPLATES_BASE_DIR", "namespacepyinit_1_1new.html#ad3c0fe52238f85bfd7825b233e8cdd90", null ]
-    ] ],
     [ "release", "namespacepyinit_1_1release.html", [
-      [ "increase_version", "namespacepyinit_1_1release.html#a1d26b5191c8c3d7fcebdd5924e15b840", null ]
+      [ "increase_version", "namespacepyinit_1_1release.html#a1d26b5191c8c3d7fcebdd5924e15b840", null ],
+      [ "update_init_version", "namespacepyinit_1_1release.html#aba779557b152398dc55cdcf834520140", null ]
     ] ],
     [ "run", "namespacepyinit_1_1run.html", [
       [ "run_project", "namespacepyinit_1_1run.html#a041cc4e788f2e91a621a6f904377c058", null ],
@@ -59,14 +48,21 @@ var namespacepyinit =
     [ "test", "namespacepyinit_1_1test.html", [
       [ "run_tests", "namespacepyinit_1_1test.html#ae5377bcafe3f0b176d35c0dc179ae90b", null ]
     ] ],
+    [ "uninstall", "namespacepyinit_1_1uninstall.html", [
+      [ "uninstall_modules", "namespacepyinit_1_1uninstall.html#ab4d7493b19bfb74ac0abf7f15032ce98", null ]
+    ] ],
     [ "update", "namespacepyinit_1_1update.html", [
       [ "update_modules", "namespacepyinit_1_1update.html#a49249dbe9d6436cd0be65c370d1bbdd3", null ]
     ] ],
     [ "utils", "namespacepyinit_1_1utils.html", [
+      [ "check_platform", "namespacepyinit_1_1utils.html#a23eb58b014c58281444541fb1c2b1421", null ],
+      [ "check_project_root", "namespacepyinit_1_1utils.html#a0a8e00fdeb87a3efb350a8947b0afcfa", null ],
+      [ "check_venv_exists", "namespacepyinit_1_1utils.html#ae4bf86e49c6cf465fccdffc69c6b039f", null ],
+      [ "ensure_tool_installed", "namespacepyinit_1_1utils.html#a6fd06f2dd51e5c5eb40ec75bbd8213b8", null ],
       [ "find_project_root", "namespacepyinit_1_1utils.html#a515299aefd90d136b298abfb7ebc3763", null ],
       [ "get_project_dependencies", "namespacepyinit_1_1utils.html#a90d7d1bb65721b80335345f4e8ab5781", null ],
       [ "get_project_name", "namespacepyinit_1_1utils.html#ae38a56363a6f9db1b367f4ceb827ad3e", null ],
-      [ "setup_logger", "namespacepyinit_1_1utils.html#a58064e90df55625082b0653190b502ac", null ]
+      [ "console", "namespacepyinit_1_1utils.html#a00a9cd0499b0863b55c720f887e15751", null ]
     ] ],
     [ "venv", "namespacepyinit_1_1venv.html", [
       [ "create_virtual_env", "namespacepyinit_1_1venv.html#a8eb94c37736a186d9dde9c9dc74c1ce0", null ],

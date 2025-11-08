@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['lint_5fproject_0',['lint_project',['../namespacepyinit_1_1check.html#a4d6fc8d3a5dc42c9e42d33f563f0779b',1,'pyinit::check']]],
-  ['lock_5fdependencies_1',['lock_dependencies',['../namespacepyinit_1_1lock.html#a2aa8b577a63047c31c5210f6032ddca6',1,'pyinit::lock']]]
+  ['print_5fsummary_0',['print_summary',['../classpyinit_1_1scan_1_1ProjectScanner.html#a4441ec31e515e33164f29f4c79a739bb',1,'pyinit::scan::ProjectScanner']]],
+  ['project_5finfo_1',['project_info',['../namespacepyinit_1_1info.html#ab984f245bf2b6fcbf6c9e6d9187cb257',1,'pyinit::info']]]
 ];

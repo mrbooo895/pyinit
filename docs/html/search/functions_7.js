@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['increase_5fversion_0',['increase_version',['../namespacepyinit_1_1release.html#a1d26b5191c8c3d7fcebdd5924e15b840',1,'pyinit::release']]],
-  ['initialize_5fproject_1',['initialize_project',['../namespacepyinit_1_1init.html#a9a768e6d06e6cc742d3c040b0d5bef9b',1,'pyinit::init']]]
+  ['main_0',['main',['../namespacepyinit_1_1main.html#aef47141642a9d08aa31c0c6f00504093',1,'pyinit::main']]],
+  ['manage_5fvenv_1',['manage_venv',['../namespacepyinit_1_1venv.html#ad2892fb7bc5bc6513c03cd58d9251be1',1,'pyinit::venv']]]
 ];

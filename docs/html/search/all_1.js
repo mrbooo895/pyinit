@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['add_2epy_0',['add.py',['../add_8py.html',1,'']]],
-  ['add_5fmodule_1',['add_module',['../namespacepyinit_1_1add.html#a2c088e57783dc582e73476145b2971bd',1,'pyinit::add']]]
+  ['build_2epy_0',['build.py',['../build_8py.html',1,'']]],
+  ['build_5fproject_1',['build_project',['../namespacepyinit_1_1build.html#a55121f987a2243f7b6ded15d3ed85ed5',1,'pyinit::build']]]
 ];

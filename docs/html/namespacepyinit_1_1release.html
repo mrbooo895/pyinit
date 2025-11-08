@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.15.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>pyinit: pyinit.release Namespace Reference</title>
+<title>PyInit: pyinit.release Namespace Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -26,7 +26,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">pyinit
+   <div id="projectname">PyInit
    </div>
   </td>
  </tr>
@@ -94,8 +94,10 @@ $(function(){initNavTree('namespacepyinit_1_1release.html','',''); });
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
+<tr class="memitem:aba779557b152398dc55cdcf834520140" id="r_aba779557b152398dc55cdcf834520140"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aba779557b152398dc55cdcf834520140">update_init_version</a> (Path project_root, str project_name, str new_version)</td></tr>
+<tr class="memdesc:aba779557b152398dc55cdcf834520140"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates the <span class="tt"><a class="el" href="namespacepyinit.html#a4d05465b3998eb4cad2deacae59726f2" title="pyinit - Your All-in-One Python Project Manager">__version__</a></span> variable in the package's <span class="tt"><a class="el" href="____init_____8py.html">__init__.py</a></span> file.  <br /></td></tr>
 <tr class="memitem:a1d26b5191c8c3d7fcebdd5924e15b840" id="r_a1d26b5191c8c3d7fcebdd5924e15b840"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1d26b5191c8c3d7fcebdd5924e15b840">increase_version</a> (str part)</td></tr>
-<tr class="memdesc:a1d26b5191c8c3d7fcebdd5924e15b840"><td class="mdescLeft">&#160;</td><td class="mdescRight">Increments the project version in <span class="tt">pyproject.toml</span>.  <br /></td></tr>
+<tr class="memdesc:a1d26b5191c8c3d7fcebdd5924e15b840"><td class="mdescLeft">&#160;</td><td class="mdescRight">Increments the project version in <span class="tt">pyproject.toml</span> and <span class="tt"><a class="el" href="____init_____8py.html">__init__.py</a></span>.  <br /></td></tr>
 </table>
 <a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Function Documentation</h2>
 <a id="a1d26b5191c8c3d7fcebdd5924e15b840" name="a1d26b5191c8c3d7fcebdd5924e15b840"></a>
@@ -113,9 +115,50 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Increments the project version in <span class="tt">pyproject.toml</span>. </p>
-<p>This function serves as the entry point for the 'pyinit release' command. It reads the TOML file, parses the current version, calculates the new version based on the 'part' to increment, and then overwrites the file with the updated data.</p>
-<p>:param str part: The part of the version to increment. Must be one of 'major', 'minor', or 'patch'. :raises SystemExit: If not run within a valid project, if the <span class="tt">pyproject.toml</span> is unreadable, or if the version string is malformed. </p>
+<p>Increments the project version in <span class="tt">pyproject.toml</span> and <span class="tt"><a class="el" href="____init_____8py.html">__init__.py</a></span>. </p>
+<p>This function serves as the entry point for the 'pyinit release' command. It reads the TOML file, parses the current version, calculates the new version based on the 'part' to increment, and then overwrites the configuration and source files with the updated data.</p>
+<p>:param str part: The part of the version to increment. Must be one of 'major', 'minor', or 'patch'. :raises SystemExit: If not run within a valid project, if <span class="tt">pyproject.toml</span> is unreadable, or if the version string is malformed. </p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="namespacepyinit_1_1release_a1d26b5191c8c3d7fcebdd5924e15b840_cgraph.png" border="0" usemap="#anamespacepyinit_1_1release_a1d26b5191c8c3d7fcebdd5924e15b840_cgraph" loading="lazy" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="aba779557b152398dc55cdcf834520140" name="aba779557b152398dc55cdcf834520140"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aba779557b152398dc55cdcf834520140">&#9670;&#160;</a></span>update_init_version()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> bool pyinit.release.update_init_version </td>
+          <td>(</td>
+          <td class="paramtype">Path</td>          <td class="paramname"><span class="paramname"><em>project_root</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">str</td>          <td class="paramname"><span class="paramname"><em>project_name</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">str
+</td>          <td class="paramname"><span class="paramname"><em>new_version</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Updates the <span class="tt"><a class="el" href="namespacepyinit.html#a4d05465b3998eb4cad2deacae59726f2" title="pyinit - Your All-in-One Python Project Manager">__version__</a></span> variable in the package's <span class="tt"><a class="el" href="____init_____8py.html">__init__.py</a></span> file. </p>
+<p>It uses a regular expression to find and replace the version string, which is more robust than simple string replacement.</p>
+<p>:param Path project_root: The root directory of the project. :param str project_name: The name of the package. :param str new_version: The new version string to write. :return: True if the update was successful, False otherwise. :rtype: bool </p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="namespacepyinit_1_1release_aba779557b152398dc55cdcf834520140_icgraph.png" border="0" usemap="#anamespacepyinit_1_1release_aba779557b152398dc55cdcf834520140_icgraph" loading="lazy" alt=""/></div>
+</div>
 
 </div>
 </div>

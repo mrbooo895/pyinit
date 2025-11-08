@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.15.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>pyinit: pyinit.init Namespace Reference</title>
+<title>PyInit: pyinit.init Namespace Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -26,7 +26,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">pyinit
+   <div id="projectname">PyInit
    </div>
   </td>
  </tr>
@@ -116,12 +116,12 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Initializes a structured project in the current working directory. </p>
-<p>This function serves as the entry point for the 'pyinit init' command. It performs:</p><ol type="1">
+<p>This function performs the following:</p><ol type="1">
 <li>Derives and sanitizes a project name from the current directory name.</li>
 <li>Performs safety checks to prevent overwriting an existing project.</li>
-<li>Safely migrates existing <span class="tt">.py</span> files from the root to a temporary location.</li>
-<li>Scaffolds a new project structure using the default 'app' template.</li>
-<li>Moves the migrated Python files into the new <span class="tt">src/&lt;package_name&gt;/</span> directory.</li>
+<li>Manually creates the standard project structure (<span class="tt">src/</span>, <span class="tt">tests/</span>, etc.).</li>
+<li>Generates <span class="tt">pyproject.toml</span> from a built-in template.</li>
+<li>Migrates any existing <span class="tt">.py</span> files from the root into the new source directory.</li>
 <li>Initializes a Git repository and a virtual environment.</li>
 </ol>
 <p>:raises SystemExit: If the directory appears to be an existing project or if any step in the process fails. </p>
@@ -149,8 +149,12 @@ Here is the call graph for this function:</div>
 </div><div class="memdoc">
 
 <p>Cleans a string to make it a valid Python package name. </p>
-<p>Converts to lowercase, replaces spaces and hyphens with underscores, and removes any other non-alphanumeric characters.</p>
 <p>:param str name: The original directory or project name. :return: A sanitized string suitable for use as a package name. :rtype: str </p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="namespacepyinit_1_1init_a5e8d6ae48dfca66e1f3d836943a1de01_icgraph.png" border="0" usemap="#anamespacepyinit_1_1init_a5e8d6ae48dfca66e1f3d836943a1de01_icgraph" loading="lazy" alt=""/></div>
+</div>
 
 </div>
 </div>

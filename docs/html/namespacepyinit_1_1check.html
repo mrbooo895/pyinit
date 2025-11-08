@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.15.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>pyinit: pyinit.check Namespace Reference</title>
+<title>PyInit: pyinit.check Namespace Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -26,7 +26,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">pyinit
+   <div id="projectname">PyInit
    </div>
   </td>
  </tr>
@@ -94,20 +94,20 @@ $(function(){initNavTree('namespacepyinit_1_1check.html','',''); });
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a4d6fc8d3a5dc42c9e42d33f563f0779b" id="r_a4d6fc8d3a5dc42c9e42d33f563f0779b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4d6fc8d3a5dc42c9e42d33f563f0779b">lint_project</a> (list lint_args=None)</td></tr>
-<tr class="memdesc:a4d6fc8d3a5dc42c9e42d33f563f0779b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks the project's codebase using the ruff linter.  <br /></td></tr>
+<tr class="memitem:ac0bab13bb224224017478a7fa91ed5ce" id="r_ac0bab13bb224224017478a7fa91ed5ce"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac0bab13bb224224017478a7fa91ed5ce">check_project</a> (list check_args=None)</td></tr>
+<tr class="memdesc:ac0bab13bb224224017478a7fa91ed5ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks the project's codebase using the ruff linter.  <br /></td></tr>
 </table>
 <a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Function Documentation</h2>
-<a id="a4d6fc8d3a5dc42c9e42d33f563f0779b" name="a4d6fc8d3a5dc42c9e42d33f563f0779b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4d6fc8d3a5dc42c9e42d33f563f0779b">&#9670;&#160;</a></span>lint_project()</h2>
+<a id="ac0bab13bb224224017478a7fa91ed5ce" name="ac0bab13bb224224017478a7fa91ed5ce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac0bab13bb224224017478a7fa91ed5ce">&#9670;&#160;</a></span>check_project()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">pyinit.check.lint_project </td>
+          <td class="memname">pyinit.check.check_project </td>
           <td>(</td>
-          <td class="paramtype">list </td>          <td class="paramname"><span class="paramname"><em>lint_args</em></span><span class="paramdefsep"> = </span><span class="paramdefval">None</span></td><td>)</td>
+          <td class="paramtype">list </td>          <td class="paramname"><span class="paramname"><em>check_args</em></span><span class="paramdefsep"> = </span><span class="paramdefval">None</span></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -115,7 +115,7 @@ Functions</h2></td></tr>
 
 <p>Checks the project's codebase using the ruff linter. </p>
 <p>This function serves as the main entry point for the 'pyinit check' command. It ensures ruff is installed in the virtual environment and then executes it. If no specific paths or arguments are provided by the user, it defaults to linting the <span class="tt">src/</span> and <span class="tt">tests/</span> directories.</p>
-<p>:param list, optional lint_args: A list of arguments to be passed directly to the 'ruff check' command. Defaults to None. :raises SystemExit: If the command is not run within a valid project, if the virtual environment is not found, or if the installation of ruff fails. </p>
+<p>:param list, optional check_args: A list of arguments to be passed directly to the 'ruff check' command. Defaults to None. :raises SystemExit: If the command is not run within a valid project, if the virtual environment is not found, or if the installation of ruff fails. </p>
 
 </div>
 </div>

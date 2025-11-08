@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.15.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>pyinit: src/pyinit/env.py File Reference</title>
+<title>PyInit: pyinit.uninstall Namespace Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -26,7 +26,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">pyinit
+   <div id="projectname">PyInit
    </div>
   </td>
  </tr>
@@ -62,7 +62,7 @@ $(function() {
   </div>
 </div>
 <script type="text/javascript">
-$(function(){initNavTree('env_8py.html','',''); });
+$(function(){initNavTree('namespacepyinit_1_1uninstall.html','',''); });
 </script>
 <div id="container">
 <div id="doc-content">
@@ -88,22 +88,37 @@ $(function(){initNavTree('env_8py.html','',''); });
 </div>
 
 <div class="header">
-  <div class="headertitle"><div class="title">env.py File Reference</div></div>
+  <div class="headertitle"><div class="title">pyinit.uninstall Namespace Reference</div></div>
 </div><!--header-->
 <div class="contents">
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 id="header-namespaces" class="groupheader"><a id="namespaces" name="namespaces"></a>
-Namespaces</h2></td></tr>
-<tr class="memitem:pyinit" id="r_pyinit"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacepyinit.html">pyinit</a></td></tr>
-<tr class="memitem:pyinit_2Eenv" id="r_pyinit_2Eenv"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacepyinit_1_1env.html">pyinit.env</a></td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ad20dbafa10b96fac178ba33de9a62e23" id="r_ad20dbafa10b96fac178ba33de9a62e23"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacepyinit_1_1env.html#ad20dbafa10b96fac178ba33de9a62e23">pyinit.env.update_gitignore</a> (Path project_root, Console console)</td></tr>
-<tr class="memdesc:ad20dbafa10b96fac178ba33de9a62e23"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ensures that the <span class="tt">.<a class="el" href="namespacepyinit_1_1env.html">env</a></span> file is listed in the project's <span class="tt">.gitignore</span>.  <br /></td></tr>
-<tr class="memitem:a203433f3f11ce1cd1664962788d91e2b" id="r_a203433f3f11ce1cd1664962788d91e2b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacepyinit_1_1env.html#a203433f3f11ce1cd1664962788d91e2b">pyinit.env.manage_env</a> (list vars_to_set)</td></tr>
-<tr class="memdesc:a203433f3f11ce1cd1664962788d91e2b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets one or more environment variables in the project's <span class="tt">.<a class="el" href="namespacepyinit_1_1env.html">env</a></span> file.  <br /></td></tr>
+<tr class="memitem:ab4d7493b19bfb74ac0abf7f15032ce98" id="r_ab4d7493b19bfb74ac0abf7f15032ce98"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab4d7493b19bfb74ac0abf7f15032ce98">uninstall_modules</a> (list modules_to_uninstall)</td></tr>
+<tr class="memdesc:ab4d7493b19bfb74ac0abf7f15032ce98"><td class="mdescLeft">&#160;</td><td class="mdescRight">Uninstalls one or more Python modules and updates requirements.txt.  <br /></td></tr>
 </table>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Function Documentation</h2>
+<a id="ab4d7493b19bfb74ac0abf7f15032ce98" name="ab4d7493b19bfb74ac0abf7f15032ce98"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab4d7493b19bfb74ac0abf7f15032ce98">&#9670;&#160;</a></span>uninstall_modules()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">pyinit.uninstall.uninstall_modules </td>
+          <td>(</td>
+          <td class="paramtype">list</td>          <td class="paramname"><span class="paramname"><em>modules_to_uninstall</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Uninstalls one or more Python modules and updates requirements.txt. </p>
+<p>This function serves as the primary entry point for the 'pyinit uninstall' command. It first checks which of the requested packages are actually installed, prompts the user for confirmation on that filtered list, uninstalls them, and then regenerates the <span class="tt">requirements.txt</span> file.</p>
+<p>:param list modules_to_uninstall: A list of package names to uninstall. :raises SystemExit: If not run within a valid project, if the venv is not found, if the user cancels, or if uninstallation fails. </p>
+
+</div>
+</div>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <div id="page-nav" class="page-nav-panel">
@@ -117,7 +132,7 @@ Functions</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a href="dir_223829f4dd5ebbdb0c96e6412c779722.html">pyinit</a></li><li class="navelem"><a href="env_8py.html">env.py</a></li>
+    <li class="navelem"><a href="namespacepyinit.html">pyinit</a></li><li class="navelem"><a href="namespacepyinit_1_1uninstall.html">uninstall</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.15.0 </li>
   </ul>
 </div>

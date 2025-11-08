@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.15.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>pyinit: pyinit.docker Namespace Reference</title>
+<title>PyInit: pyinit.install Namespace Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -26,7 +26,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">pyinit
+   <div id="projectname">PyInit
    </div>
   </td>
  </tr>
@@ -62,7 +62,7 @@ $(function() {
   </div>
 </div>
 <script type="text/javascript">
-$(function(){initNavTree('namespacepyinit_1_1docker.html','',''); });
+$(function(){initNavTree('namespacepyinit_1_1install.html','',''); });
 </script>
 <div id="container">
 <div id="doc-content">
@@ -88,62 +88,76 @@ $(function(){initNavTree('namespacepyinit_1_1docker.html','',''); });
 </div>
 
 <div class="header">
-  <div class="headertitle"><div class="title">pyinit.docker Namespace Reference</div></div>
+  <div class="headertitle"><div class="title">pyinit.install Namespace Reference</div></div>
 </div><!--header-->
 <div class="contents">
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a344a533caeda379245c5f401568a509c" id="r_a344a533caeda379245c5f401568a509c"><td class="memItemLeft" align="right" valign="top">str&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a344a533caeda379245c5f401568a509c">get_python_version_from_specifier</a> (str specifier)</td></tr>
-<tr class="memdesc:a344a533caeda379245c5f401568a509c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parses a Python version specifier string to extract a major.minor version.  <br /></td></tr>
-<tr class="memitem:a353e4d669f4bb7a5bb25f8c405a7c3fa" id="r_a353e4d669f4bb7a5bb25f8c405a7c3fa"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a353e4d669f4bb7a5bb25f8c405a7c3fa">gen_docker_files</a> ()</td></tr>
-<tr class="memdesc:a353e4d669f4bb7a5bb25f8c405a7c3fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generates <span class="tt">Dockerfile</span> and <span class="tt">.dockerignore</span> files for the project.  <br /></td></tr>
+<tr class="memitem:a557f2fa7fd3920d049e9f4235796dd61" id="r_a557f2fa7fd3920d049e9f4235796dd61"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a557f2fa7fd3920d049e9f4235796dd61">update_requirements</a> (Path project_root, Path pip_executable, Console console)</td></tr>
+<tr class="memdesc:a557f2fa7fd3920d049e9f4235796dd61"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates the requirements.txt file by running 'pip freeze'.  <br /></td></tr>
+<tr class="memitem:a40a8248858a2357c0759729b43d5bc75" id="r_a40a8248858a2357c0759729b43d5bc75"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a40a8248858a2357c0759729b43d5bc75">install_modules</a> (list modules_to_install)</td></tr>
+<tr class="memdesc:a40a8248858a2357c0759729b43d5bc75"><td class="mdescLeft">&#160;</td><td class="mdescRight">Installs one or more Python modules if not already present, and updates requirements.txt.  <br /></td></tr>
 </table>
 <a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Function Documentation</h2>
-<a id="a353e4d669f4bb7a5bb25f8c405a7c3fa" name="a353e4d669f4bb7a5bb25f8c405a7c3fa"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a353e4d669f4bb7a5bb25f8c405a7c3fa">&#9670;&#160;</a></span>gen_docker_files()</h2>
+<a id="a40a8248858a2357c0759729b43d5bc75" name="a40a8248858a2357c0759729b43d5bc75"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a40a8248858a2357c0759729b43d5bc75">&#9670;&#160;</a></span>install_modules()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">pyinit.docker.gen_docker_files </td>
+          <td class="memname">pyinit.install.install_modules </td>
           <td>(</td>
-          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td class="paramtype">list</td>          <td class="paramname"><span class="paramname"><em>modules_to_install</em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Generates <span class="tt">Dockerfile</span> and <span class="tt">.dockerignore</span> files for the project. </p>
-<p>This function serves as the entry point for the 'pyinit dockerize' command. It reads project metadata to determine the Python version, generates file contents based on best practices (multi-stage builds, non-root user), and writes them to the project root after confirming with the user if they already exist.</p>
-<p>:raises SystemExit: If not run within a valid project or if file writing fails. </p>
+<p>Installs one or more Python modules if not already present, and updates requirements.txt. </p>
+<p>This function serves as the primary entry point for the 'pyinit install' command. It checks which requested packages are already installed, attempts to install only the missing ones, and then regenerates the <span class="tt">requirements.txt</span> file.</p>
+<p>:param list modules_to_install: A list of package names to install. :raises SystemExit: If not run within a valid project, if the venv is not found, or if the installation fails. </p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="namespacepyinit_1_1docker_a353e4d669f4bb7a5bb25f8c405a7c3fa_cgraph.png" border="0" usemap="#anamespacepyinit_1_1docker_a353e4d669f4bb7a5bb25f8c405a7c3fa_cgraph" loading="lazy" alt=""/></div>
+<div class="center"><img src="namespacepyinit_1_1install_a40a8248858a2357c0759729b43d5bc75_cgraph.png" border="0" usemap="#anamespacepyinit_1_1install_a40a8248858a2357c0759729b43d5bc75_cgraph" loading="lazy" alt=""/></div>
 </div>
 
 </div>
 </div>
-<a id="a344a533caeda379245c5f401568a509c" name="a344a533caeda379245c5f401568a509c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a344a533caeda379245c5f401568a509c">&#9670;&#160;</a></span>get_python_version_from_specifier()</h2>
+<a id="a557f2fa7fd3920d049e9f4235796dd61" name="a557f2fa7fd3920d049e9f4235796dd61"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a557f2fa7fd3920d049e9f4235796dd61">&#9670;&#160;</a></span>update_requirements()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"> str pyinit.docker.get_python_version_from_specifier </td>
+          <td class="memname">pyinit.install.update_requirements </td>
           <td>(</td>
-          <td class="paramtype">str</td>          <td class="paramname"><span class="paramname"><em>specifier</em></span></td><td>)</td>
+          <td class="paramtype">Path</td>          <td class="paramname"><span class="paramname"><em>project_root</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">Path</td>          <td class="paramname"><span class="paramname"><em>pip_executable</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Console</td>          <td class="paramname"><span class="paramname"><em>console</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Parses a Python version specifier string to extract a major.minor version. </p>
-<p>It specifically looks for '&gt;=' specifiers (e.g., '&gt;=3.10') and falls back to a default version if the pattern is not found.</p>
-<p>:param str specifier: The <span class="tt">requires-python</span> string from <span class="tt">pyproject.toml</span>. :return: A 'major.minor' version string (e.g., '3.10'). :rtype: str </p>
+<p>Updates the requirements.txt file by running 'pip freeze'. </p>
+<p>This function is called after a successful package installation or uninstallation to ensure the lock file is synchronized with the virtual environment's state.</p>
+<p>:param Path project_root: The root directory of the project. :param Path pip_executable: The path to the venv's pip executable. :param Console console: The rich Console instance for printing messages. </p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="namespacepyinit_1_1install_a557f2fa7fd3920d049e9f4235796dd61_icgraph.png" border="0" usemap="#anamespacepyinit_1_1install_a557f2fa7fd3920d049e9f4235796dd61_icgraph" loading="lazy" alt=""/></div>
+</div>
 
 </div>
 </div>
@@ -160,7 +174,7 @@ Here is the call graph for this function:</div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a href="namespacepyinit.html">pyinit</a></li><li class="navelem"><a href="namespacepyinit_1_1docker.html">docker</a></li>
+    <li class="navelem"><a href="namespacepyinit.html">pyinit</a></li><li class="navelem"><a href="namespacepyinit_1_1install.html">install</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.15.0 </li>
   </ul>
 </div>

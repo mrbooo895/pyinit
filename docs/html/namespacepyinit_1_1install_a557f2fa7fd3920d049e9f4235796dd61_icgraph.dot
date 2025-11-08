@@ -1,0 +1,11 @@
+digraph "pyinit.install.update_requirements"
+{
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  rankdir="RL";
+  Node1 [id="Node000001",label="pyinit.install.update\l_requirements",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip="Updates the requirements.txt file by running 'pip freeze'."];
+  Node1 -> Node2 [id="edge1_Node000001_Node000002",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node2 [id="Node000002",label="pyinit.install.install\l_modules",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$namespacepyinit_1_1install.html#a40a8248858a2357c0759729b43d5bc75",tooltip="Installs one or more Python modules if not already present, and updates requirements...."];
+}

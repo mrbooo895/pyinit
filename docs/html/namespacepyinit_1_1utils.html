@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.15.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>pyinit: pyinit.utils Namespace Reference</title>
+<title>PyInit: pyinit.utils Namespace Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -26,7 +26,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">pyinit
+   <div id="projectname">PyInit
    </div>
   </td>
  </tr>
@@ -96,14 +96,112 @@ $(function(){initNavTree('namespacepyinit_1_1utils.html','',''); });
 Functions</h2></td></tr>
 <tr class="memitem:a515299aefd90d136b298abfb7ebc3763" id="r_a515299aefd90d136b298abfb7ebc3763"><td class="memItemLeft" align="right" valign="top">Path|None&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a515299aefd90d136b298abfb7ebc3763">find_project_root</a> ()</td></tr>
 <tr class="memdesc:a515299aefd90d136b298abfb7ebc3763"><td class="mdescLeft">&#160;</td><td class="mdescRight">Finds the project root by searching upwards for a <span class="tt">pyproject.toml</span> file.  <br /></td></tr>
-<tr class="memitem:a58064e90df55625082b0653190b502ac" id="r_a58064e90df55625082b0653190b502ac"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a58064e90df55625082b0653190b502ac">setup_logger</a> ()</td></tr>
-<tr class="memdesc:a58064e90df55625082b0653190b502ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configures and returns a logger instance with rich formatting.  <br /></td></tr>
 <tr class="memitem:ae38a56363a6f9db1b367f4ceb827ad3e" id="r_ae38a56363a6f9db1b367f4ceb827ad3e"><td class="memItemLeft" align="right" valign="top">str|None&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae38a56363a6f9db1b367f4ceb827ad3e">get_project_name</a> (Path project_root)</td></tr>
 <tr class="memdesc:ae38a56363a6f9db1b367f4ceb827ad3e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parses <span class="tt">pyproject.toml</span> to extract the project's name.  <br /></td></tr>
 <tr class="memitem:a90d7d1bb65721b80335345f4e8ab5781" id="r_a90d7d1bb65721b80335345f4e8ab5781"><td class="memItemLeft" align="right" valign="top">list[str]&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a90d7d1bb65721b80335345f4e8ab5781">get_project_dependencies</a> (Path project_root)</td></tr>
 <tr class="memdesc:a90d7d1bb65721b80335345f4e8ab5781"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parses <span class="tt">pyproject.toml</span> to extract all declared dependencies.  <br /></td></tr>
+<tr class="memitem:a0a8e00fdeb87a3efb350a8947b0afcfa" id="r_a0a8e00fdeb87a3efb350a8947b0afcfa"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0a8e00fdeb87a3efb350a8947b0afcfa">check_project_root</a> (proj_root)</td></tr>
+<tr class="memitem:ae4bf86e49c6cf465fccdffc69c6b039f" id="r_ae4bf86e49c6cf465fccdffc69c6b039f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae4bf86e49c6cf465fccdffc69c6b039f">check_venv_exists</a> (venv_dir)</td></tr>
+<tr class="memitem:a23eb58b014c58281444541fb1c2b1421" id="r_a23eb58b014c58281444541fb1c2b1421"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a23eb58b014c58281444541fb1c2b1421">check_platform</a> (venv_directory)</td></tr>
+<tr class="memitem:a6fd06f2dd51e5c5eb40ec75bbd8213b8" id="r_a6fd06f2dd51e5c5eb40ec75bbd8213b8"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6fd06f2dd51e5c5eb40ec75bbd8213b8">ensure_tool_installed</a> (Path pip_executable, Path python_executable, str tool_name, str import_name, Console <a class="el" href="#a00a9cd0499b0863b55c720f887e15751">console</a>)</td></tr>
+<tr class="memdesc:a6fd06f2dd51e5c5eb40ec75bbd8213b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if a required tool is installed in the venv, installing it if not.  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-var-members" class="groupheader"><a id="var-members" name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:a00a9cd0499b0863b55c720f887e15751" id="r_a00a9cd0499b0863b55c720f887e15751"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a00a9cd0499b0863b55c720f887e15751">console</a> = Console()</td></tr>
 </table>
 <a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Function Documentation</h2>
+<a id="a23eb58b014c58281444541fb1c2b1421" name="a23eb58b014c58281444541fb1c2b1421"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a23eb58b014c58281444541fb1c2b1421">&#9670;&#160;</a></span>check_platform()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">pyinit.utils.check_platform </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>venv_directory</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0a8e00fdeb87a3efb350a8947b0afcfa" name="a0a8e00fdeb87a3efb350a8947b0afcfa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0a8e00fdeb87a3efb350a8947b0afcfa">&#9670;&#160;</a></span>check_project_root()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">pyinit.utils.check_project_root </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>proj_root</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae4bf86e49c6cf465fccdffc69c6b039f" name="ae4bf86e49c6cf465fccdffc69c6b039f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae4bf86e49c6cf465fccdffc69c6b039f">&#9670;&#160;</a></span>check_venv_exists()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">pyinit.utils.check_venv_exists </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>venv_dir</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6fd06f2dd51e5c5eb40ec75bbd8213b8" name="a6fd06f2dd51e5c5eb40ec75bbd8213b8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6fd06f2dd51e5c5eb40ec75bbd8213b8">&#9670;&#160;</a></span>ensure_tool_installed()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">pyinit.utils.ensure_tool_installed </td>
+          <td>(</td>
+          <td class="paramtype">Path</td>          <td class="paramname"><span class="paramname"><em>pip_executable</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Path</td>          <td class="paramname"><span class="paramname"><em>python_executable</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">str</td>          <td class="paramname"><span class="paramname"><em>tool_name</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">str</td>          <td class="paramname"><span class="paramname"><em>import_name</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Console</td>          <td class="paramname"><span class="paramname"><em>console</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks if a required tool is installed in the venv, installing it if not. </p>
+<p>This utility handles the common pattern of verifying a tool's presence by trying to import it, and running 'pip install' if the import fails. It provides consistent user feedback throughout the process.</p>
+<p>:param Path pip_executable: The absolute path to the venv's pip executable. :param Path python_executable: The absolute path to the venv's python executable. :param str tool_name: The package name of the tool as known by PyPI (e.g., 'ruff'). :param str import_name: The name used to import the package in Python (e.g., 'ruff'). :param Console console: The rich Console instance for printing messages. :raises SystemExit: If the installation of the tool fails. </p>
+
+</div>
+</div>
 <a id="a515299aefd90d136b298abfb7ebc3763" name="a515299aefd90d136b298abfb7ebc3763"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a515299aefd90d136b298abfb7ebc3763">&#9670;&#160;</a></span>find_project_root()</h2>
 
@@ -165,23 +263,18 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a58064e90df55625082b0653190b502ac" name="a58064e90df55625082b0653190b502ac"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a58064e90df55625082b0653190b502ac">&#9670;&#160;</a></span>setup_logger()</h2>
+<a name="doc-var-members" id="doc-var-members"></a><h2 id="header-doc-var-members" class="groupheader">Variable Documentation</h2>
+<a id="a00a9cd0499b0863b55c720f887e15751" name="a00a9cd0499b0863b55c720f887e15751"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a00a9cd0499b0863b55c720f887e15751">&#9670;&#160;</a></span>console</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">pyinit.utils.setup_logger </td>
-          <td>(</td>
-          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
-          <td></td>
+          <td class="memname">pyinit.utils.console = Console()</td>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Configures and returns a logger instance with rich formatting. </p>
-<p>:return: A configured logger instance. :rtype: logging.Logger </p>
 
 </div>
 </div>

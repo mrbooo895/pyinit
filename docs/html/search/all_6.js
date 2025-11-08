@@ -1,6 +1,10 @@
 var searchData=
 [
-  ['find_5fproject_5froot_0',['find_project_root',['../namespacepyinit_1_1utils.html#a515299aefd90d136b298abfb7ebc3763',1,'pyinit::utils']]],
-  ['format_2epy_1',['format.py',['../format_8py.html',1,'']]],
-  ['format_5fproject_2',['format_project',['../namespacepyinit_1_1format.html#a8a577bb3e874a5210bceb4d84c2e6163',1,'pyinit::format']]]
+  ['increase_5fversion_0',['increase_version',['../namespacepyinit_1_1release.html#a1d26b5191c8c3d7fcebdd5924e15b840',1,'pyinit::release']]],
+  ['info_2epy_1',['info.py',['../info_8py.html',1,'']]],
+  ['init_2epy_2',['init.py',['../init_8py.html',1,'']]],
+  ['initialize_5fproject_3',['initialize_project',['../namespacepyinit_1_1init.html#a9a768e6d06e6cc742d3c040b0d5bef9b',1,'pyinit::init']]],
+  ['install_2epy_4',['install.py',['../install_8py.html',1,'']]],
+  ['install_5fmodules_5',['install_modules',['../namespacepyinit_1_1install.html#a40a8248858a2357c0759729b43d5bc75',1,'pyinit::install']]],
+  ['issues_6',['issues',['../classpyinit_1_1scan_1_1ProjectScanner.html#a352cdf0dae63f60a43d4f846bc557454',1,'pyinit::scan::ProjectScanner']]]
 ];

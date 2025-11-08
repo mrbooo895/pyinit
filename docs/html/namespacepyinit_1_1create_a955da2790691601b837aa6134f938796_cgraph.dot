@@ -1,0 +1,11 @@
+digraph "pyinit.create.create_project"
+{
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  rankdir="LR";
+  Node1 [id="Node000001",label="pyinit.create.create\l_project",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip="Creates a new, standardized Python project structure."];
+  Node1 -> Node2 [id="edge1_Node000001_Node000002",color="steelblue1",style="solid",tooltip=" "];
+  Node2 [id="Node000002",label="pyinit.create.get_git\l_config",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$namespacepyinit_1_1create.html#ae0281a81d24a85497f6a0ef1bf077fa3",tooltip="Retrieves a specified configuration value from the global Git config."];
+}

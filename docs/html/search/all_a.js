@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['main_0',['main',['../namespacepyinit_1_1main.html#aef47141642a9d08aa31c0c6f00504093',1,'pyinit::main']]],
-  ['main_2epy_1',['main.py',['../main_8py.html',1,'']]],
-  ['manage_5fenv_2',['manage_env',['../namespacepyinit_1_1env.html#a203433f3f11ce1cd1664962788d91e2b',1,'pyinit::env']]],
-  ['manage_5fvenv_3',['manage_venv',['../namespacepyinit_1_1venv.html#ad2892fb7bc5bc6513c03cd58d9251be1',1,'pyinit::venv']]]
+  ['sanitize_5fname_0',['sanitize_name',['../namespacepyinit_1_1init.html#a5e8d6ae48dfca66e1f3d836943a1de01',1,'pyinit::init']]],
+  ['scan_2epy_1',['scan.py',['../scan_8py.html',1,'']]],
+  ['scan_5fproject_2',['scan_project',['../namespacepyinit_1_1scan.html#ae98b7934daaec4b94e711a6641077a8a',1,'pyinit::scan']]],
+  ['show_5fdependency_5fgraph_3',['show_dependency_graph',['../namespacepyinit_1_1graph.html#a10fa6a5f503326314c80fd79fcf9dfed',1,'pyinit::graph']]]
 ];

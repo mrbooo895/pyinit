@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['print_5fsummary_0',['print_summary',['../classpyinit_1_1scan_1_1ProjectScanner.html#a4441ec31e515e33164f29f4c79a739bb',1,'pyinit::scan::ProjectScanner']]],
-  ['process_5ftemplate_1',['process_template',['../namespacepyinit_1_1new.html#a06568cbcb4d807c6eabff87048ad46b0',1,'pyinit::new']]],
-  ['project_5finfo_2',['project_info',['../namespacepyinit_1_1info.html#ab984f245bf2b6fcbf6c9e6d9187cb257',1,'pyinit::info']]]
+  ['sanitize_5fname_0',['sanitize_name',['../namespacepyinit_1_1init.html#a5e8d6ae48dfca66e1f3d836943a1de01',1,'pyinit::init']]],
+  ['scan_5fproject_1',['scan_project',['../namespacepyinit_1_1scan.html#ae98b7934daaec4b94e711a6641077a8a',1,'pyinit::scan']]],
+  ['show_5fdependency_5fgraph_2',['show_dependency_graph',['../namespacepyinit_1_1graph.html#a10fa6a5f503326314c80fd79fcf9dfed',1,'pyinit::graph']]]
 ];

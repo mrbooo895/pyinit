@@ -1,0 +1,11 @@
+digraph "pyinit.venv.create_virtual_env"
+{
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  rankdir="RL";
+  Node1 [id="Node000001",label="pyinit.venv.create\l_virtual_env",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip="Creates a new virtual environment for the project."];
+  Node1 -> Node2 [id="edge1_Node000001_Node000002",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node2 [id="Node000002",label="pyinit.venv.manage_venv",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$namespacepyinit_1_1venv.html#ad2892fb7bc5bc6513c03cd58d9251be1",tooltip="Main dispatcher for 'venv' sub-commands."];
+}

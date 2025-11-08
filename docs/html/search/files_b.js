@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['new_2epy_0',['new.py',['../new_8py.html',1,'']]]
+  ['venv_2epy_0',['venv.py',['../venv_8py.html',1,'']]]
 ];

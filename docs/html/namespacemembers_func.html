@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.15.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>pyinit: Namespace Members</title>
+<title>PyInit: Namespace Members</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -26,7 +26,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">pyinit
+   <div id="projectname">PyInit
    </div>
   </td>
  </tr>
@@ -90,24 +90,24 @@ $(function(){initNavTree('namespacemembers_func.html','',''); });
 <div class="contents">
 <div class="textblock">Here is a list of all namespace functions with links to the namespace documentation for each function:</div>
 
-<h3 class="doxsection"><a id="index_a" name="index_a"></a>- a -</h3><ul>
-<li>add_module()&#160;:&#160;<a class="el" href="namespacepyinit_1_1add.html#a2c088e57783dc582e73476145b2971bd">pyinit.add</a></li>
-</ul>
-
-
 <h3 class="doxsection"><a id="index_b" name="index_b"></a>- b -</h3><ul>
 <li>build_project()&#160;:&#160;<a class="el" href="namespacepyinit_1_1build.html#a55121f987a2243f7b6ded15d3ed85ed5">pyinit.build</a></li>
 </ul>
 
 
 <h3 class="doxsection"><a id="index_c" name="index_c"></a>- c -</h3><ul>
+<li>check_platform()&#160;:&#160;<a class="el" href="namespacepyinit_1_1utils.html#a23eb58b014c58281444541fb1c2b1421">pyinit.utils</a></li>
+<li>check_project()&#160;:&#160;<a class="el" href="namespacepyinit_1_1check.html#ac0bab13bb224224017478a7fa91ed5ce">pyinit.check</a></li>
+<li>check_project_root()&#160;:&#160;<a class="el" href="namespacepyinit_1_1utils.html#a0a8e00fdeb87a3efb350a8947b0afcfa">pyinit.utils</a></li>
+<li>check_venv_exists()&#160;:&#160;<a class="el" href="namespacepyinit_1_1utils.html#ae4bf86e49c6cf465fccdffc69c6b039f">pyinit.utils</a></li>
 <li>clean_project()&#160;:&#160;<a class="el" href="namespacepyinit_1_1clean.html#a149710f4400f9588c999e1313a303287">pyinit.clean</a></li>
-<li>create_project()&#160;:&#160;<a class="el" href="namespacepyinit_1_1new.html#a263fc6d9ed40722936a8e15d221a4dff">pyinit.new</a></li>
+<li>create_project()&#160;:&#160;<a class="el" href="namespacepyinit_1_1create.html#a955da2790691601b837aa6134f938796">pyinit.create</a></li>
 <li>create_virtual_env()&#160;:&#160;<a class="el" href="namespacepyinit_1_1venv.html#a8eb94c37736a186d9dde9c9dc74c1ce0">pyinit.venv</a></li>
 </ul>
 
 
 <h3 class="doxsection"><a id="index_e" name="index_e"></a>- e -</h3><ul>
+<li>ensure_tool_installed()&#160;:&#160;<a class="el" href="namespacepyinit_1_1utils.html#a6fd06f2dd51e5c5eb40ec75bbd8213b8">pyinit.utils</a></li>
 <li>error_handling()&#160;:&#160;<a class="el" href="namespacepyinit_1_1wrappers.html#a9eaeb81d08f1bf5de91ea49cc54cb37e">pyinit.wrappers</a></li>
 </ul>
 
@@ -119,12 +119,10 @@ $(function(){initNavTree('namespacemembers_func.html','',''); });
 
 
 <h3 class="doxsection"><a id="index_g" name="index_g"></a>- g -</h3><ul>
-<li>gen_docker_files()&#160;:&#160;<a class="el" href="namespacepyinit_1_1docker.html#a353e4d669f4bb7a5bb25f8c405a7c3fa">pyinit.docker</a></li>
-<li>get_git_config()&#160;:&#160;<a class="el" href="namespacepyinit_1_1new.html#acd436cb82db290958ce41d3eea662eb5">pyinit.new</a></li>
+<li>get_git_config()&#160;:&#160;<a class="el" href="namespacepyinit_1_1create.html#ae0281a81d24a85497f6a0ef1bf077fa3">pyinit.create</a></li>
 <li>get_project_dependencies()&#160;:&#160;<a class="el" href="namespacepyinit_1_1utils.html#a90d7d1bb65721b80335345f4e8ab5781">pyinit.utils</a></li>
 <li>get_project_name()&#160;:&#160;<a class="el" href="namespacepyinit_1_1utils.html#ae38a56363a6f9db1b367f4ceb827ad3e">pyinit.utils</a></li>
 <li>get_project_stats()&#160;:&#160;<a class="el" href="namespacepyinit_1_1info.html#ae79c80e977b08a76652cdfa0f2649ed4">pyinit.info</a></li>
-<li>get_python_version_from_specifier()&#160;:&#160;<a class="el" href="namespacepyinit_1_1docker.html#a344a533caeda379245c5f401568a509c">pyinit.docker</a></li>
 <li>get_venv_info()&#160;:&#160;<a class="el" href="namespacepyinit_1_1info.html#a8b655f35e516b16618f65dc8e6ec2d33">pyinit.info</a></li>
 </ul>
 
@@ -132,24 +130,17 @@ $(function(){initNavTree('namespacemembers_func.html','',''); });
 <h3 class="doxsection"><a id="index_i" name="index_i"></a>- i -</h3><ul>
 <li>increase_version()&#160;:&#160;<a class="el" href="namespacepyinit_1_1release.html#a1d26b5191c8c3d7fcebdd5924e15b840">pyinit.release</a></li>
 <li>initialize_project()&#160;:&#160;<a class="el" href="namespacepyinit_1_1init.html#a9a768e6d06e6cc742d3c040b0d5bef9b">pyinit.init</a></li>
-</ul>
-
-
-<h3 class="doxsection"><a id="index_l" name="index_l"></a>- l -</h3><ul>
-<li>lint_project()&#160;:&#160;<a class="el" href="namespacepyinit_1_1check.html#a4d6fc8d3a5dc42c9e42d33f563f0779b">pyinit.check</a></li>
-<li>lock_dependencies()&#160;:&#160;<a class="el" href="namespacepyinit_1_1lock.html#a2aa8b577a63047c31c5210f6032ddca6">pyinit.lock</a></li>
+<li>install_modules()&#160;:&#160;<a class="el" href="namespacepyinit_1_1install.html#a40a8248858a2357c0759729b43d5bc75">pyinit.install</a></li>
 </ul>
 
 
 <h3 class="doxsection"><a id="index_m" name="index_m"></a>- m -</h3><ul>
 <li>main()&#160;:&#160;<a class="el" href="namespacepyinit_1_1main.html#aef47141642a9d08aa31c0c6f00504093">pyinit.main</a></li>
-<li>manage_env()&#160;:&#160;<a class="el" href="namespacepyinit_1_1env.html#a203433f3f11ce1cd1664962788d91e2b">pyinit.env</a></li>
 <li>manage_venv()&#160;:&#160;<a class="el" href="namespacepyinit_1_1venv.html#ad2892fb7bc5bc6513c03cd58d9251be1">pyinit.venv</a></li>
 </ul>
 
 
 <h3 class="doxsection"><a id="index_p" name="index_p"></a>- p -</h3><ul>
-<li>process_template()&#160;:&#160;<a class="el" href="namespacepyinit_1_1new.html#a06568cbcb4d807c6eabff87048ad46b0">pyinit.new</a></li>
 <li>project_info()&#160;:&#160;<a class="el" href="namespacepyinit_1_1info.html#ab984f245bf2b6fcbf6c9e6d9187cb257">pyinit.info</a></li>
 </ul>
 
@@ -165,14 +156,15 @@ $(function(){initNavTree('namespacemembers_func.html','',''); });
 <h3 class="doxsection"><a id="index_s" name="index_s"></a>- s -</h3><ul>
 <li>sanitize_name()&#160;:&#160;<a class="el" href="namespacepyinit_1_1init.html#a5e8d6ae48dfca66e1f3d836943a1de01">pyinit.init</a></li>
 <li>scan_project()&#160;:&#160;<a class="el" href="namespacepyinit_1_1scan.html#ae98b7934daaec4b94e711a6641077a8a">pyinit.scan</a></li>
-<li>setup_logger()&#160;:&#160;<a class="el" href="namespacepyinit_1_1utils.html#a58064e90df55625082b0653190b502ac">pyinit.utils</a></li>
 <li>show_dependency_graph()&#160;:&#160;<a class="el" href="namespacepyinit_1_1graph.html#a10fa6a5f503326314c80fd79fcf9dfed">pyinit.graph</a></li>
 </ul>
 
 
 <h3 class="doxsection"><a id="index_u" name="index_u"></a>- u -</h3><ul>
-<li>update_gitignore()&#160;:&#160;<a class="el" href="namespacepyinit_1_1env.html#ad20dbafa10b96fac178ba33de9a62e23">pyinit.env</a></li>
+<li>uninstall_modules()&#160;:&#160;<a class="el" href="namespacepyinit_1_1uninstall.html#ab4d7493b19bfb74ac0abf7f15032ce98">pyinit.uninstall</a></li>
+<li>update_init_version()&#160;:&#160;<a class="el" href="namespacepyinit_1_1release.html#aba779557b152398dc55cdcf834520140">pyinit.release</a></li>
 <li>update_modules()&#160;:&#160;<a class="el" href="namespacepyinit_1_1update.html#a49249dbe9d6436cd0be65c370d1bbdd3">pyinit.update</a></li>
+<li>update_requirements()&#160;:&#160;<a class="el" href="namespacepyinit_1_1install.html#a557f2fa7fd3920d049e9f4235796dd61">pyinit.install</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

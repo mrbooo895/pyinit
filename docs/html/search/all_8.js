@@ -1,8 +1,27 @@
 var searchData=
 [
-  ['increase_5fversion_0',['increase_version',['../namespacepyinit_1_1release.html#a1d26b5191c8c3d7fcebdd5924e15b840',1,'pyinit::release']]],
-  ['info_2epy_1',['info.py',['../info_8py.html',1,'']]],
-  ['init_2epy_2',['init.py',['../init_8py.html',1,'']]],
-  ['initialize_5fproject_3',['initialize_project',['../namespacepyinit_1_1init.html#a9a768e6d06e6cc742d3c040b0d5bef9b',1,'pyinit::init']]],
-  ['issues_4',['issues',['../classpyinit_1_1scan_1_1ProjectScanner.html#a352cdf0dae63f60a43d4f846bc557454',1,'pyinit::scan::ProjectScanner']]]
+  ['print_5fsummary_0',['print_summary',['../classpyinit_1_1scan_1_1ProjectScanner.html#a4441ec31e515e33164f29f4c79a739bb',1,'pyinit::scan::ProjectScanner']]],
+  ['project_5finfo_1',['project_info',['../namespacepyinit_1_1info.html#ab984f245bf2b6fcbf6c9e6d9187cb257',1,'pyinit::info']]],
+  ['project_5froot_2',['project_root',['../classpyinit_1_1scan_1_1ProjectScanner.html#a2555835ae1d81b6fb1a2c93a4d1024d3',1,'pyinit::scan::ProjectScanner']]],
+  ['projectscanner_3',['ProjectScanner',['../classpyinit_1_1scan_1_1ProjectScanner.html',1,'pyinit::scan']]],
+  ['pyinit_4',['pyinit',['../namespacepyinit.html',1,'']]],
+  ['pyinit_3a_3abuild_5',['build',['../namespacepyinit_1_1build.html',1,'pyinit']]],
+  ['pyinit_3a_3acheck_6',['check',['../namespacepyinit_1_1check.html',1,'pyinit']]],
+  ['pyinit_3a_3aclean_7',['clean',['../namespacepyinit_1_1clean.html',1,'pyinit']]],
+  ['pyinit_3a_3acreate_8',['create',['../namespacepyinit_1_1create.html',1,'pyinit']]],
+  ['pyinit_3a_3aformat_9',['format',['../namespacepyinit_1_1format.html',1,'pyinit']]],
+  ['pyinit_3a_3agraph_10',['graph',['../namespacepyinit_1_1graph.html',1,'pyinit']]],
+  ['pyinit_3a_3ainfo_11',['info',['../namespacepyinit_1_1info.html',1,'pyinit']]],
+  ['pyinit_3a_3ainit_12',['init',['../namespacepyinit_1_1init.html',1,'pyinit']]],
+  ['pyinit_3a_3ainstall_13',['install',['../namespacepyinit_1_1install.html',1,'pyinit']]],
+  ['pyinit_3a_3amain_14',['main',['../namespacepyinit_1_1main.html',1,'pyinit']]],
+  ['pyinit_3a_3arelease_15',['release',['../namespacepyinit_1_1release.html',1,'pyinit']]],
+  ['pyinit_3a_3arun_16',['run',['../namespacepyinit_1_1run.html',1,'pyinit']]],
+  ['pyinit_3a_3ascan_17',['scan',['../namespacepyinit_1_1scan.html',1,'pyinit']]],
+  ['pyinit_3a_3atest_18',['test',['../namespacepyinit_1_1test.html',1,'pyinit']]],
+  ['pyinit_3a_3auninstall_19',['uninstall',['../namespacepyinit_1_1uninstall.html',1,'pyinit']]],
+  ['pyinit_3a_3aupdate_20',['update',['../namespacepyinit_1_1update.html',1,'pyinit']]],
+  ['pyinit_3a_3autils_21',['utils',['../namespacepyinit_1_1utils.html',1,'pyinit']]],
+  ['pyinit_3a_3avenv_22',['venv',['../namespacepyinit_1_1venv.html',1,'pyinit']]],
+  ['pyinit_3a_3awrappers_23',['wrappers',['../namespacepyinit_1_1wrappers.html',1,'pyinit']]]
 ];
