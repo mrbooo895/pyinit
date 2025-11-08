@@ -14,11 +14,15 @@ and source distributions (sdist).
 
 import subprocess
 import sys
-import time
 
 from rich.console import Console
 
-from .utils import find_project_root, get_project_name
+from .utils import (
+    check_platform,
+    check_project_root,
+    find_project_root,
+    get_project_name,
+)
 from .wrappers import error_handling
 
 
@@ -43,11 +47,7 @@ def build_project():
 
     # --- Pre-flight Checks ---
     # Ensure the command is executed from within a valid project directory.
-    if not project_root:
-        console.print(
-            "[bold red][ERROR][/bold red] Not inside a project. Could not find 'pyproject.toml'."
-        )
-        sys.exit(1)
+    check_project_root(project_root)
 
     venv_dir = project_root / "venv"
 
@@ -61,18 +61,14 @@ def build_project():
 
     # --- Determine Platform-specific Executables ---
     # The paths to executables within the venv differ based on the OS.
-    if sys.platform == "win32":
-        python_executable = venv_dir / "Scripts" / "python.exe"
-        pip_executable = venv_dir / "Scripts" / "pip.exe"
-    else:
-        python_executable = venv_dir / "bin" / "python"
-        pip_executable = venv_dir / "bin" / "pip"
-
+    pip_executable, _ = check_platform(venv_dir)
+    _, python_executable = check_platform(venv_dir)
     try:
         # --- Step 1: Install Build Dependencies ---
         # Ensure that the PEP 517 build frontend and backend tools are installed.
-        console.print("[bold green]    Fetching[/bold green] Required Build Modules")
-        time.sleep(0.25)
+        console.print(
+            "[bold green]    Fetching[/bold green] Required Build Modules: 'build', 'wheel'"
+        )
         subprocess.run(
             [str(pip_executable), "install", "build", "wheel"],
             check=True,
@@ -85,7 +81,6 @@ def build_project():
         console.print(
             f"[bold green]     Building[/bold green] package '{project_name}'"
         )
-        time.sleep(0.25)
         subprocess.run(
             [str(python_executable), "-m", "build"],
             cwd=project_root,

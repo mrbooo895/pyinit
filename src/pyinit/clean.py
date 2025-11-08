@@ -13,12 +13,11 @@ deleting cached files, test artifacts, and distribution packages.
 
 import shutil
 import sys
-import time
 from pathlib import Path
 
 from rich.console import Console
 
-from .utils import find_project_root
+from .utils import check_project_root, find_project_root
 from .wrappers import error_handling
 
 
@@ -39,11 +38,7 @@ def clean_project():
     project_root = find_project_root()
 
     # --- Pre-flight Checks ---
-    if not project_root:
-        console.print(
-            "[bold red][ERROR][/bold red] Not inside a project. Could not find 'pyproject.toml'."
-        )
-        sys.exit(1)
+    check_project_root(project_root)
 
     # A list of glob patterns for files and directories to be removed.
     patterns_to_remove = [
@@ -60,7 +55,6 @@ def clean_project():
     console.print(
         "[bold green]    Searching[/bold green] for temporary and build-related files"
     )
-    time.sleep(0.25)
 
     paths_to_remove: list[Path] = []
     for pattern in patterns_to_remove:
@@ -98,7 +92,6 @@ def clean_project():
     # --- Deletion Phase ---
     # Proceed with removing the files and directories.
     console.print("[bold green]\n     Cleaning[/bold green] project...")
-    time.sleep(0.25)
 
     deleted_count = 0
     for path in paths_to_remove:

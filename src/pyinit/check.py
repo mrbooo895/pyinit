@@ -14,16 +14,20 @@ allows users to pass additional arguments directly to ruff for more advanced usa
 
 import subprocess
 import sys
-import time
 
 from rich.console import Console
 
-from .utils import find_project_root
+from .utils import (
+    check_platform,
+    check_project_root,
+    check_venv_exists,
+    find_project_root,
+)
 from .wrappers import error_handling
 
 
 @error_handling
-def check_project(lint_args: list = None):
+def check_project(check_args: list = None):
     """
     Checks the project's codebase using the ruff linter.
 
@@ -32,7 +36,7 @@ def check_project(lint_args: list = None):
     If no specific paths or arguments are provided by the user, it defaults to
     linting the `src/` and `tests/` directories.
 
-    :param list, optional lint_args: A list of arguments to be passed directly
+    :param list, optional Check_args: A list of arguments to be passed directly
                                      to the 'ruff check' command. Defaults to None.
     :raises SystemExit: If the command is not run within a valid project,
                         if the virtual environment is not found, or if the
@@ -40,34 +44,21 @@ def check_project(lint_args: list = None):
     """
     console = Console()
     project_root = find_project_root()
-    if not lint_args:
-        lint_args = []
+    if not check_args:
+        check_args = []
 
     # --- Pre-flight Checks ---
-    if not project_root:
-        console.print(
-            "[bold red][ERROR][/bold red] Not inside a project. Could not find 'pyproject.toml'."
-        )
-        sys.exit(1)
+    check_project_root(project_root)
 
     venv_dir = project_root / "venv"
-    if not venv_dir.exists():
-        console.print(
-            "[bold red][ERROR][/bold red] Virtual environment 'venv' not found."
-        )
-        sys.exit(1)
+    check_venv_exists(venv_dir)
 
     # --- Determine Platform-specific Executables ---
-    if sys.platform == "win32":
-        python_executable = venv_dir / "Scripts" / "python.exe"
-        pip_executable = venv_dir / "Scripts" / "pip.exe"
-    else:
-        python_executable = venv_dir / "bin" / "python"
-        pip_executable = venv_dir / "bin" / "pip"
+    pip_executable, _ = check_platform(venv_dir)
+    _, python_executable = check_platform(venv_dir)
 
     # --- Ensure Linter is Installed ---
     console.print("[bold green]    Checking[/bold green] for linter 'ruff'")
-    time.sleep(0.25)
 
     # A simple way to check for a package without parsing `pip list`.
     check_linter_cmd = [str(python_executable), "-c", "import ruff"]
@@ -94,11 +85,11 @@ def check_project(lint_args: list = None):
 
     # --- Prepare and Run Linter Command ---
     # Base command to execute ruff.
-    lint_cmd = [str(python_executable), "-m", "ruff", "check"] + lint_args
+    lint_cmd = [str(python_executable), "-m", "ruff", "check"] + check_args
 
     # If no arguments were passed, use default target directories.
     # This prevents ruff from running on the entire project root by default.
-    if not lint_args:
+    if not check_args:
         targets = []
         src_dir = project_root / "src"
         tests_dir = project_root / "tests"
@@ -116,7 +107,6 @@ def check_project(lint_args: list = None):
         lint_cmd.extend(targets)
 
     console.print("[bold green]\nRunning[/bold green] Checks on codebase\n")
-    time.sleep(0.5)
 
     # Run the linter. Output is streamed directly to the console.
     subprocess.run(lint_cmd)

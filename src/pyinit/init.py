@@ -16,7 +16,6 @@ import re
 import shutil
 import subprocess
 import sys
-import time
 import venv
 from pathlib import Path
 
@@ -68,7 +67,6 @@ def initialize_project():
     console.print(
         f"[bold green]    Initializing[/bold green] project in '{project_root.name}' using '{template_name}' template"
     )
-    time.sleep(0.5)
 
     # --- Pre-flight Checks ---
     if not template_dir.is_dir():
@@ -88,7 +86,6 @@ def initialize_project():
     console.print(
         f"[bold green]     Setting[/bold green] Project Name to: '{project_name}'"
     )
-    time.sleep(0.5)
 
     # Prevent running on an already initialized or structured directory.
     if (
@@ -103,8 +100,7 @@ def initialize_project():
 
     # --- Safe File Migration (Phase 1) ---
     # Temporarily move existing .py files to prevent conflicts during templating.
-    console.print("[bold green]      Locating[/bold green] '.py' files to migrate...")
-    time.sleep(0.5)
+    console.print("[bold green]      Locating[/bold green] '.py' files to migrate")
     python_files_to_move = [
         f for f in project_root.iterdir() if f.is_file() and f.suffix == ".py"
     ]
@@ -118,9 +114,8 @@ def initialize_project():
     try:
         # --- Scaffolding from Template ---
         console.print(
-            "[bold green]      Creating[/bold green] project structure from template..."
+            "[bold green]       Creating[/bold green] project structure from template"
         )
-        time.sleep(0.5)
 
         author_name = get_git_config("user.name") or "Your Name"
         author_email = get_git_config("user.email") or "you@example.com"
@@ -138,9 +133,8 @@ def initialize_project():
         # Move the temporarily stored files into the new source directory.
         if python_files_to_move:
             console.print(
-                "[bold green]   Migrating[/bold green] existing Python files..."
+                "[bold green]        Migrating[/bold green] existing Python files"
             )
-            time.sleep(0.5)
             source_package_dir = project_root / "src" / project_name
             # Remove the default main.py from the template to avoid conflicts.
             (source_package_dir / "main.py").unlink(missing_ok=True)
@@ -150,8 +144,7 @@ def initialize_project():
 
         # --- Finalization ---
         # Initialize Git, create venv, and update .gitignore.
-        console.print("[bold green]    Finalizing[/bold green] setup...")
-        time.sleep(0.5)
+        console.print("[bold green]         Finalizing[/bold green] setup")
 
         if not (project_root / ".git").exists():
             subprocess.run(

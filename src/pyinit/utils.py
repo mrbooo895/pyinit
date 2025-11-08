@@ -10,18 +10,19 @@ This module contains common helper functions for tasks such as locating the
 project root, setting up logging, and parsing `pyproject.toml` for metadata.
 """
 
-import logging
 import re
 import sys
 from pathlib import Path
 
-from rich.logging import RichHandler
+from rich.console import Console
 
 # Conditional import of TOML library for Python version compatibility.
 if sys.version_info >= (3, 11):
     import tomllib
 else:
     import tomli as tomllib
+
+console = Console()
 
 
 def find_project_root() -> Path | None:
@@ -40,25 +41,6 @@ def find_project_root() -> Path | None:
     if (current_dir / "pyproject.toml").is_file():
         return current_dir
     return None
-
-
-def setup_logger():
-    """
-    Configures and returns a logger instance with rich formatting.
-
-    :return: A configured logger instance.
-    :rtype: logging.Logger
-    """
-    logging.basicConfig(
-        level="INFO",
-        format="%(message)s",
-        datefmt="[%X]",
-        handlers=[
-            RichHandler(show_path=False, show_level=True, show_time=False, markup=True)
-        ],
-    )
-    log = logging.getLogger("rich")
-    return log
 
 
 def get_project_name(project_root: Path) -> str | None:
@@ -115,3 +97,29 @@ def get_project_dependencies(project_root: Path) -> list[str]:
 
     except (tomllib.TOMLDecodeError, FileNotFoundError):
         return []
+
+
+def check_project_root(proj_root):
+    if not proj_root:
+        console.print(
+            "[bold red][ERROR][/bold red] Not inside a project. Could not find 'pyproject.toml'."
+        )
+        sys.exit(1)
+
+
+def check_venv_exists(venv_dir):
+    if not venv_dir.exists():
+        console.print(
+            f"[bold red][ERROR][/bold red] Virtual Environment '{venv_dir.name}' not found"
+        )
+        sys.exit(1)
+
+
+def check_platform(venv_directory):
+    if sys.platform == "win32":
+        python_executable = venv_directory / "Scripts" / "python.exe"
+        pip_executable = venv_directory / "Scripts" / "pip.exe"
+    else:
+        python_executable = venv_directory / "bin" / "python"
+        pip_executable = venv_directory / "bin" / "pip"
+    return pip_executable, python_executable

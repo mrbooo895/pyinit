@@ -15,12 +15,11 @@ provide a complete project dashboard.
 import datetime
 import subprocess
 import sys
-import time
 from pathlib import Path
 
 from rich.console import Console
 
-from .utils import find_project_root
+from .utils import check_platform, check_project_root, find_project_root
 from .wrappers import error_handling
 
 # Conditional import of TOML library for Python version compatibility.
@@ -68,12 +67,8 @@ def get_venv_info(project_root: Path) -> tuple[str, str]:
     if not venv_dir.exists():
         return "[dim]N/A[/dim]", "0"
 
-    if sys.platform == "win32":
-        python_executable = venv_dir / "Scripts" / "python.exe"
-        pip_executable = venv_dir / "Scripts" / "pip.exe"
-    else:
-        python_executable = venv_dir / "bin" / "python"
-        pip_executable = venv_dir / "bin" / "pip"
+    pip_executable, _ = check_platform(venv_dir)
+    _, python_executable = check_platform(venv_dir)
 
     if not python_executable.exists():
         return "[dim]N/A[/dim]", "0"
@@ -140,16 +135,11 @@ def project_info():
     project_root = find_project_root()
 
     # --- Pre-flight Checks ---
-    if not project_root:
-        console.print(
-            "[bold red][ERROR][/bold red] Not inside a project. Could not find 'pyproject.toml'."
-        )
-        sys.exit(1)
+    check_project_root(project_root)
 
     pyproject_path = project_root / "pyproject.toml"
 
     console.print("[bold green]    Generating[/bold green] Information Table")
-    time.sleep(0.25)
 
     try:
         with open(pyproject_path, "rb") as f:

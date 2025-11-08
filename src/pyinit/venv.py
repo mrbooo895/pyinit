@@ -13,13 +13,12 @@ This offers more control over the project's state.
 
 import shutil
 import sys
-import time
 import venv
 from pathlib import Path
 
 from rich.console import Console
 
-from .utils import find_project_root
+from .utils import check_project_root, find_project_root
 from .wrappers import error_handling
 
 
@@ -39,11 +38,7 @@ def manage_venv(action: str):
     console = Console()
     project_root = find_project_root()
 
-    if not project_root:
-        console.print(
-            "[bold red][ERROR][/bold red] Not inside a project. Could not find 'pyproject.toml'."
-        )
-        sys.exit(1)
+    check_project_root(project_root)
 
     venv_dir = project_root / "venv"
 
@@ -66,7 +61,6 @@ def create_virtual_env(console: Console, venv_dir: Path):
     :raises SystemExit: If a virtual environment already exists or if creation fails.
     """
     console.print("[bold green]     Creating[/bold green] virtual environment")
-    time.sleep(0.25)
 
     if venv_dir.exists():
         console.print("[bold red][ERROR][/bold red] A 'venv' directory already exists.")
@@ -102,7 +96,6 @@ def remove_virtual_env(console: Console, venv_dir: Path):
                         or if removal fails.
     """
     console.print("[bold yellow]     Removing[/bold yellow] virtual environment")
-    time.sleep(0.25)
 
     if not venv_dir.exists() or not venv_dir.is_dir():
         console.print(
@@ -119,7 +112,6 @@ def remove_virtual_env(console: Console, venv_dir: Path):
             console.print(
                 f"[bold green]      Deleting[/bold green] directory '{venv_dir.name}'"
             )
-            time.sleep(0.25)
             # Recursively delete the directory and all its contents.
             shutil.rmtree(venv_dir)
             console.print(

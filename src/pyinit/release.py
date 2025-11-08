@@ -13,12 +13,11 @@ minor, or patch), and writes the new version back to the file.
 """
 
 import sys
-import time
 
 import tomli_w
 from rich.console import Console
 
-from .utils import find_project_root
+from .utils import check_project_root, find_project_root
 from .wrappers import error_handling
 
 # Conditional import of TOML library for Python version compatibility.
@@ -48,11 +47,7 @@ def increase_version(part: str):
     project_root = find_project_root()
 
     # --- Pre-flight Checks ---
-    if not project_root:
-        console.print(
-            "[bold red][ERROR][/bold red] Not inside a project. Could not find 'pyproject.toml'."
-        )
-        sys.exit(1)
+    check_project_root(project_root)
 
     pyproject_path = project_root / "pyproject.toml"
 
@@ -67,8 +62,7 @@ def increase_version(part: str):
         )
         sys.exit(1)
 
-    console.print("[bold green]    Bumping[/bold green] project version")
-    time.sleep(0.25)
+    console.print("[bold green]    Setting[/bold green] project version to new release")
 
     # --- Version Calculation ---
     try:
@@ -112,4 +106,6 @@ def increase_version(part: str):
         console.print(
             f"[bold green]     Updating[/bold green] version from [yellow]{old_version}[/yellow] to [cyan]{new_version}[/cyan]"
         )
-        console.print("\n[bold green]Successfully[/bold green] bumped project version.")
+        console.print(
+            "\n[bold green]Successfully[/bold green] Released New project version."
+        )

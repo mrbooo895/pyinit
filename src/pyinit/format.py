@@ -14,11 +14,15 @@ project's 'src/' and 'tests/' directories to ensure a consistent code style.
 
 import subprocess
 import sys
-import time
 
 from rich.console import Console
 
-from .utils import find_project_root
+from .utils import (
+    check_platform,
+    check_project_root,
+    check_venv_exists,
+    find_project_root,
+)
 from .wrappers import error_handling
 
 
@@ -43,26 +47,14 @@ def format_project():
     project_root = find_project_root()
 
     # --- Pre-flight Checks ---
-    if not project_root:
-        console.print(
-            "[bold red][ERROR][/bold red] Not inside a project. Could not find 'pyproject.toml'."
-        )
-        sys.exit(1)
+    check_project_root(project_root)
 
     venv_dir = project_root / "venv"
-    if not venv_dir.exists():
-        console.print(
-            "[bold red][ERROR][/bold red] Virtual environment 'venv' not found."
-        )
-        sys.exit(1)
+    check_venv_exists(venv_dir)
 
     # --- Determine Platform-specific Executables ---
-    if sys.platform == "win32":
-        python_executable = venv_dir / "Scripts" / "python.exe"
-        pip_executable = venv_dir / "Scripts" / "pip.exe"
-    else:
-        python_executable = venv_dir / "bin" / "python"
-        pip_executable = venv_dir / "bin" / "pip"
+    pip_executable, _ = check_platform(venv_dir)
+    _, python_executable = check_platform(venv_dir)
 
     # --- Ensure Formatters are Installed ---
     # Check if both formatters can be imported.
@@ -72,18 +64,16 @@ def format_project():
     )
 
     console.print("[bold green]    Starting[/bold green] to format project's structure")
-    time.sleep(0.5)
 
     if not formatters_installed:
         console.print(
             "[bold green]     Installing[/bold green] Required formatting modules 'black' and 'isort'"
         )
-        time.sleep(0.5)
         install_cmd = [str(pip_executable), "install", "black", "isort"]
         try:
             subprocess.run(install_cmd, check=True, capture_output=True)
             console.print(
-                "[bold green]    Successfully[/bold green] installed formatting tools."
+                "[bold green]      Successfully[/bold green] installed formatting tools."
             )
         except subprocess.CalledProcessError as e:
             console.print(
@@ -102,7 +92,6 @@ def format_project():
             console.print(
                 f"[bold green]     Formatting[/bold green] '{target_dir.relative_to(project_root)}/'"
             )
-            time.sleep(0.5)
 
             # Define commands for isort (sorts imports) and black (formats code).
             # isort should run first.

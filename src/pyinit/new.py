@@ -15,7 +15,6 @@ repository initialization.
 import shutil
 import subprocess
 import sys
-import time
 import venv
 from pathlib import Path
 
@@ -106,7 +105,6 @@ def create_project(project_path: str, template_name: str):
     console.print(
         f"[bold green]    Creating[/bold green] project '{project_name}' from template '{template_name}'"
     )
-    time.sleep(0.25)
 
     project_root = Path.cwd() / project_path
     template_dir = TEMPLATES_BASE_DIR / template_name

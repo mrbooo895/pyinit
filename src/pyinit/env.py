@@ -12,13 +12,11 @@ and it automatically ensures that the `.env` file is included in `.gitignore`
 to prevent sensitive credentials from being committed to version control.
 """
 
-import sys
-import time
 from pathlib import Path
 
 from rich.console import Console
 
-from .utils import find_project_root
+from .utils import check_project_root, find_project_root
 from .wrappers import error_handling
 
 
@@ -49,7 +47,6 @@ def update_gitignore(project_root: Path, console: Console):
     if ".env" not in content:
         with open(gitignore_path, "a") as f:
             f.write(env_entry)
-        console.print("[dim yellow]       - Added[/dim yellow] '.env' to .gitignore")
 
 
 @error_handling
@@ -69,11 +66,7 @@ def manage_env(vars_to_set: list):
     project_root = find_project_root()
 
     # --- Pre-flight Checks ---
-    if not project_root:
-        console.print(
-            "[bold red][ERROR][/bold red] Not inside a project. Could not find 'pyproject.toml'."
-        )
-        sys.exit(1)
+    check_project_root(project_root)
 
     # --- Read Existing .env File ---
     # Load existing variables into a dictionary to preserve them.
@@ -92,7 +85,6 @@ def manage_env(vars_to_set: list):
     # --- Update Variables ---
     # Process the user-provided variables, adding them to or updating the dictionary.
     console.print("[bold green]    Updating[/bold green] '.env' file")
-    time.sleep(0.25)
 
     for var in vars_to_set:
         if "=" not in var:

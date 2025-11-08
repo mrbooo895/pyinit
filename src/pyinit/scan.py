@@ -14,11 +14,15 @@ suggestions for fixes.
 
 import subprocess
 import sys
-import time
 
 from rich.console import Console
 
-from .utils import find_project_root, get_project_dependencies
+from .utils import (
+    check_platform,
+    check_project_root,
+    find_project_root,
+    get_project_dependencies,
+)
 from .wrappers import error_handling
 
 # Conditional import of TOML library for Python version compatibility.
@@ -65,7 +69,6 @@ class ProjectScanner:
         """
         self.total_checks += 1
         self.console.print(f"[bold green]     Checking[/bold green] {title}:", end="")
-        time.sleep(0.15)
         success, message = check_func()
         if success:
             self.console.print(" [bold green]OK[/bold green]")
@@ -149,10 +152,7 @@ class ProjectScanner:
                 "[bold red]ERROR:[/] Cannot check dependencies because 'venv' is missing.",
             )
 
-        if sys.platform == "win32":
-            pip_executable = venv_dir / "Scripts" / "pip.exe"
-        else:
-            pip_executable = venv_dir / "bin" / "pip"
+        pip_executable, _ = check_platform(venv_dir)
 
         try:
             # Get currently installed packages from the virtual environment.
@@ -206,7 +206,7 @@ class ProjectScanner:
             self.console.print(
                 f"[bold yellow]\nScan[/bold yellow] complete. {self.checks_passed}/{self.total_checks} checks passed"
             )
-            self.console.print("\n[bold yellow]Summary[/] of issues found:\n")
+            self.console.print("\n[bold yellow]Summary[/] of issues found:")
             for issue in self.issues:
                 self.console.print(f" - {issue}")
 
@@ -225,14 +225,9 @@ def scan_project():
     console = Console()
     project_root = find_project_root()
 
-    if not project_root:
-        console.print(
-            "[bold red][ERROR][/bold red] Not inside a project. Could not find 'pyproject.toml'."
-        )
-        sys.exit(1)
+    check_project_root(project_root)
 
     console.print(f"[bold green]    Scanning[/bold green] project at '{project_root}'")
-    time.sleep(0.25)
 
     # Instantiate and run the scanner.
     scanner = ProjectScanner(console, project_root)

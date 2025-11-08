@@ -13,11 +13,15 @@ and allows for passing additional arguments directly to the pytest runner.
 
 import subprocess
 import sys
-import time
 
 from rich.console import Console
 
-from .utils import find_project_root
+from .utils import (
+    check_platform,
+    check_project_root,
+    check_venv_exists,
+    find_project_root,
+)
 from .wrappers import error_handling
 
 
@@ -47,18 +51,10 @@ def run_tests(pytest_args: list = None):
         pytest_args = []
 
     # --- Pre-flight Checks ---
-    if not project_root:
-        console.print(
-            "[bold red][ERROR][/bold red] Not inside a project. Could not find 'pyinit.toml'."
-        )
-        sys.exit(1)
+    check_project_root(project_root)
 
     venv_dir = project_root / "venv"
-    if not venv_dir.exists():
-        console.print(
-            "[bold red][ERROR][/bold red] Virtual environment 'venv' not found."
-        )
-        sys.exit(1)
+    check_venv_exists(venv_dir)
 
     # Check for the 'tests' directory only if the user hasn't specified
     # explicit paths to run.
@@ -72,16 +68,10 @@ def run_tests(pytest_args: list = None):
         sys.exit(0)
 
     # --- Determine Platform-specific Executables ---
-    if sys.platform == "win32":
-        python_executable = venv_dir / "Scripts" / "python.exe"
-        pip_executable = venv_dir / "Scripts" / "pip.exe"
-    else:
-        python_executable = venv_dir / "bin" / "python"
-        pip_executable = venv_dir / "bin" / "pip"
-
+    pip_executable, _ = check_platform(venv_dir)
+    _, python_executable = check_platform(venv_dir)
     # --- Ensure Pytest is Installed ---
     console.print("[bold green]    Checking[/bold green] for 'pytest'")
-    time.sleep(0.25)
 
     check_pytest_cmd = [str(python_executable), "-c", "import pytest"]
     pytest_installed = (
@@ -92,7 +82,6 @@ def run_tests(pytest_args: list = None):
         console.print(
             "[bold green]     Installing[/bold green] 'pytest' into current venv"
         )
-        time.sleep(0.25)
         install_pytest_cmd = [str(pip_executable), "install", "pytest"]
         try:
             subprocess.run(install_pytest_cmd, check=True, capture_output=True)
@@ -103,11 +92,9 @@ def run_tests(pytest_args: list = None):
             sys.exit(1)
     else:
         console.print("[bold green]     Found[/bold green] 'pytest'")
-        time.sleep(0.5)
 
     # --- Run Tests ---
     console.print("[bold green]Running[/bold green] tests...")
-    time.sleep(0.5)
 
     # Construct the command to run pytest as a module, ensuring it uses the
     # correct interpreter from the virtual environment.

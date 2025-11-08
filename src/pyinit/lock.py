@@ -13,11 +13,15 @@ This is a crucial practice for creating reproducible environments.
 
 import subprocess
 import sys
-import time
 
 from rich.console import Console
 
-from .utils import find_project_root
+from .utils import (
+    check_platform,
+    check_project_root,
+    check_venv_exists,
+    find_project_root,
+)
 from .wrappers import error_handling
 
 
@@ -39,32 +43,20 @@ def lock_dependencies():
     project_root = find_project_root()
 
     # --- Pre-flight Checks ---
-    if not project_root:
-        console.print(
-            "[bold red][ERROR][/bold red] Not inside a project. Could not find 'pyproject.toml'."
-        )
-        sys.exit(1)
+    check_project_root(project_root)
 
     venv_dir = project_root / "venv"
-    if not venv_dir.exists():
-        console.print(
-            "[bold red][ERROR][/bold red] Virtual environment 'venv' not found."
-        )
-        sys.exit(1)
+    check_venv_exists(venv_dir)
 
     requirements_file = project_root / "requirements.txt"
 
     # --- Determine Platform-specific Executables ---
-    if sys.platform == "win32":
-        pip_executable = venv_dir / "Scripts" / "pip.exe"
-    else:
-        pip_executable = venv_dir / "bin" / "pip"
+    pip_executable, _ = check_platform(venv_dir)
 
     # --- Dependency Freezing Process ---
     console.print(
         f"[bold green]    Locking[/bold green] dependencies to '{requirements_file.name}'"
     )
-    time.sleep(0.5)
 
     # The command to be executed to get the list of installed packages.
     freeze_cmd = [str(pip_executable), "freeze"]

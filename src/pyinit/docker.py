@@ -14,11 +14,10 @@ production environments.
 
 import re
 import sys
-import time
 
 from rich.console import Console
 
-from .utils import find_project_root, get_project_name
+from .utils import check_project_root, find_project_root, get_project_name
 from .wrappers import error_handling
 
 # Conditional import of TOML library for Python version compatibility.
@@ -62,11 +61,7 @@ def gen_docker_files():
     project_root = find_project_root()
 
     # --- Pre-flight Checks ---
-    if not project_root:
-        console.print(
-            "[bold red][ERROR][/bold red] Not inside a project. Could not find 'pyproject.toml'."
-        )
-        sys.exit(1)
+    check_project_root(project_root)
 
     dockerfile_path = project_root / "Dockerfile"
     dockerignore_path = project_root / ".dockerignore"
@@ -86,7 +81,6 @@ def gen_docker_files():
     console.print(
         "[bold green]    Generating[/bold green] Docker configuration files..."
     )
-    time.sleep(1)
 
     # --- Gather Project Metadata ---
     # Fetch project name and Python version to customize the generated files.
@@ -183,16 +177,14 @@ build/
         console.print(
             f"[bold green]     Created[/bold green] 'Dockerfile' using Python {python_version}"
         )
-        time.sleep(1)
 
         with open(dockerignore_path, "w") as f:
             f.write(dockerignore_content.strip())
         console.print("[bold green]     Created[/bold green] '.dockerignore'")
-        time.sleep(1)
 
         console.print("\n[bold green]Successfully[/bold green] generated Docker files.")
         console.print(
-            f"-> [cyan]Suggestion:[/] You can now build your image with: 'docker build -t {project_name} .'"
+            f"[cyan]->[/] You can now build your image with: 'docker build -t {project_name}'"
         )
     except Exception as e:
         console.print(f"[bold red][ERROR][/bold red] Failed to write Docker files: {e}")

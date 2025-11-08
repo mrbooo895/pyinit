@@ -12,12 +12,15 @@ environment, and executing the installation via pip.
 """
 
 import subprocess
-import sys
-import time
 
 from rich.console import Console
 
-from .utils import find_project_root
+from .utils import (
+    check_platform,
+    check_project_root,
+    check_venv_exists,
+    find_project_root,
+)
 from .wrappers import error_handling
 
 
@@ -41,33 +44,20 @@ def add_module(module_to_install):
 
     # --- Pre-flight Checks ---
     # Ensure the command is being run from within a valid project directory.
-    if not project_root:
-        console.print(
-            "[bold red][ERROR][/bold red] Not inside a project. Could not find 'pyproject.toml'."
-        )
-        sys.exit(1)
+    check_project_root(project_root)
 
     module_name = module_to_install
     venv_dir = project_root / "venv"
 
     # Verify that the virtual environment directory exists.
-    if not venv_dir.exists():
-        console.print(
-            f"[bold red][ERROR][/bold red] Virtual Environment '{venv_dir.name}' not found"
-        )
-        sys.exit(1)
-
+    check_venv_exists(venv_dir)
     # --- Determine Platform-specific Executables ---
     # The path to pip differs between Windows and Unix-like systems.
-    if sys.platform == "win32":
-        pip_executable = venv_dir / "Scripts" / "pip.exe"
-    else:
-        pip_executable = venv_dir / "bin" / "pip"
+    pip_executable, _ = check_platform(venv_dir)
 
     # --- Installation Process ---
     # Provide visual feedback to the user that the installation is starting.
     console.print(f"[bold green]    Installing[/bold green] module '{module_name}'")
-    time.sleep(0.25)
 
     try:
         # Execute 'pip install' as a subprocess within the virtual environment.
@@ -80,8 +70,8 @@ def add_module(module_to_install):
         console.print(
             f"[bold green]Successfully[/bold green] Installed '{module_name}'"
         )
-    except Exception:
+    except Exception as e:
         # A generic exception catch-all for any failure during the subprocess run.
         console.print(
-            f"\n[bold red][ERROR][/bold red] Failed To Install Module: {module_name}"
+            f"\n[bold red][ERROR][/bold red] Failed To Install Module: {module_name}\n-> {e}"
         )

@@ -14,11 +14,15 @@ for debugging dependency conflicts.
 
 import subprocess
 import sys
-import time
 
 from rich.console import Console
 
-from .utils import find_project_root
+from .utils import (
+    check_platform,
+    check_project_root,
+    check_venv_exists,
+    find_project_root,
+)
 from .wrappers import error_handling
 
 
@@ -40,30 +44,17 @@ def show_dependency_graph():
     project_root = find_project_root()
 
     # --- Pre-flight Checks ---
-    if not project_root:
-        console.print(
-            "[bold red][ERROR][/bold red] Not inside a project. Could not find 'pyproject.toml'."
-        )
-        sys.exit(1)
+    check_project_root(project_root)
 
     venv_dir = project_root / "venv"
-    if not venv_dir.exists():
-        console.print(
-            "[bold red][ERROR][/bold red] Virtual environment 'venv' not found."
-        )
-        sys.exit(1)
+    check_venv_exists(venv_dir)
 
     # --- Determine Platform-specific Executables ---
-    if sys.platform == "win32":
-        python_executable = venv_dir / "Scripts" / "python.exe"
-        pip_executable = venv_dir / "Scripts" / "pip.exe"
-    else:
-        python_executable = venv_dir / "bin" / "python"
-        pip_executable = venv_dir / "bin" / "pip"
+    pip_executable, _ = check_platform(venv_dir)
+    _, python_executable = check_platform(venv_dir)
 
     # --- Ensure pipdeptree is Installed ---
     console.print("[bold green]    Checking[/bold green] for 'pipdeptree'")
-    time.sleep(0.25)
 
     check_tool_cmd = [str(python_executable), "-c", "import pipdeptree"]
     tool_installed = subprocess.run(check_tool_cmd, capture_output=True).returncode == 0
@@ -84,11 +75,9 @@ def show_dependency_graph():
             sys.exit(1)
     else:
         console.print("[bold green]     Found[/bold green] Module 'pipdeptree'")
-        time.sleep(0.5)
 
     # --- Generate and Display the Graph ---
-    console.print("[bold green]\nGenerating[/bold green] dependency graph...\n")
-    time.sleep(1)
+    console.print("[bold green]\nGenerating[/bold green] dependency graph\n")
 
     graph_cmd = [str(python_executable), "-m", "pipdeptree"]
 

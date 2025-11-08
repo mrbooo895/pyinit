@@ -14,11 +14,16 @@ command-line arguments directly to the user's script.
 
 import subprocess
 import sys
-import time
 
 from rich.console import Console
 
-from .utils import find_project_root, get_project_name
+from .utils import (
+    check_platform,
+    check_project_root,
+    check_venv_exists,
+    find_project_root,
+    get_project_name,
+)
 from .wrappers import error_handling
 
 console = Console()
@@ -44,12 +49,7 @@ def run_project(app_args: list = None):
         app_args = []
 
     # --- Pre-flight Checks ---
-    if not project_root:
-        console.print(
-            "[bold red][ERROR][/bold red] Not inside a project. Could not find 'pyproject.toml'."
-        )
-        sys.exit(1)
-
+    check_project_root(project_root)
     # Determine project name and construct paths to key files/directories.
     project_name = get_project_name(project_root) or project_root.name
     main_file = project_root / "src" / project_name / "main.py"
@@ -63,20 +63,12 @@ def run_project(app_args: list = None):
         sys.exit(1)
 
     # Verify that the virtual environment exists.
-    if not venv_dir.exists():
-        console.print(
-            f"[bold red][ERROR][/bold red] Virtual Environment '{venv_dir.name}' not found."
-        )
-        sys.exit(1)
+    check_venv_exists(venv_dir)
 
     # --- Determine Platform-specific Python Executable ---
-    if sys.platform == "win32":
-        python_executable = venv_dir / "Scripts" / "python.exe"
-    else:
-        python_executable = venv_dir / "bin" / "python"
+    _, python_executable = check_platform(venv_dir)
 
     console.print(f"[bold green]    Running[/bold green] package '{project_name}'")
-    time.sleep(0.25)
 
     try:
         # Construct the full command, including the Python interpreter,
