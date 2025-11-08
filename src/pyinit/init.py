@@ -22,7 +22,7 @@ from pathlib import Path
 from rich.console import Console
 
 # Import shared functionality from the 'new' module.
-from .new import TEMPLATES_BASE_DIR, get_git_config, process_template
+from .create import TEMPLATES_BASE_DIR, get_git_config, process_template
 from .wrappers import error_handling
 
 
