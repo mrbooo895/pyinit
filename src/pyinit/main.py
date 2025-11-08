@@ -18,8 +18,10 @@ from .run import run_project
 from .scan import scan_project
 from .test import run_tests
 from .update import update_modules
+from .info import project_info
 from .venv import manage_venv
 from .wrappers import error_handling
+
 
 
 @error_handling
@@ -105,6 +107,8 @@ def main():
     )
     subparsers.add_parser("add-hooks", help="Set up pre-commit hooks for the project")
 
+    subparsers.add_parser("info", help="Display information about the current project")
+
     passthrough_commands = ["run", "test", "lint"]
     main_args = sys.argv[1:]
     sub_args = []
@@ -156,6 +160,8 @@ def main():
                     manage_env(args.vars)
         case "add-hooks":
             add_git_hooks()
+        case "info":
+            project_info()
 
 
 if __name__ == "__main__":
