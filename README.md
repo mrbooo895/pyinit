@@ -4,7 +4,7 @@
 
 ### *Your All-in-One Python Project Manager*
 
-[![Version](https://img.shields.io/badge/version-1.0.13-blue.svg)](https://github.com/mrbooo895/pyinit)
+[![Version](https://img.shields.io/badge/version-1.0.14-blue.svg)](https://github.com/mrbooo895/pyinit)
 [![Python](https://img.shields.io/badge/python-3.10+-brightgreen.svg)](https://www.python.org/)
 [![License](https://img.shields.io/badge/license-MIT-orange.svg)](LICENSE)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/mrbooo895/pyinit/pulls)
