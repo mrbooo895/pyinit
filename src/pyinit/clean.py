@@ -47,7 +47,6 @@ def clean_project():
         "dist",
     ]
 
-    # --- Search Phase ---
     # Recursively search the project directory for all items matching the patterns.
     console.print(
         "[bold green]    Searching[/bold green] for temporary and build-related files"
