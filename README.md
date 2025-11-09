@@ -164,7 +164,6 @@ pyinit uninstall flask numpy pandas
 |---------|-------------|
 | `pyinit format` | Format code with Black & isort |
 | `pyinit check [ruff-args]` | Lint code with Ruff |
-| `pyinit scan` | Scan project for issues |
 | `pyinit clean` | Remove temporary files |
 
 ### 🏗️ Building & Releasing
@@ -239,14 +238,6 @@ my_project/
 ```
 
 ---
-
-## 🔍 Project Health Check
-
-Run a comprehensive health check on your project:
-
-```bash
-pyinit scan
-```
 
 **Checks include:**
 - ✅ `pyproject.toml` validity
