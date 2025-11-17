@@ -64,7 +64,7 @@ def build_project():
     # --- Step 1: Install Build Dependencies ---
     # Ensure that the PEP 517 build frontend and backend tools are installed.
     console.print(
-        "[bold green]    Fetching[/bold green] Required Build Modules: 'build', 'wheel'"
+        "[bold green]    Downloading[/bold green] Required Build Modules: 'build', 'wheel'"
     )
     subprocess.run(
         [str(pip_executable), "install", "build", "wheel"],

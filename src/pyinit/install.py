@@ -106,7 +106,7 @@ def install_modules(modules_to_install: list):
             packages_to_actually_install.append(module)
         else:
             console.print(
-                f"[bold yellow][INFO][/] Requirement already satisfied: '{module}'"
+                f"[bold yellow][INFO][/] Requirement already installed: '{module}'"
             )
 
     if not packages_to_actually_install:

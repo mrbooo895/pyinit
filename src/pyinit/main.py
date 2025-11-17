@@ -44,7 +44,7 @@ def main():
         description="Tool For Creating and Managing Python Projects"
     )
     subparsers = parser.add_subparsers(
-        dest="command", required=True, help="Available commands"
+        dest="command",  help="Available commands"
     )
 
     # --- Command Definitions ---
@@ -192,7 +192,8 @@ def main():
             update_modules(args.upgrade)
         case "info":
             project_info()
-
+        case None:
+            parser.print_help()
 
 if __name__ == "__main__":
     main()

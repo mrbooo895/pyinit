@@ -121,7 +121,7 @@ def increase_version(part: str):
 
     # --- Final User Feedback ---
     console.print(
-        f"[bold green]     Updating[/bold green] version from [yellow]{old_version}[/yellow] to [cyan]{new_version}[/cyan]"
+        f"[bold green]     Updating[/bold green] version from '{old_version}' to '{new_version}'"
     )
 
     if not init_updated:

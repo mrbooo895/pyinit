@@ -161,5 +161,3 @@ def ensure_tool_installed(
         console.print(
             f"[bold green]       Successfully[/bold green] installed '{tool_name}'"
         )
-    else:
-        console.print(f"[bold green]     Found[/bold green] Module '{tool_name}'")

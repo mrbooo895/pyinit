@@ -88,7 +88,7 @@ def uninstall_modules(modules_to_uninstall: list):
         sys.exit(0)
 
     # --- Uninstallation Process ---
-    console.print(f"[bold green]    Uninstalling[/bold green] {modules_str}")
+    console.print(f"[bold green]    Removing[/bold green] {modules_str}")
 
     uninstall_cmd = [
         str(pip_executable),

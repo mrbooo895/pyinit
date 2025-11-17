@@ -20,12 +20,7 @@ from rich.console import Console
 
 from .utils import check_platform, check_project_root, find_project_root
 from .wrappers import error_handling
-
-# Conditional import of TOML library for Python version compatibility.
-if sys.version_info >= (3, 11):
-    import tomllib
-else:
-    import tomli as tomllib
+import tomllib
 
 
 def run_command(command: list[str], cwd: Path) -> str | None:

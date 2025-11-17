@@ -49,7 +49,7 @@ def clean_project():
 
     # Recursively search the project directory for all items matching the patterns.
     console.print(
-        "[bold green]    Searching[/bold green] for temporary and build-related files"
+        "[bold green]    Allocating[/bold green] for temporary and build-related files"
     )
 
     paths_to_remove: list[Path] = []
@@ -78,7 +78,7 @@ def clean_project():
 
     # --- Deletion Phase ---
     # Proceed with removing the files and directories.
-    console.print("[bold green]\n     Cleaning[/bold green] project...")
+    console.print("[bold green]\n     Cleaning[/bold green] project")
 
     deleted_count = 0
     for path in paths_to_remove:

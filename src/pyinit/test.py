@@ -81,7 +81,7 @@ def run_tests(pytest_args: list = None):
     )
 
     # --- Run Tests ---
-    console.print("[bold green]Running[/bold green] tests...")
+    console.print("[bold green]Running[/bold green] tests")
 
     # Construct the command to run pytest as a module.
     run_tests_cmd = [str(python_executable), "-m", "pytest"] + pytest_args

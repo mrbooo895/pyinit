@@ -64,9 +64,7 @@ def create_virtual_env(console: Console, venv_dir: Path):
 
     if venv_dir.exists():
         console.print("[bold red][ERROR][/bold red] A 'venv' directory already exists.")
-        console.print(
-            "       - If you want to recreate it, run 'pyinit venv remove' first."
-        )
+        console.print("[bold red]->[/] Move it or rename it to recreate the virtual environment")
         sys.exit(1)
 
     # Use Python's built-in venv module to create the environment.
@@ -89,7 +87,7 @@ def remove_virtual_env(console: Console, venv_dir: Path):
     :raises SystemExit: If the environment does not exist, if the user cancels,
                         or if removal fails.
     """
-    console.print("[bold yellow]     Removing[/bold yellow] virtual environment")
+    console.print("[green]     Removing[/] virtual environment")
 
     if not venv_dir.exists() or not venv_dir.is_dir():
         console.print(
